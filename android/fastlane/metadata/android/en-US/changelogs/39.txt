@@ -1,0 +1,3 @@
+• New Unified Search: Instant results for Surah, Juz & Ayahs with Urdu support.
+• Hijri Calendar: Enhanced calendar with sync, custom corrections & day selection.
+• Performance Improvements & UI Enhancements

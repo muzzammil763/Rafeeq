@@ -1,0 +1,5 @@
+- Enhanced Qiblah View for improved accuracy and usability
+- Qur’an details and audio playback enhancements for a smoother listening experience
+- Overall search improvements to deliver faster and more relevant results
+- Bug fixes and performance optimizations for greater stability and efficiency
+- User experience enhancements across the app

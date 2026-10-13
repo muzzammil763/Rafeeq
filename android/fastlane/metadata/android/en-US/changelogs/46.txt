@@ -1,0 +1,4 @@
+# Release Notes
+- Improved Quran Search
+- Updated the Asmaul Husna View
+- Added Namaz Mutarjam With Arabic and Urdu

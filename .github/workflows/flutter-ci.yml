@@ -1,0 +1,66 @@
+name: Flutter CI
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: flutter-ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  flutter-ci:
+    name: Analyze and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v4
+        with:
+          # The pull_request ref is a merge commit, so two commits are enough
+          # to compare the proposed result with the target branch.
+          fetch-depth: 2
+
+      - name: Decide whether Flutter checks are needed
+        id: changes
+        shell: bash
+        run: |
+          # Disable rename detection so renaming source code to a Markdown file
+          # still counts as a source-code change.
+          changed_files="$(git diff --no-renames --name-only HEAD^1 HEAD)"
+
+          if [[ -z "$changed_files" ]] || grep -qvEi '\.md$' <<< "$changed_files"; then
+            echo "run_flutter=true" >> "$GITHUB_OUTPUT"
+            echo "Flutter checks will run." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "run_flutter=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "Flutter checks skipped because this PR only changes Markdown files."
+              echo
+              echo '```text'
+              echo "$changed_files"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Set up Flutter
+        if: steps.changes.outputs.run_flutter == 'true'
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        if: steps.changes.outputs.run_flutter == 'true'
+        run: flutter pub get
+
+      - name: Analyze
+        if: steps.changes.outputs.run_flutter == 'true'
+        run: flutter analyze
+
+      - name: Test
+        if: steps.changes.outputs.run_flutter == 'true'
+        run: flutter test

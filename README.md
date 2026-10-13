@@ -1,0 +1,74 @@
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/readme/calligraphy-dark.svg">
+    <img src=".github/readme/calligraphy-light.svg" alt="Rafeeq" width="220">
+  </picture>
+
+  <h3>Your Islamic Companion</h3>
+
+  <p>
+    <strong>Rafeeq</strong> is an open-source Islamic companion app built with Flutter
+    to support Muslims in their daily spiritual practice.
+  </p>
+</div>
+
+---
+
+## Features
+
+- **Quran** – Read (including a 16-line mushaf view), search, bookmark and share ayahs, with translations
+- **Recitations** – Listen with a choice of reciters and a background mini-player
+- **Prayer Times** – Location-based times with notifications and adhan sounds
+- **Qibla** – Compass pointing towards the Kaaba
+- **Hijri & Ramadan Calendars** – With adjustable Hijri date correction
+- **Namaz Guide & Daily Duas** – Step-by-step prayer guide and categorized supplications
+- **Asma ul Husna** – The 99 Names of Allah with meanings
+- **Ayah Picture Maker** – Turn an ayah into a shareable image
+- **English & Urdu** – Full localization with Urdu typography, plus light and dark themes
+
+---
+
+## Tech Stack
+
+- **Framework:** Flutter (Dart ≥ 3.10)
+- **State Management:** Riverpod + Hooks
+- **Local Storage:** SQLite (sqflite) and Shared Preferences
+- **Audio:** just_audio
+- **Prayer Times & Location:** adhan, Geolocator
+- **Monitoring:** Firebase Analytics and Crashlytics (release builds only)
+- **Updates:** Shorebird code push
+
+---
+
+## Getting Started
+
+Rafeeq uses Firebase only for Analytics and Crashlytics. The Firebase config files are not committed, so create your own Firebase project, register the Android app (`com.satechdev.rafeeqapp`, plus `com.satechdev.rafeeqapp.debug` for debug builds) and the iOS app (`com.satechdev.rafeeqapp`), then place the downloaded files here:
+
+- `android/app/google-services.json`
+- `ios/Runner/GoogleService-Info.plist`
+
+Then run the app:
+
+```bash
+flutter pub get
+flutter run
+```
+
+Before opening a pull request, make sure both of these pass:
+
+```bash
+flutter analyze
+flutter test
+```
+
+---
+
+## Contributing
+
+Contributions are welcome. Open an issue to discuss bigger changes first, then send a pull request from a feature branch. The maintainers review every pull request before it is merged.
+
+---
+
+<div align="center">
+  <p>Made with ❤️ for the Ummah</p>
+</div>

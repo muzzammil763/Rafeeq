@@ -1,0 +1,5 @@
+- Ramadan & Friday Cards: New beautiful cards with special Ramadan Ashra Duas and Friday sunnahs.
+- Audio Sleep Timer: Automatically stop Quran audio playback after a set time.
+- Enhanced Audio Playback: Added "Continue to Next Surah" and "Surah Repeat" options.
+- Enhanced Prayer Times: Upgraded prayer times card with a countdown to the next prayer.
+- Asma ul Husna: Discover a new name of Allah rotating on your home screen.

@@ -1,0 +1,6 @@
+# Release Notes
+- Added targeted IslamicTok rollouts with Firebase Remote Config
+- Improved Google account setup and name editing
+- Restored the Quran mini-player in the reader
+- Made long IslamicTok captions readable without affecting video controls
+- Updated About links for WhatsApp and the developer portfolio
