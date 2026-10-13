@@ -441,7 +441,7 @@ class _GreetingRow extends StatelessWidget {
             "السلام عليكم",
             style: TextStyle(
               color: palette.title,
-              fontFamily: 'Al-Qalam',
+              fontFamily: 'Jameel Noori Nastaleeq',
               fontSize: 24,
 
               fontWeight: FontWeight.bold,

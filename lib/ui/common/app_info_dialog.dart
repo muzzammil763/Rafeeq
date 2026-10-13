@@ -86,7 +86,9 @@ class AppInfoDialog extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: palette.title,
-                        fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                        fontFamily: isUrdu
+                            ? 'Jameel Noori Nastaleeq'
+                            : 'GoogleSans',
                         fontSize: 17,
                         height: isUrdu ? 1.45 : 1.2,
                         fontWeight: FontWeight.w700,

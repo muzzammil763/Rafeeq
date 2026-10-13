@@ -153,7 +153,7 @@ class BookmarksScreen extends HookConsumerWidget {
                               color: colorScheme.onSecondary,
                               fontWeight: FontWeight.w500,
                               fontSize: 20,
-                              fontFamily: "Alvi",
+                              fontFamily: "Jameel Noori Nastaleeq",
                             ),
                       ),
                       subtitle: Text(

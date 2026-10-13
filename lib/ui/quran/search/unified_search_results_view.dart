@@ -576,7 +576,7 @@ class UnifiedSearchResultsView extends HookConsumerWidget {
                             surah.name,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'Muhammadi Uthmanic',
+                              fontFamily: 'PDMS Saleem Quran',
                               fontSize: 22,
                               color: theme.textColor,
                             ),
@@ -702,7 +702,7 @@ class UnifiedSearchResultsView extends HookConsumerWidget {
                           JuzNamesProvider.getUrduName(juz.number),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontFamily: "Alvi",
+                            fontFamily: "Jameel Noori Nastaleeq",
                             fontSize: 22,
                             color: theme.textColor,
                           ),

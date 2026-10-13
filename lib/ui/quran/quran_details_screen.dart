@@ -33,7 +33,7 @@ TextStyle getTranslationTextStyle(
   final isUrdu =
       settings.translationEditionId.split('.').first.toLowerCase() == 'ur';
   return TextStyle(
-    fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+    fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
     fontSize: customFontSize ?? settings.translationFontSize,
     color: color,
     height: 1.55,
@@ -46,7 +46,7 @@ TextStyle getArabicTextStyle(
   double? customFontSize,
 }) {
   return TextStyle(
-    fontFamily: 'Muhammadi Uthmanic',
+    fontFamily: 'PDMS Saleem Quran',
     fontSize: customFontSize ?? settings.arabicFontSize,
     color: color,
     height: 1.8,
@@ -640,7 +640,7 @@ class _SurahHeader extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: palette.subtitle,
-            fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+            fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
             fontSize: 14,
           ),
         ),
@@ -652,7 +652,7 @@ class _SurahHeader extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: palette.title,
-            fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+            fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
             fontSize: 24,
             fontWeight: FontWeight.w700,
           ),
@@ -666,7 +666,7 @@ class _SurahHeader extends StatelessWidget {
             backgroundColor: palette.card,
             foregroundColor: palette.title,
             textStyle: TextStyle(
-              fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+              fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
               fontWeight: FontWeight.w600,
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -738,7 +738,9 @@ class _AyahCard extends ConsumerWidget {
                     reference,
                     style: TextStyle(
                       color: isCurrent ? palette.background : palette.title,
-                      fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                      fontFamily: isUrdu
+                          ? 'Jameel Noori Nastaleeq'
+                          : 'GoogleSans',
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -851,7 +853,9 @@ class _AyahCard extends ConsumerWidget {
                             : context.loc.paused,
                         style: TextStyle(
                           color: palette.card,
-                          fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                          fontFamily: isUrdu
+                              ? 'Jameel Noori Nastaleeq'
+                              : 'GoogleSans',
                           fontWeight: FontWeight.w600,
                           fontSize: 12,
                         ),

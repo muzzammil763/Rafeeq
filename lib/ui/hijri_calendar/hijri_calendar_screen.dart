@@ -207,7 +207,9 @@ class _MonthHeader extends ConsumerWidget {
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: palette.title,
-                    fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                    fontFamily: isUrdu
+                        ? 'Jameel Noori Nastaleeq'
+                        : 'GoogleSans',
                     fontSize: 18,
                   ),
                 ),

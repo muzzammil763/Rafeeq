@@ -115,7 +115,7 @@ class PrayerCategoryScreen extends HookConsumerWidget {
                   textDirection: TextDirection.rtl,
                   style: TextStyle(
                     color: palette.selectedTitle,
-                    fontFamily: 'Muhammadi Uthmanic',
+                    fontFamily: 'PDMS Saleem Quran',
                     fontSize: 17,
                   ),
                 ),
@@ -247,7 +247,7 @@ class _PrayerCard extends StatelessWidget {
                 Text(
                   prayer.arabicText,
                   style: TextStyle(
-                    fontFamily: 'Muhammadi Uthmanic',
+                    fontFamily: 'PDMS Saleem Quran',
                     fontSize: 20,
                     height: 1.6,
                     color: colorScheme.onSecondary,

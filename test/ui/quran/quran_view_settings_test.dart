@@ -84,7 +84,7 @@ void main() {
             find.widgetWithText(LocationPickerRow, _urduEdition.englishName),
           )
           .fontFamily,
-      'Alvi',
+      'Jameel Noori Nastaleeq',
     );
     expect(
       tester
@@ -119,7 +119,7 @@ void main() {
             find.widgetWithText(LocationPickerRow, _urduEdition.name),
           )
           .fontFamily,
-      'Alvi',
+      'Jameel Noori Nastaleeq',
     );
   });
 }

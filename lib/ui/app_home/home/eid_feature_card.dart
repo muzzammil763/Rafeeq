@@ -221,7 +221,7 @@ class EidFeatureCard extends HookConsumerWidget {
                                         fontWeight: FontWeight.w600,
                                         color: colorScheme.onSecondary,
                                         fontFamily: isUrdu
-                                            ? 'Alvi'
+                                            ? 'Jameel Noori Nastaleeq'
                                             : 'GoogleSans',
                                       ),
                                 ),

@@ -203,7 +203,7 @@ class SettingsCard extends StatelessWidget {
                             fontFamily:
                                 Localizations.localeOf(context).languageCode ==
                                     'ur'
-                                ? 'Alvi'
+                                ? 'Jameel Noori Nastaleeq'
                                 : 'GoogleSans',
                             fontSize: 14,
                             height: 1.2,
@@ -223,7 +223,7 @@ class SettingsCard extends StatelessWidget {
                                           context,
                                         ).languageCode ==
                                         'ur'
-                                    ? 'Alvi'
+                                    ? 'Jameel Noori Nastaleeq'
                                     : 'GoogleSans',
                                 fontSize: 14,
                                 height: 1.2,
@@ -354,7 +354,7 @@ class SettingsPickerTile extends StatelessWidget {
                           fontFamily:
                               Localizations.localeOf(context).languageCode ==
                                   'ur'
-                              ? 'Alvi'
+                              ? 'Jameel Noori Nastaleeq'
                               : 'GoogleSans',
                           fontSize: 15,
                           height: 1.2,
@@ -375,7 +375,7 @@ class SettingsPickerTile extends StatelessWidget {
                                 subtitleFontFamily ??
                                 (Localizations.localeOf(context).languageCode ==
                                         'ur'
-                                    ? 'Alvi'
+                                    ? 'Jameel Noori Nastaleeq'
                                     : 'GoogleSans'),
                             fontSize: 14,
                             height: 1.2,

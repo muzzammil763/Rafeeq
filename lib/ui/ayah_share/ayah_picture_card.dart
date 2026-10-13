@@ -102,7 +102,7 @@ class AyahPictureCard extends StatelessWidget {
                                       overflow: TextOverflow.clip,
                                       style: TextStyle(
                                         color: palette.title,
-                                        fontFamily: 'Muhammadi Uthmanic',
+                                        fontFamily: 'PDMS Saleem Quran',
                                         fontSize: arabicMaxSize,
                                         height: 1.55,
                                       ),
@@ -134,7 +134,7 @@ class AyahPictureCard extends StatelessWidget {
                                       style: TextStyle(
                                         color: palette.subtitle,
                                         fontFamily: translationIsRtl
-                                            ? 'Alvi'
+                                            ? 'Jameel Noori Nastaleeq'
                                             : 'GoogleSans',
                                         fontSize: translationIsRtl
                                             ? translationMaxSize + 3
@@ -161,7 +161,7 @@ class AyahPictureCard extends StatelessWidget {
               textAlign: urduMode ? TextAlign.right : TextAlign.left,
               style: TextStyle(
                 color: palette.subtitle,
-                fontFamily: urduMode ? 'Alvi' : 'GoogleSans',
+                fontFamily: urduMode ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
                 fontSize: urduMode ? 15 : 12,
                 fontWeight: FontWeight.w600,
                 letterSpacing: .2,

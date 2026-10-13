@@ -253,7 +253,7 @@ TextStyle _style(
   FontWeight fontWeight,
 ) => TextStyle(
   color: color,
-  fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+  fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
   fontSize: fontSize,
   height: isUrdu ? 1.45 : 1.25,
   fontWeight: fontWeight,

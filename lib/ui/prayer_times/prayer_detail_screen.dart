@@ -188,7 +188,7 @@ class PrayerDetailScreen extends HookConsumerWidget {
           Text(
             prayer.arabicText,
             style: TextStyle(
-              fontFamily: 'Muhammadi Uthmanic',
+              fontFamily: 'PDMS Saleem Quran',
               fontSize: 26,
               height: 1.8,
               color: colorScheme.onSurface,
@@ -275,7 +275,7 @@ class PrayerDetailScreen extends HookConsumerWidget {
               fontSize: isUrdu ? 18 : 16,
               height: 1.6,
               color: colorScheme.onSurface,
-              fontFamily: isUrdu ? 'Alvi' : null,
+              fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : null,
             ),
           ),
           if (!isUrdu) ...[
@@ -303,7 +303,7 @@ class PrayerDetailScreen extends HookConsumerWidget {
                 fontSize: 18,
                 height: 1.6,
                 color: Colors.black87,
-                fontFamily: 'Alvi',
+                fontFamily: 'Jameel Noori Nastaleeq',
               ),
             ),
           ],

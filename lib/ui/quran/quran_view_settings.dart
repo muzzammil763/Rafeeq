@@ -383,7 +383,7 @@ class QuranViewSettings {
     this.showTransliteration = false,
     this.translationEditionId = 'en.asad',
     this.transliterationEditionId = 'en.transliteration',
-    this.arabicFontFamily = 'Muhammadi Uthmanic',
+    this.arabicFontFamily = 'PDMS Saleem Quran',
     this.translationFontFamily = 'GoogleSans',
     this.viewMode = AyahViewMode.defaultMode,
     this.continueToNextSurah = false,
@@ -453,7 +453,7 @@ class QuranViewSettings {
     showTransliteration: false,
     translationEditionId: 'en.asad',
     transliterationEditionId: 'en.transliteration',
-    arabicFontFamily: 'Muhammadi Uthmanic',
+    arabicFontFamily: 'PDMS Saleem Quran',
     translationFontFamily: 'GoogleSans',
     viewMode: AyahViewMode.defaultMode,
     continueToNextSurah: false,
@@ -849,7 +849,7 @@ class QuranViewSettingsScreen extends ConsumerWidget {
               textAlign: TextAlign.right,
               style: TextStyle(
                 color: palette.title,
-                fontFamily: 'Muhammadi Uthmanic',
+                fontFamily: 'PDMS Saleem Quran',
                 fontSize: arabicFontSize,
                 height: 1.45,
               ),
@@ -873,7 +873,9 @@ class QuranViewSettingsScreen extends ConsumerWidget {
               textAlign: translationIsUrdu ? TextAlign.right : TextAlign.left,
               style: TextStyle(
                 color: palette.subtitle,
-                fontFamily: translationIsUrdu ? 'Alvi' : 'GoogleSans',
+                fontFamily: translationIsUrdu
+                    ? 'Jameel Noori Nastaleeq'
+                    : 'GoogleSans',
                 fontSize: translationFontSize,
                 height: 1.35,
               ),
@@ -1129,7 +1131,7 @@ class _TranslationSelectionPageState
                           getLanguageName(languageCode),
                           style: TextStyle(
                             fontFamily: languageCode == 'ur'
-                                ? 'Alvi'
+                                ? 'Jameel Noori Nastaleeq'
                                 : 'GoogleSans',
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -1155,7 +1157,7 @@ class _TranslationSelectionPageState
                     return LocationPickerRow(
                       title: isUrdu ? edition.name : edition.englishName,
                       fontFamily: edition.language.toLowerCase() == 'ur'
-                          ? 'Alvi'
+                          ? 'Jameel Noori Nastaleeq'
                           : 'GoogleSans',
                       disableTextScaling: false,
                       selected: isSelected,

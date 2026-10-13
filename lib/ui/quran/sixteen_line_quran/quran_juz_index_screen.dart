@@ -164,7 +164,7 @@ class QuranJuzIndexScreen extends HookConsumerWidget {
                             Text(
                               JuzNamesProvider.getArabicName(juzNumber),
                               style: TextStyle(
-                                fontFamily: 'Muhammadi Uthmanic',
+                                fontFamily: 'PDMS Saleem Quran',
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: isDownloaded
@@ -881,7 +881,7 @@ class _JuzPositionContentState extends State<_JuzPositionContent> {
             Text(
               arabicLabel,
               style: TextStyle(
-                fontFamily: 'Muhammadi Uthmanic',
+                fontFamily: 'PDMS Saleem Quran',
                 color: isSelected
                     ? Theme.of(context).colorScheme.onPrimary
                     : Theme.of(context).colorScheme.onSecondary,

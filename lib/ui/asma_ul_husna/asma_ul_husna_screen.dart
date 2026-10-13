@@ -105,7 +105,7 @@ class _AsmaCard extends StatelessWidget {
                     textAlign: TextAlign.right,
                     style: TextStyle(
                       color: palette.title,
-                      fontFamily: 'Muhammadi Uthmanic',
+                      fontFamily: 'PDMS Saleem Quran',
                       fontSize: 40,
                       height: 1.75,
                     ),

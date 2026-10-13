@@ -80,7 +80,7 @@ class _WuduStepTile extends StatelessWidget {
                 '${step.step.toLocalizedNumber(context)}- ${isUrdu ? step.titleUr : step.titleEn}',
                 style: TextStyle(
                   color: palette.title,
-                  fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                  fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
                   fontSize: 15,
                   height: isUrdu ? 1.5 : 1.25,
                   fontWeight: FontWeight.w700,
@@ -103,7 +103,7 @@ class _WuduStepTile extends StatelessWidget {
           isUrdu ? step.descriptionUr : step.descriptionEn,
           style: TextStyle(
             color: palette.subtitle,
-            fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+            fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
             fontSize: isUrdu ? 20 : 17,
             height: isUrdu ? 1.55 : 1.4,
           ),
@@ -118,7 +118,7 @@ class _WuduStepTile extends StatelessWidget {
               textAlign: TextAlign.right,
               style: TextStyle(
                 color: palette.title,
-                fontFamily: 'Muhammadi Uthmanic',
+                fontFamily: 'PDMS Saleem Quran',
                 fontSize: 28,
                 height: 1.75,
               ),

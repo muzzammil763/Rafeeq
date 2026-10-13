@@ -92,15 +92,12 @@ flutter:
     - shorebird.yaml
 
   fonts:
-    - family: Muhammadi Uthmanic
+    - family: PDMS Saleem Quran
       fonts:
-        - asset: assets/fonts/Muhammadi Uthmanic.ttf
-    - family: Al-Qalam
+        - asset: assets/fonts/PDMSSaleemQuran.ttf
+    - family: Jameel Noori Nastaleeq
       fonts:
-        - asset: assets/fonts/Al-Qalam.ttf
-    - family: Alvi
-      fonts:
-        - asset: assets/fonts/alvi.ttf
+        - asset: assets/fonts/JameelNooriNastaleeq.ttf
     - family: GoogleSans
       fonts:
         - asset: assets/fonts/GoogleSans-Regular.ttf

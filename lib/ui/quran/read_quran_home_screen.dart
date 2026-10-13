@@ -95,12 +95,16 @@ class ReadQuranHomeScreen extends HookConsumerWidget {
                           labelColor: palette.title,
                           indicatorSize: TabBarIndicatorSize.label,
                           labelStyle: TextStyle(
-                            fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                            fontFamily: isUrdu
+                                ? 'Jameel Noori Nastaleeq'
+                                : 'GoogleSans',
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
                           ),
                           unselectedLabelStyle: TextStyle(
-                            fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                            fontFamily: isUrdu
+                                ? 'Jameel Noori Nastaleeq'
+                                : 'GoogleSans',
                             fontWeight: FontWeight.w500,
                             fontSize: 15,
                           ),
@@ -172,7 +176,7 @@ class ReadQuranHomeScreen extends HookConsumerWidget {
           ref.read(quranSearchProvider.notifier).updateQuery(value),
       style: TextStyle(
         color: palette.title,
-        fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+        fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
         fontSize: 16,
         fontWeight: FontWeight.w500,
       ),
@@ -182,7 +186,7 @@ class ReadQuranHomeScreen extends HookConsumerWidget {
         hintText: context.loc.searchQuranHint,
         hintStyle: TextStyle(
           color: palette.subtitle,
-          fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+          fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
           fontSize: 15,
           fontWeight: FontWeight.w400,
         ),
@@ -396,7 +400,9 @@ class _QuranIndexCard extends StatelessWidget {
                     textDirection: TextDirection.ltr,
                     style: TextStyle(
                       color: palette.accent,
-                      fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                      fontFamily: isUrdu
+                          ? 'Jameel Noori Nastaleeq'
+                          : 'GoogleSans',
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       fontFeatures: const [FontFeature.tabularFigures()],
@@ -415,7 +421,9 @@ class _QuranIndexCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: palette.title,
-                          fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                          fontFamily: isUrdu
+                              ? 'Jameel Noori Nastaleeq'
+                              : 'GoogleSans',
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -427,7 +435,9 @@ class _QuranIndexCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: palette.subtitle,
-                          fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                          fontFamily: isUrdu
+                              ? 'Jameel Noori Nastaleeq'
+                              : 'GoogleSans',
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                         ),

@@ -103,7 +103,7 @@ class DailyPrayerScreen extends HookConsumerWidget {
                         color: colorScheme.onSecondary,
                         fontWeight: FontWeight.bold,
                         fontSize: isUrdu ? 26 : 22,
-                        fontFamily: isUrdu ? 'Alvi' : null,
+                        fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : null,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -112,7 +112,7 @@ class DailyPrayerScreen extends HookConsumerWidget {
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSecondary.withValues(alpha: 0.8),
                         fontSize: isUrdu ? 16 : 14,
-                        fontFamily: isUrdu ? 'Alvi' : null,
+                        fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : null,
                       ),
                     ),
                   ],
@@ -318,7 +318,9 @@ class _CategoryCard extends StatelessWidget {
                               color: colorScheme.onSecondary,
                               fontWeight: FontWeight.w600,
                               fontSize: isUrdu ? 18 : 16,
-                              fontFamily: isUrdu ? 'Alvi' : null,
+                              fontFamily: isUrdu
+                                  ? 'Jameel Noori Nastaleeq'
+                                  : null,
                             ),
                       ),
                       const SizedBox(height: 4),

@@ -109,7 +109,9 @@ class _PrayerHeader extends StatelessWidget {
                       isUrdu ? prayer.nameUr : prayer.nameEn,
                       style: TextStyle(
                         color: palette.selectedTitle,
-                        fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                        fontFamily: isUrdu
+                            ? 'Jameel Noori Nastaleeq'
+                            : 'GoogleSans',
                         fontSize: 18,
                         height: isUrdu ? 1.5 : 1.2,
                         fontWeight: FontWeight.w700,
@@ -128,7 +130,7 @@ class _PrayerHeader extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
                   color: palette.selectedTitle,
-                  fontFamily: 'Muhammadi Uthmanic',
+                  fontFamily: 'PDMS Saleem Quran',
                   fontSize: 22,
                 ),
               ),
@@ -216,7 +218,7 @@ class _PrayerStepCard extends StatelessWidget {
                 isUrdu ? step.titleUr : step.titleEn,
                 style: TextStyle(
                   color: palette.title,
-                  fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+                  fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
                   fontSize: 15,
                   height: isUrdu ? 1.45 : 1.25,
                   fontWeight: FontWeight.w700,
@@ -250,7 +252,7 @@ class _PrayerStepCard extends StatelessWidget {
               textDirection: TextDirection.rtl,
               style: TextStyle(
                 color: palette.title,
-                fontFamily: 'Muhammadi Uthmanic',
+                fontFamily: 'PDMS Saleem Quran',
                 fontSize: 25,
                 height: 1.75,
               ),
@@ -284,7 +286,7 @@ class _PrayerStepCard extends StatelessWidget {
 
 TextStyle _bodyStyle(bool isUrdu, Color color) => TextStyle(
   color: color,
-  fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+  fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
   fontSize: 13,
   height: isUrdu ? 1.55 : 1.4,
 );

@@ -174,7 +174,7 @@ class _GuideStepCard extends StatelessWidget {
               textDirection: TextDirection.rtl,
               style: TextStyle(
                 color: palette.title,
-                fontFamily: 'Muhammadi Uthmanic',
+                fontFamily: 'PDMS Saleem Quran',
                 fontSize: 30,
                 height: 1.75,
               ),
@@ -374,7 +374,7 @@ TextStyle _guideStyle(
   FontWeight fontWeight,
 ) => TextStyle(
   color: color,
-  fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+  fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
   fontSize: fontSize,
   height: isUrdu ? 1.5 : 1.4,
   fontWeight: fontWeight,

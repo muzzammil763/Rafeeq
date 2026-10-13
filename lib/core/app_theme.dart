@@ -267,7 +267,9 @@ class AppTheme {
 
     final themeData = ThemeData(
       useMaterial3: true,
-      fontFamily: languageCode == 'ur' ? 'Alvi' : 'GoogleSans',
+      fontFamily: languageCode == 'ur'
+          ? 'Jameel Noori Nastaleeq'
+          : 'GoogleSans',
       colorScheme: colorScheme,
       scaffoldBackgroundColor: effectiveBackgroundColor,
       appBarTheme: AppBarTheme(
@@ -278,7 +280,7 @@ class AppTheme {
         scrolledUnderElevation: 0,
         titleTextStyle: (languageCode == 'ur')
             ? TextStyle(
-                fontFamily: 'Alvi',
+                fontFamily: 'Jameel Noori Nastaleeq',
                 color: effectiveTextColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 24,
@@ -319,7 +321,7 @@ class AppTheme {
         labelTextStyle: WidgetStatePropertyAll(
           (languageCode == 'ur')
               ? TextStyle(
-                  fontFamily: 'Alvi',
+                  fontFamily: 'Jameel Noori Nastaleeq',
                   color: effectiveTextColor,
                   fontWeight: FontWeight.w500,
                 )
@@ -334,7 +336,7 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         titleTextStyle: (languageCode == 'ur')
             ? TextStyle(
-                fontFamily: 'Alvi',
+                fontFamily: 'Jameel Noori Nastaleeq',
                 color: effectiveTextColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 17,
@@ -346,7 +348,7 @@ class AppTheme {
               ),
         subtitleTextStyle: (languageCode == 'ur')
             ? TextStyle(
-                fontFamily: 'Alvi',
+                fontFamily: 'Jameel Noori Nastaleeq',
                 color: effectiveTextColor,
                 fontSize: 14,
               )
@@ -381,7 +383,7 @@ class AppTheme {
     );
 
     final baseTextTheme = (languageCode == 'ur')
-        ? themeData.textTheme.apply(fontFamily: 'Alvi')
+        ? themeData.textTheme.apply(fontFamily: 'Jameel Noori Nastaleeq')
         : themeData.textTheme.apply(fontFamily: 'GoogleSans');
 
     return themeData.copyWith(

@@ -62,7 +62,7 @@ class RafeeqAppBar extends StatelessWidget implements PreferredSizeWidget {
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               color: palette.title,
-              fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+              fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),

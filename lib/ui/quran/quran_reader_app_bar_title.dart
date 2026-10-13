@@ -28,7 +28,7 @@ class QuranReaderAppBarTitle extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
             color: palette.title,
-            fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+            fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
             fontSize: 17,
             fontWeight: FontWeight.w700,
           ),
@@ -39,7 +39,7 @@ class QuranReaderAppBarTitle extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
             color: palette.subtitle,
-            fontFamily: isUrdu ? 'Alvi' : 'GoogleSans',
+            fontFamily: isUrdu ? 'Jameel Noori Nastaleeq' : 'GoogleSans',
             fontSize: 12,
           ),
         ),
