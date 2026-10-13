@@ -28,6 +28,7 @@ abstract final class AnalyticsScreenNames {
   static const prayerTable = 'Prayer Table Screen';
   static const quranSectionPicker = 'Quran Section Picker Screen';
   static const quranAyahPicker = 'Quran Ayah Picker Screen';
+  static const asmaulHusnaDetail = 'Asma ul Husna Detail Screen';
 
   static const _routeNames = <String, String>{
     Navigator.defaultRouteName: home,

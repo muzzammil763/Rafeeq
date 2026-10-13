@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:rafeeq/core/app_theme.dart';
 import 'package:rafeeq/core/navigation/app_routes.dart';
 import 'package:rafeeq/data/providers/asma_ul_husna_provider.dart';
+import 'package:rafeeq/ui/asma_ul_husna/asma_ul_husna_detail_screen.dart';
 import 'package:rafeeq/ui/asma_ul_husna/asma_ul_husna_screen.dart';
 import 'package:rafeeq/ui/widgets/rafeeq_app_bar.dart';
 
@@ -144,6 +145,57 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Asma 1 picture'), findsOneWidget);
+    });
+
+    testWidgets('tapping a card opens its scrollable detail page', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        createTestableWidget(child: const AsmaulHusnaScreen()),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('2- Ar Raheem'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AsmaulHusnaDetailScreen), findsOneWidget);
+      expect(find.text('2 / 2'), findsOneWidget);
+      expect(find.text('Meaning'), findsOneWidget);
+      expect(find.text('The Merciful'), findsOneWidget);
+      expect(find.text('Explanation'), findsOneWidget);
+      expect(find.text('He who acts with extreme kindness'), findsOneWidget);
+      expect(
+        find.descendant(
+          of: find.byType(AsmaulHusnaDetailScreen),
+          matching: find.byType(ListView),
+        ),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets('swiping moves between names without nav buttons', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        createTestableWidget(
+          child: const AsmaulHusnaDetailScreen(initialIndex: 0),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('1 / 2'), findsOneWidget);
+      expect(find.text('Ar Rahmaan'), findsOneWidget);
+      expect(find.byIcon(Icons.chevron_right_rounded), findsNothing);
+
+      await tester.fling(
+        find.byKey(const ValueKey('asma_detail_pages')),
+        const Offset(-400, 0),
+        1000,
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('2 / 2'), findsOneWidget);
+      expect(find.text('Ar Raheem'), findsOneWidget);
     });
 
     testWidgets('screen completes without errors', (WidgetTester tester) async {

@@ -124,6 +124,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get asmaulhusnaSubtitle => '99 Names of Allah';
 
   @override
+  String get asmaulhusnaExplanation => 'Explanation';
+
+  @override
+  String get asmaulhusnaMeaning => 'Meaning';
+
+  @override
   String get asrCalculationMethod => 'Asr Calculation Method';
 
   @override

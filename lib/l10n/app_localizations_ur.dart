@@ -125,6 +125,12 @@ class AppLocalizationsUr extends AppLocalizations {
   String get asmaulhusnaSubtitle => 'اللہ کے 99 نام';
 
   @override
+  String get asmaulhusnaExplanation => 'وضاحت';
+
+  @override
+  String get asmaulhusnaMeaning => 'معنی';
+
+  @override
   String get asrCalculationMethod => 'عصر کے حساب کا طریقہ';
 
   @override

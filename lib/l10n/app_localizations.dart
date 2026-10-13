@@ -308,6 +308,18 @@ abstract class AppLocalizations {
   /// **'99 Names of Allah'**
   String get asmaulhusnaSubtitle;
 
+  /// No description provided for @asmaulhusnaExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation'**
+  String get asmaulhusnaExplanation;
+
+  /// No description provided for @asmaulhusnaMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Meaning'**
+  String get asmaulhusnaMeaning;
+
   /// No description provided for @asrCalculationMethod.
   ///
   /// In en, this message translates to:
