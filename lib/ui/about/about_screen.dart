@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rafeeq/l10n/app_localization_ext.dart';
 import 'package:rafeeq/ui/app_home/home/settings_palette.dart';
 import 'package:rafeeq/ui/widgets/rafeeq_app_bar.dart';
@@ -8,9 +7,6 @@ import 'package:rafeeq/ui/widgets/rafeeq_toast.dart';
 import 'package:rafeeq/utils/localized_font.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final _rafeeqWhatsAppUpdatesUri = Uri.parse(
-  'https://whatsapp.com/channel/0029Vb8mQB88KMqdnHbTIo1L',
-);
 final _muzamilPortfolioUri = Uri.parse('https://muzamil.web.app/');
 
 class AboutScreen extends StatefulWidget {
@@ -104,144 +100,10 @@ class _AboutScreenState extends State<AboutScreen> {
               ],
               const SizedBox(height: 24),
               _ClosingStatement(palette: palette),
-              const SizedBox(height: 24),
-              _WhatsAppSection(palette: palette),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class _WhatsAppSection extends StatelessWidget {
-  const _WhatsAppSection({required this.palette});
-
-  final SettingsPalette palette;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          context.loc.aboutWhatsAppTitle,
-          style: TextStyle(
-            color: palette.title,
-            fontFamily: localizedFontFamily(context),
-            fontSize: 18,
-            height: 1.35,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          context.loc.aboutWhatsAppIntroduction,
-          style: TextStyle(
-            color: palette.subtitle,
-            fontFamily: localizedFontFamily(context),
-            fontSize: 15,
-            height: 1.6,
-          ),
-        ),
-        const SizedBox(height: 16),
-        _WhatsAppChannelSection(
-          title: context.loc.aboutWhatsAppUpdatesTitle,
-          description: context.loc.aboutWhatsAppUpdatesBody,
-          buttonLabel: context.loc.aboutWhatsAppUpdatesButton,
-          palette: palette,
-          onPressed: () => _openWhatsApp(context, _rafeeqWhatsAppUpdatesUri),
-        ),
-      ],
-    );
-  }
-
-  Future<void> _openWhatsApp(BuildContext context, Uri uri) async {
-    var opened = false;
-    try {
-      opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } catch (_) {
-      opened = false;
-    }
-    if (!opened && context.mounted) {
-      showRafeeqToast(
-        context,
-        context.loc.aboutWhatsAppOpenError,
-        type: RafeeqToastType.error,
-      );
-    }
-  }
-}
-
-class _WhatsAppChannelSection extends StatelessWidget {
-  const _WhatsAppChannelSection({
-    required this.title,
-    required this.description,
-    required this.buttonLabel,
-    required this.palette,
-    required this.onPressed,
-  });
-
-  final String title;
-  final String description;
-  final String buttonLabel;
-  final SettingsPalette palette;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            color: palette.title,
-            fontFamily: localizedFontFamily(context),
-            fontSize: 17,
-            height: 1.35,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          description,
-          style: TextStyle(
-            color: palette.subtitle,
-            fontFamily: localizedFontFamily(context),
-            fontSize: 15,
-            height: 1.65,
-          ),
-        ),
-        const SizedBox(height: 14),
-        FilledButton.icon(
-          key: ValueKey('about-whatsapp-$buttonLabel'),
-          onPressed: onPressed,
-          icon: SvgPicture.asset(
-            'assets/whatsapp.svg',
-            width: 20,
-            height: 20,
-            colorFilter: ColorFilter.mode(
-              palette.checkForeground,
-              BlendMode.srcIn,
-            ),
-          ),
-          label: Text(buttonLabel),
-          style: FilledButton.styleFrom(
-            backgroundColor: palette.accent,
-            foregroundColor: palette.checkForeground,
-            padding: const EdgeInsets.symmetric(vertical: 13),
-            textStyle: TextStyle(
-              fontFamily: localizedFontFamily(context),
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

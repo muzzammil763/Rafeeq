@@ -15,12 +15,6 @@
   "aboutCommunityTitle": "We are here for you",
   "aboutCommunityBody": "My brother and I are here for you. You can request a feature, report a bug or share an idea with us. We will listen, and we will keep doing our best to make Rafeeq better for Muslims everywhere.",
   "aboutClosingStatement": "Built by Muslims, for Muslims — for the Ummah of Prophet Muhammad (PBUH) and for the sake of Allah Almighty. ❤️ ",
-  "aboutWhatsAppTitle": "Stay connected with Rafeeq",
-  "aboutWhatsAppIntroduction": "Follow Rafeeq on WhatsApp for app updates and news.",
-  "aboutWhatsAppUpdatesTitle": "Rafeeq - Updates",
-  "aboutWhatsAppUpdatesBody": "Our official WhatsApp channel for new features, releases and improvements.",
-  "aboutWhatsAppUpdatesButton": "Join WhatsApp Channel",
-  "aboutWhatsAppOpenError": "WhatsApp could not be opened.",
   "aboutPortfolioOpenError": "The portfolio could not be opened.",
   "allowLocation": "Allow Location",
   "allowLocationDescription": "Automatically updates prayer times.",
@@ -161,6 +155,17 @@
   "homeExplore": "Explore",
   "homeAyahPicture": "Ayah Picture",
   "asmaPicture": "Asma'ul Husna Picture",
+  "licenses": "Licenses",
+  "licensesCount": "{count, plural, =1{1 license} other{{count} licenses}}",
+  "@licensesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "licensesIntro": "Rafeeq is built on these open-source packages. Thank you to everyone who made them.",
+  "licensesSubtitle": "Open-source packages used in Rafeeq",
   "showArabic": "Show Arabic",
   "showMeaning": "Show Meaning",
   "includeArabicAyah": "Include the Arabic Ayah in the picture",

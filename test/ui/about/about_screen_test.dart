@@ -63,18 +63,10 @@ void main() {
     );
     expect(closing, findsOneWidget);
 
-    final updatesButton = find.text('Join WhatsApp Channel');
-    final communityButton = find.text('Join Community Group');
-    await tester.scrollUntilVisible(
-      updatesButton,
-      400,
-      scrollable: find.byType(Scrollable),
-    );
-    expect(find.text('Stay connected with Rafeeq'), findsOneWidget);
-    expect(updatesButton, findsOneWidget);
-    expect(communityButton, findsNothing);
-    expect(find.text('Rafeeq - Updates'), findsOneWidget);
-    expect(find.byType(SvgPicture), findsOneWidget);
+    // The page ends with the closing statement; the WhatsApp section is gone.
+    expect(find.text('Join WhatsApp Channel'), findsNothing);
+    expect(find.text('Stay connected with Rafeeq'), findsNothing);
+    expect(find.byType(SvgPicture), findsNothing);
   });
 
   testWidgets('localizes the About page in Urdu', (tester) async {
@@ -99,17 +91,6 @@ void main() {
       scrollable: find.byType(Scrollable),
     );
     expect(closing, findsOneWidget);
-
-    final communityButton = find.text('کمیونٹی گروپ جوائن کریں');
-    final updatesButton = find.text('واٹس ایپ چینل جوائن کریں');
-    await tester.scrollUntilVisible(
-      updatesButton,
-      400,
-      scrollable: find.byType(Scrollable),
-    );
-    expect(find.text('رفیق سے جڑے رہیں'), findsOneWidget);
-    expect(updatesButton, findsOneWidget);
-    expect(communityButton, findsNothing);
-    expect(find.text('Rafeeq - Updates'), findsOneWidget);
+    expect(find.text('واٹس ایپ چینل جوائن کریں'), findsNothing);
   });
 }

@@ -64,26 +64,6 @@ class AppLocalizationsUr extends AppLocalizations {
       'مسلمانوں کے ہاتھوں، مسلمانوں کے لیے — امتِ حضرت محمد صلی اللہ علیہ وسلم کی خدمت اور صرف اللہ تعالیٰ کی رضا کے لیے۔';
 
   @override
-  String get aboutWhatsAppTitle => 'رفیق سے جڑے رہیں';
-
-  @override
-  String get aboutWhatsAppIntroduction =>
-      'ایپ کی اپ ڈیٹس اور خبروں کے لیے واٹس ایپ پر رفیق کو فالو کریں۔';
-
-  @override
-  String get aboutWhatsAppUpdatesTitle => 'Rafeeq - Updates';
-
-  @override
-  String get aboutWhatsAppUpdatesBody =>
-      'نئے فیچرز، ریلیزز اور بہتریوں کے لیے ہمارا آفیشل واٹس ایپ چینل۔';
-
-  @override
-  String get aboutWhatsAppUpdatesButton => 'واٹس ایپ چینل جوائن کریں';
-
-  @override
-  String get aboutWhatsAppOpenError => 'واٹس ایپ نہیں کھولا جا سکا۔';
-
-  @override
   String get aboutPortfolioOpenError => 'پورٹ فولیو نہیں کھولا جا سکا۔';
 
   @override
@@ -523,6 +503,27 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get asmaPicture => 'اسماء الحسنیٰ کی تصویر';
+
+  @override
+  String get licenses => 'لائسنسز';
+
+  @override
+  String licensesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count لائسنس',
+      one: '1 لائسنس',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get licensesIntro =>
+      'رفیق ان اوپن سورس پیکجز پر بنی ہے۔ انہیں بنانے والے سب لوگوں کا شکریہ۔';
+
+  @override
+  String get licensesSubtitle => 'رفیق میں استعمال ہونے والے اوپن سورس پیکجز';
 
   @override
   String get showArabic => 'عربی دکھائیں';

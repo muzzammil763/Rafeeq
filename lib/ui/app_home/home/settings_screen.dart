@@ -245,6 +245,12 @@ class SettingsScreen extends ConsumerWidget {
         },
       ),
       _SettingsCardData(
+        icon: Icons.description_outlined,
+        title: context.loc.licenses,
+        subtitle: context.loc.licensesSubtitle,
+        onTap: () => Navigator.of(context).pushNamed(AppRoutes.licenses),
+      ),
+      _SettingsCardData(
         icon: Icons.info_outline_rounded,
         title: context.loc.about,
         subtitle: context.loc.aboutSubtitle,

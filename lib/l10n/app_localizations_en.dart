@@ -64,26 +64,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Built by Muslims, for Muslims — for the Ummah of Prophet Muhammad (PBUH) and for the sake of Allah Almighty. ❤️ ';
 
   @override
-  String get aboutWhatsAppTitle => 'Stay connected with Rafeeq';
-
-  @override
-  String get aboutWhatsAppIntroduction =>
-      'Follow Rafeeq on WhatsApp for app updates and news.';
-
-  @override
-  String get aboutWhatsAppUpdatesTitle => 'Rafeeq - Updates';
-
-  @override
-  String get aboutWhatsAppUpdatesBody =>
-      'Our official WhatsApp channel for new features, releases and improvements.';
-
-  @override
-  String get aboutWhatsAppUpdatesButton => 'Join WhatsApp Channel';
-
-  @override
-  String get aboutWhatsAppOpenError => 'WhatsApp could not be opened.';
-
-  @override
   String get aboutPortfolioOpenError => 'The portfolio could not be opened.';
 
   @override
@@ -519,6 +499,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get asmaPicture => 'Asma\'ul Husna Picture';
+
+  @override
+  String get licenses => 'Licenses';
+
+  @override
+  String licensesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count licenses',
+      one: '1 license',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get licensesIntro =>
+      'Rafeeq is built on these open-source packages. Thank you to everyone who made them.';
+
+  @override
+  String get licensesSubtitle => 'Open-source packages used in Rafeeq';
 
   @override
   String get showArabic => 'Show Arabic';

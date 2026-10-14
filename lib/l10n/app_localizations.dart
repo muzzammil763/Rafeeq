@@ -194,42 +194,6 @@ abstract class AppLocalizations {
   /// **'Built by Muslims, for Muslims — for the Ummah of Prophet Muhammad (PBUH) and for the sake of Allah Almighty. ❤️ '**
   String get aboutClosingStatement;
 
-  /// No description provided for @aboutWhatsAppTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Stay connected with Rafeeq'**
-  String get aboutWhatsAppTitle;
-
-  /// No description provided for @aboutWhatsAppIntroduction.
-  ///
-  /// In en, this message translates to:
-  /// **'Follow Rafeeq on WhatsApp for app updates and news.'**
-  String get aboutWhatsAppIntroduction;
-
-  /// No description provided for @aboutWhatsAppUpdatesTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Rafeeq - Updates'**
-  String get aboutWhatsAppUpdatesTitle;
-
-  /// No description provided for @aboutWhatsAppUpdatesBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Our official WhatsApp channel for new features, releases and improvements.'**
-  String get aboutWhatsAppUpdatesBody;
-
-  /// No description provided for @aboutWhatsAppUpdatesButton.
-  ///
-  /// In en, this message translates to:
-  /// **'Join WhatsApp Channel'**
-  String get aboutWhatsAppUpdatesButton;
-
-  /// No description provided for @aboutWhatsAppOpenError.
-  ///
-  /// In en, this message translates to:
-  /// **'WhatsApp could not be opened.'**
-  String get aboutWhatsAppOpenError;
-
   /// No description provided for @aboutPortfolioOpenError.
   ///
   /// In en, this message translates to:
@@ -1069,6 +1033,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Asma\'ul Husna Picture'**
   String get asmaPicture;
+
+  /// No description provided for @licenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Licenses'**
+  String get licenses;
+
+  /// No description provided for @licensesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 license} other{{count} licenses}}'**
+  String licensesCount(int count);
+
+  /// No description provided for @licensesIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Rafeeq is built on these open-source packages. Thank you to everyone who made them.'**
+  String get licensesIntro;
+
+  /// No description provided for @licensesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open-source packages used in Rafeeq'**
+  String get licensesSubtitle;
 
   /// No description provided for @showArabic.
   ///

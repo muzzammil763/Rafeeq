@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rafeeq/data/model/quran_models.dart';
 import 'package:rafeeq/data/models/daily_prayer.dart';
 import 'package:rafeeq/ui/about/about_screen.dart';
+import 'package:rafeeq/ui/about/licenses_screen.dart';
 import 'package:rafeeq/ui/about/version_screen.dart';
 import 'package:rafeeq/ui/asma_ul_husna/asma_ul_husna_screen.dart';
 import 'package:rafeeq/ui/ayah_share/ayah_picture_maker_screen.dart';
@@ -36,6 +37,8 @@ class AppRoutes {
   static const prayerTimes = '/prayer-times';
   static const about = '/about';
   static const version = '/version';
+  static const licenses = '/licenses';
+  static const licenseDetail = '/licenses/detail';
   static const ramadanCalendar = '/ramadan-calendar';
   static const hijriCalendar = '/hijri-calendar';
   static const asmaulHusna = '/asmaul-husna';
@@ -74,6 +77,9 @@ class AppRoutes {
 
       case version:
         return _build(settings, const VersionScreen());
+
+      case licenses:
+        return _build(settings, const LicensesScreen());
 
       case prayerTimes:
         return _build(settings, const PrayerTimesScreen());
