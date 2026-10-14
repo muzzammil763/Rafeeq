@@ -112,8 +112,11 @@ void main() {
     WidgetTester tester, {
     bool useTestAudioController = false,
     Locale locale = const Locale('en'),
+    List<String> bookmarks = const [],
   }) async {
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({
+      if (bookmarks.isNotEmpty) 'ayah_bookmarks': bookmarks,
+    });
     final preferences = await SharedPreferences.getInstance();
 
     await tester.pumpWidget(
@@ -153,6 +156,7 @@ void main() {
     expect(find.byType(ListView), findsOneWidget);
     expect(find.text('Surah'), findsOneWidget);
     expect(find.text('Juz'), findsOneWidget);
+    expect(find.text('Bookmarks'), findsOneWidget);
     expect(find.text('Page'), findsNothing);
     expect(find.text('Topic'), findsNothing);
     expect(find.text('01'), findsOneWidget);
@@ -277,4 +281,44 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+
+  testWidgets('bookmarks tab shows an empty state without bookmarks', (
+    tester,
+  ) async {
+    await pumpScreen(tester);
+
+    await tester.tap(find.text('Bookmarks'));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('quran-bookmarks-empty')), findsOneWidget);
+    expect(find.text('No bookmarks yet'), findsOneWidget);
+  });
+
+  testWidgets('bookmarks tab lists ayahs in order and removes them', (
+    tester,
+  ) async {
+    await pumpScreen(tester, bookmarks: ['2:1', '1:1', '9:9']);
+
+    await tester.tap(find.text('Bookmarks'));
+    await tester.pumpAndSettle();
+
+    final fatiha = find.byKey(const ValueKey('bookmark-1:1'));
+    final baqarah = find.byKey(const ValueKey('bookmark-2:1'));
+    expect(fatiha, findsOneWidget);
+    expect(baqarah, findsOneWidget);
+    // Bookmarks that no longer match an ayah are skipped.
+    expect(find.byKey(const ValueKey('bookmark-9:9')), findsNothing);
+    expect(
+      tester.getTopLeft(fatiha).dy,
+      lessThan(tester.getTopLeft(baqarah).dy),
+    );
+
+    await tester.tap(
+      find.descendant(of: baqarah, matching: find.byType(IconButton)),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const ValueKey('bookmark-2:1')), findsNothing);
+    expect(fatiha, findsOneWidget);
+  });
 }

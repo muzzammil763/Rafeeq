@@ -36,7 +36,6 @@ abstract final class AnalyticsScreenNames {
     AppRoutes.ramadanCalendar: 'Ramadan Calendar Screen',
     AppRoutes.hijriCalendar: 'Hijri Calendar Screen',
     AppRoutes.asmaulHusna: 'Asma ul Husna Screen',
-    AppRoutes.bookmarks: 'Bookmarks Screen',
     AppRoutes.developerSharedPrefs: 'Developer Preferences Screen',
     AppRoutes.developerPanel: 'Developer Panel Screen',
     AppRoutes.dailyPrayer: 'Daily Prayer Screen',

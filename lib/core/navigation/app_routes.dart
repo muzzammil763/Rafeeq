@@ -5,7 +5,6 @@ import 'package:rafeeq/ui/about/about_screen.dart';
 import 'package:rafeeq/ui/about/version_screen.dart';
 import 'package:rafeeq/ui/asma_ul_husna/asma_ul_husna_screen.dart';
 import 'package:rafeeq/ui/ayah_share/ayah_picture_maker_screen.dart';
-import 'package:rafeeq/ui/bookmarks/bookmarks_screen.dart';
 import 'package:rafeeq/ui/choose_recitor/choose_recitor_screen.dart';
 import 'package:rafeeq/ui/developer/developer_panel_screen.dart';
 import 'package:rafeeq/ui/developer/developer_shared_prefs_screen.dart';
@@ -40,7 +39,6 @@ class AppRoutes {
   static const ramadanCalendar = '/ramadan-calendar';
   static const hijriCalendar = '/hijri-calendar';
   static const asmaulHusna = '/asmaul-husna';
-  static const bookmarks = '/bookmarks';
   static const developerSharedPrefs = '/developer/shared-prefs';
   static const developerPanel = '/developer';
   static const dailyPrayer = '/daily-prayer';
@@ -88,9 +86,6 @@ class AppRoutes {
 
       case asmaulHusna:
         return _build(settings, const AsmaulHusnaScreen());
-
-      case bookmarks:
-        return _build(settings, const BookmarksScreen());
 
       case developerSharedPrefs:
         return _build(settings, const DeveloperSharedPrefsScreen());

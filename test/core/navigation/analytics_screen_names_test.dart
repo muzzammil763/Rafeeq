@@ -27,7 +27,6 @@ void main() {
       AppRoutes.ramadanCalendar,
       AppRoutes.hijriCalendar,
       AppRoutes.asmaulHusna,
-      AppRoutes.bookmarks,
       AppRoutes.developerSharedPrefs,
       AppRoutes.developerPanel,
       AppRoutes.dailyPrayer,

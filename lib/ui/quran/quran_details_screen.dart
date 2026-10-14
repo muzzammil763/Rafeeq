@@ -743,7 +743,7 @@ class _AyahCard extends ConsumerWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8),
                   MediaQuery.withNoTextScaling(
                     child: Directionality(
                       textDirection: TextDirection.rtl,
@@ -758,7 +758,7 @@ class _AyahCard extends ConsumerWidget {
                     ),
                   ),
                   if (settings.showTranslation) ...[
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 8),
                     translation.when(
                       data: (values) {
                         final value = values[ayah.number];

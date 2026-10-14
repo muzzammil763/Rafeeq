@@ -10,6 +10,7 @@ import 'package:rafeeq/l10n/app_localization_ext.dart';
 import 'package:rafeeq/ui/app_home/home/settings_palette.dart';
 import 'package:rafeeq/ui/quran/quran_details_screen.dart';
 import 'package:rafeeq/ui/quran/quran_audio_controller.dart';
+import 'package:rafeeq/ui/quran/quran_bookmarks_tab.dart';
 import 'package:rafeeq/ui/quran/quran_player_layout.dart';
 import 'package:rafeeq/ui/widgets/center_loading_view.dart';
 import 'package:rafeeq/ui/widgets/rafeeq_app_bar.dart';
@@ -42,7 +43,7 @@ class ReadQuranHomeScreen extends HookConsumerWidget {
     final palette = SettingsPalette.of(context);
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         backgroundColor: palette.background,
         appBar: RafeeqAppBar(
@@ -112,6 +113,7 @@ class ReadQuranHomeScreen extends HookConsumerWidget {
                           tabs: [
                             Tab(text: context.loc.surah),
                             Tab(text: context.loc.juz),
+                            Tab(text: context.loc.bookmarks),
                           ],
                         ),
                       ),
@@ -146,6 +148,11 @@ class ReadQuranHomeScreen extends HookConsumerWidget {
                   palette,
                   ref: ref,
                   player: player,
+                ),
+                QuranBookmarksTab(
+                  quranData: quranData,
+                  palette: palette,
+                  padding: _contentPadding(playerVisible: player.isVisible),
                 ),
               ],
             );
