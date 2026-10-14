@@ -66,10 +66,17 @@ class AppSettingsNotifier extends Notifier<AppSettings> {
     state = state.copyWith(ramadanViewMode: mode);
   }
 
-  void toggleShowAllCards(bool value) {
-    state = state.copyWith(showAllCards: value);
+  void setEventPreview(HomeEvent event, bool enabled) {
+    state = state.copyWith(
+      eventPreviews: enabled
+          ? {...state.eventPreviews, event}
+          : state.eventPreviews.difference({event}),
+    );
   }
 }
+
+/// Special days that get their own card on home.
+enum HomeEvent { friday, ramadan, eid }
 
 class AppSettings {
   final AppLanguage language;
@@ -77,7 +84,9 @@ class AppSettings {
   final ThemeMode themeMode;
   final int themeIndex;
   final int ramadanViewMode;
-  final bool showAllCards;
+
+  /// Developer toggles that preview an event's dialog on any day.
+  final Set<HomeEvent> eventPreviews;
 
   const AppSettings({
     required this.language,
@@ -85,7 +94,7 @@ class AppSettings {
     this.themeMode = ThemeMode.dark,
     this.themeIndex = 0,
     this.ramadanViewMode = 0,
-    this.showAllCards = false,
+    this.eventPreviews = const {},
   });
 
   AppSettings copyWith({
@@ -95,7 +104,7 @@ class AppSettings {
     HijriCorrection? hijriCorrection,
     int? themeIndex,
     int? ramadanViewMode,
-    bool? showAllCards,
+    Set<HomeEvent>? eventPreviews,
   }) {
     return AppSettings(
       language: language ?? this.language,
@@ -103,7 +112,7 @@ class AppSettings {
       themeMode: themeMode ?? this.themeMode,
       themeIndex: themeIndex ?? this.themeIndex,
       ramadanViewMode: ramadanViewMode ?? this.ramadanViewMode,
-      showAllCards: showAllCards ?? this.showAllCards,
+      eventPreviews: eventPreviews ?? this.eventPreviews,
     );
   }
 
@@ -114,7 +123,7 @@ class AppSettings {
       'themeMode': themeMode.name,
       'themeIndex': themeIndex,
       'ramadanViewMode': ramadanViewMode,
-      'showAllCards': showAllCards,
+      'eventPreviews': [for (final event in eventPreviews) event.name],
     };
   }
 
@@ -142,7 +151,10 @@ class AppSettings {
           orElse: () => ThemeMode.dark,
         );
         final ramadanViewMode = map['ramadanViewMode'] as int? ?? 0;
-        final showAllCards = map['showAllCards'] as bool? ?? false;
+        final eventPreviews = {
+          for (final name in map['eventPreviews'] as List? ?? const [])
+            ...HomeEvent.values.where((event) => event.name == name),
+        };
 
         return AppSettings(
           language: language,
@@ -150,7 +162,7 @@ class AppSettings {
           themeMode: themeMode,
           themeIndex: themeIndex,
           ramadanViewMode: ramadanViewMode,
-          showAllCards: showAllCards,
+          eventPreviews: eventPreviews,
         );
       } catch (e) {
         debugPrint('Error parsing AppSettingsState from shared prefs: $e');

@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rafeeq/core/app_settings_notifier.dart';
 import 'package:rafeeq/core/navigation/app_routes.dart';
 import 'package:rafeeq/data/services/app_update_service.dart';
+import 'package:rafeeq/ui/app_home/home/home_event_dialog.dart';
 import 'package:rafeeq/ui/app_home/home/settings_palette.dart';
 import 'package:rafeeq/ui/app_home/home/settings_picker.dart';
 
@@ -13,7 +14,17 @@ class DeveloperPanelScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = SettingsPalette.of(context);
-    final showAllCards = ref.watch(appSettingsNotifierProvider).showAllCards;
+    final previews = ref.watch(appSettingsNotifierProvider).eventPreviews;
+
+    // Turning a preview on clears its "seen" mark, so home shows the dialog
+    // again even if it was closed before.
+    Future<void> setPreview(HomeEvent event, bool enabled) async {
+      if (enabled) await ref.read(homeEventDialogTrackerProvider).reset(event);
+      ref
+          .read(appSettingsNotifierProvider.notifier)
+          .setEventPreview(event, enabled);
+    }
+
     return Scaffold(
       backgroundColor: palette.background,
       appBar: SettingsAppBar(title: 'Developer Panel', palette: palette),
@@ -37,16 +48,22 @@ class DeveloperPanelScreen extends ConsumerWidget {
                 Navigator.pushNamed(context, AppRoutes.developerSharedPrefs),
           ),
           const SizedBox(height: 8),
-          SettingsCard(
-            icon: Icons.preview_outlined,
-            title: 'Show All Cards',
-            subtitle: 'Display Friday, Eid & Ramadan cards',
-            palette: palette,
-            switchValue: showAllCards,
-            onSwitchChanged: ref
-                .read(appSettingsNotifierProvider.notifier)
-                .toggleShowAllCards,
-          ),
+          for (final (event, icon, title) in const [
+            (HomeEvent.friday, Icons.mosque_outlined, 'Friday'),
+            (HomeEvent.ramadan, Icons.nightlight_outlined, 'Ramadan'),
+            (HomeEvent.eid, Icons.celebration_outlined, 'Eid'),
+          ]) ...[
+            SettingsCard(
+              key: Key('event-preview-${event.name}'),
+              icon: icon,
+              title: 'Preview $title Dialog',
+              subtitle: 'Show the $title dialog on home as if it were today',
+              palette: palette,
+              switchValue: previews.contains(event),
+              onSwitchChanged: (enabled) => setPreview(event, enabled),
+            ),
+            if (event != HomeEvent.eid) const SizedBox(height: 8),
+          ],
         ],
       ),
     );

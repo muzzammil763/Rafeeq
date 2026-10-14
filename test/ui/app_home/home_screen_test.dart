@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart' show DateFormat;
+import 'package:hijri/hijri_calendar.dart';
+import 'package:rafeeq/core/app_settings_notifier.dart';
 import 'package:rafeeq/data/providers/shared_prefs_provider.dart';
 import 'package:rafeeq/core/navigation/app_routes.dart';
 import 'package:rafeeq/data/model/quran_models.dart';
 import 'package:rafeeq/data/providers/quran_data_provider.dart';
 import 'package:rafeeq/data/repo/quran_api_repo.dart';
 import 'package:rafeeq/l10n/app_localizations.dart';
+import 'package:rafeeq/ui/app_home/home/home_event_dialog.dart';
 import 'package:rafeeq/ui/app_home/home/home_screen.dart';
 import 'package:rafeeq/ui/app_home/home/settings_palette.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,19 +21,30 @@ void main() {
   Future<void> pumpHome(
     WidgetTester tester, {
     Locale locale = const Locale('en'),
-    bool showAllCards = false,
+    Set<HomeEvent> eventPreviews = const {},
+    bool resetPreferences = true,
   }) async {
-    SharedPreferences.setMockInitialValues({
-      if (showAllCards)
-        'app_settings': jsonEncode({
-          'language': 'en',
-          'hijriCorrection': 'none',
-          'themeMode': 'light',
-          'themeIndex': 0,
-          'ramadanViewMode': 0,
-          'showAllCards': true,
-        }),
-    });
+    if (resetPreferences) {
+      SharedPreferences.setMockInitialValues({
+        if (eventPreviews.isNotEmpty)
+          'app_settings': jsonEncode({
+            'language': 'en',
+            'hijriCorrection': 'none',
+            'themeMode': 'light',
+            'themeIndex': 0,
+            'ramadanViewMode': 0,
+            'eventPreviews': [for (final event in eventPreviews) event.name],
+          }),
+        // Real events on the day the tests run would otherwise open a dialog
+        // over home, so mark them seen.
+        for (final occurrence in homeEventsOn(
+          DateTime.now(),
+          HijriCalendar.now(),
+          const {},
+        ))
+          'home_event_dialog_seen_${occurrence.event.name}': occurrence.id,
+      });
+    }
     final preferences = await SharedPreferences.getInstance();
 
     await tester.pumpWidget(
@@ -268,44 +282,50 @@ void main() {
     expect(tester.getRect(countdown).left, tester.getRect(card).left + 12);
   });
 
-  testWidgets('show-all setting previews every event card and auto advances', (
+  testWidgets('event preview shows its dialog once until it is reset', (
     tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(390, 844));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
-    await pumpHome(tester, showAllCards: true);
+    await pumpHome(tester, eventPreviews: {HomeEvent.friday});
+    await tester.pumpAndSettle(const Duration(milliseconds: 100));
 
-    expect(find.byKey(const Key('home-focus-carousel')), findsOneWidget);
-    for (var index = 0; index < 4; index++) {
-      expect(
-        find.byKey(Key('home-focus-page-indicator-$index')),
-        findsOneWidget,
-      );
-    }
-    expect(tester.getSize(find.byType(HomePrayerFocusCard)).height, 176);
-
-    final pageView = tester.widget<PageView>(
-      find.byKey(const Key('home-focus-carousel')),
-    );
-    expect(pageView.controller?.page, 0);
-
-    await tester.pump(const Duration(seconds: 5));
-    await tester.pump(const Duration(milliseconds: 450));
-
-    expect(pageView.controller?.page, 1);
+    expect(find.byKey(const Key('home-event-dialog')), findsOneWidget);
     expect(find.byKey(const Key('home-friday-card')), findsOneWidget);
+    expect(find.byKey(const Key('home-focus-carousel')), findsNothing);
 
-    await tester.pump(const Duration(seconds: 5));
-    await tester.pump(const Duration(milliseconds: 450));
+    await tester.tap(find.text('Got it'));
+    await tester.pumpAndSettle(const Duration(milliseconds: 100));
+    expect(find.byKey(const Key('home-event-dialog')), findsNothing);
 
-    expect(pageView.controller?.page, 2);
+    // Opening the app again keeps the dialog closed.
+    await tester.pumpWidget(const SizedBox());
+    await pumpHome(
+      tester,
+      eventPreviews: {HomeEvent.friday},
+      resetPreferences: false,
+    );
+    await tester.pumpAndSettle(const Duration(milliseconds: 100));
+    expect(find.byKey(const Key('home-event-dialog')), findsNothing);
+  });
+
+  testWidgets('event previews show their dialogs one after another', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(390, 844));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await pumpHome(tester, eventPreviews: {HomeEvent.ramadan, HomeEvent.eid});
+    await tester.pumpAndSettle(const Duration(milliseconds: 100));
     expect(find.byKey(const Key('home-ramadan-card')), findsOneWidget);
 
-    await tester.pump(const Duration(seconds: 5));
-    await tester.pump(const Duration(milliseconds: 450));
-
-    expect(pageView.controller?.page, 3);
+    await tester.tap(find.text('Got it'));
+    await tester.pumpAndSettle(const Duration(milliseconds: 100));
     expect(find.byKey(const Key('home-eid-card')), findsOneWidget);
+
+    await tester.tap(find.text('Got it'));
+    await tester.pumpAndSettle(const Duration(milliseconds: 100));
+    expect(find.byKey(const Key('home-event-dialog')), findsNothing);
   });
 }

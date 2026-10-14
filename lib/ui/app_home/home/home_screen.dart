@@ -15,6 +15,7 @@ import 'package:rafeeq/data/providers/shared_prefs_provider.dart';
 import 'package:rafeeq/data/models/user_location.dart';
 import 'package:rafeeq/l10n/app_localization_ext.dart';
 import 'package:rafeeq/ui/app_home/home/app_home_screen.dart';
+import 'package:rafeeq/ui/app_home/home/home_event_dialog.dart';
 import 'package:rafeeq/ui/app_home/home/home_prayer_data.dart';
 import 'package:rafeeq/ui/app_home/home/location_screen.dart';
 import 'package:rafeeq/ui/app_home/home/settings_palette.dart';
@@ -52,6 +53,8 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   Timer? _clock;
+  List<_HomeEventEntry> _events = const [];
+  bool _showingEventDialog = false;
 
   @override
   void initState() {
@@ -67,6 +70,30 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.dispose();
   }
 
+  /// Shows each of today's events once, one after another. An event isn't
+  /// marked seen until its dialog is closed.
+  Future<void> _showEventDialogs() async {
+    if (_showingEventDialog || !mounted) return;
+    final tracker = ref.read(homeEventDialogTrackerProvider);
+    _showingEventDialog = true;
+    try {
+      for (final entry in _events) {
+        if (!mounted) return;
+        if (tracker.wasSeen(entry.occurrence)) continue;
+        await showDialog<void>(
+          context: context,
+          builder: (dialogContext) => _HomeEventDialog(
+            palette: SettingsPalette.of(dialogContext),
+            card: entry.card(() => Navigator.of(dialogContext).pop()),
+          ),
+        );
+        await tracker.markSeen(entry.occurrence);
+      }
+    } finally {
+      _showingEventDialog = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final playerVisible = ref.watch(
@@ -79,16 +106,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final timeFormat = ref.watch(
       prayerTimesSettingsNotifierProvider.select((value) => value.timeFormat),
     );
-    final showAllCards = ref.watch(
-      appSettingsNotifierProvider.select((value) => value.showAllCards),
+    final eventPreviews = ref.watch(
+      appSettingsNotifierProvider.select((value) => value.eventPreviews),
     );
     final now = DateTime.now();
-    final isFriday = now.weekday == DateTime.friday;
-    final isRamadan = hijriDate.hMonth == 9;
     final eidType = switch ((hijriDate.hMonth, hijriDate.hDay)) {
-      (10, 1) => _HomeEidType.fitr,
       (12, 10) => _HomeEidType.adha,
-      _ => _HomeEidType.none,
+      _ => _HomeEidType.fitr,
     };
 
     _HomePrayerSnapshot? prayerSnapshot;
@@ -126,6 +150,51 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       return value == null
           ? '--:-- --'
           : timeFormat.formatTimeWithContext(context, value);
+    }
+
+    // Each card closes the dialog before running its own action.
+    _events = [
+      for (final occurrence in homeEventsOn(now, hijriDate, eventPreviews))
+        _HomeEventEntry(
+          occurrence,
+          (close) => switch (occurrence.event) {
+            HomeEvent.friday => _HomeSpecialEventCard.friday(
+              context: context,
+              palette: palette,
+              onTap: () {
+                close();
+                ref.read(homeNavigationIndexProvider.notifier).state = 1;
+              },
+            ),
+            HomeEvent.ramadan => _HomeSpecialEventCard.ramadan(
+              context: context,
+              palette: palette,
+              day: hijriDate.hMonth == 9 ? hijriDate.hDay : 1,
+              suhoorTime: formatTime(
+                prayerSnapshot?.today.fajr.subtract(const Duration(minutes: 1)),
+              ),
+              iftarTime: formatTime(prayerSnapshot?.today.maghrib),
+              onTap: () {
+                close();
+                Navigator.of(context).pushNamed(AppRoutes.ramadanCalendar);
+              },
+            ),
+            HomeEvent.eid => _HomeSpecialEventCard.eid(
+              context: context,
+              palette: palette,
+              type: eidType,
+              onTap: () {
+                close();
+                Navigator.of(context).pushNamed(AppRoutes.prayerTimes);
+              },
+            ),
+          },
+        ),
+    ];
+    final tracker = ref.read(homeEventDialogTrackerProvider);
+    if (!_showingEventDialog &&
+        _events.any((entry) => !tracker.wasSeen(entry.occurrence))) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _showEventDialogs());
     }
 
     return Scaffold(
@@ -171,71 +240,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     palette: palette,
                   ),
                   const SizedBox(height: 16),
-                  HomeFocusCardCarousel(
-                    cards: [
-                      HomePrayerFocusCard(
-                        previousPrayer: prayerSnapshot == null
-                            ? context.loc.prayerNone
-                            : _prayerName(
-                                context,
-                                prayerSnapshot.previousPrayer,
-                              ),
-                        previousTime: formatTime(
-                          prayerSnapshot?.previousPrayerTime,
-                        ),
-                        nextPrayer: prayerSnapshot == null
-                            ? context.loc.prayerNone
-                            : _prayerName(context, prayerSnapshot.nextPrayer),
-                        nextTime: formatTime(prayerSnapshot?.nextPrayerTime),
-                        countdown: _formatDuration(
-                          prayerSnapshot?.nextPrayerTime.difference(now),
-                        ),
-                        progress: prayerSnapshot?.progress ?? 0,
-                        sky: sky,
-                        palette: palette,
-                        onTap: () => Navigator.of(
-                          context,
-                        ).pushNamed(AppRoutes.prayerTimes),
-                      ),
-                      if (showAllCards || isFriday)
-                        _HomeSpecialEventCard.friday(
-                          context: context,
-                          palette: palette,
-                          onTap: () =>
-                              ref
-                                      .read(
-                                        homeNavigationIndexProvider.notifier,
-                                      )
-                                      .state =
-                                  1,
-                        ),
-                      if (showAllCards || isRamadan)
-                        _HomeSpecialEventCard.ramadan(
-                          context: context,
-                          palette: palette,
-                          day: hijriDate.hDay,
-                          suhoorTime: formatTime(
-                            prayerSnapshot?.today.fajr.subtract(
-                              const Duration(minutes: 1),
-                            ),
-                          ),
-                          iftarTime: formatTime(prayerSnapshot?.today.maghrib),
-                          onTap: () => Navigator.of(
-                            context,
-                          ).pushNamed(AppRoutes.ramadanCalendar),
-                        ),
-                      if (showAllCards || eidType != _HomeEidType.none)
-                        _HomeSpecialEventCard.eid(
-                          context: context,
-                          palette: palette,
-                          type: eidType == _HomeEidType.none
-                              ? _HomeEidType.fitr
-                              : eidType,
-                          onTap: () => Navigator.of(
-                            context,
-                          ).pushNamed(AppRoutes.prayerTimes),
-                        ),
-                    ],
+                  HomePrayerFocusCard(
+                    previousPrayer: prayerSnapshot == null
+                        ? context.loc.prayerNone
+                        : _prayerName(context, prayerSnapshot.previousPrayer),
+                    previousTime: formatTime(
+                      prayerSnapshot?.previousPrayerTime,
+                    ),
+                    nextPrayer: prayerSnapshot == null
+                        ? context.loc.prayerNone
+                        : _prayerName(context, prayerSnapshot.nextPrayer),
+                    nextTime: formatTime(prayerSnapshot?.nextPrayerTime),
+                    countdown: _formatDuration(
+                      prayerSnapshot?.nextPrayerTime.difference(now),
+                    ),
+                    progress: prayerSnapshot?.progress ?? 0,
+                    sky: sky,
+                    palette: palette,
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(AppRoutes.prayerTimes),
                   ),
                   const SizedBox(height: 24),
                   _SectionTitle(
@@ -533,120 +556,66 @@ class HomePrayerFocusCard extends StatelessWidget {
   }
 }
 
-class HomeFocusCardCarousel extends StatefulWidget {
-  const HomeFocusCardCarousel({
-    super.key,
-    required this.cards,
-    this.autoAdvanceDelay = const Duration(seconds: 5),
-  });
+enum _HomeEidType { fitr, adha }
 
-  final List<Widget> cards;
-  final Duration autoAdvanceDelay;
+class _HomeEventEntry {
+  const _HomeEventEntry(this.occurrence, this.card);
 
-  @override
-  State<HomeFocusCardCarousel> createState() => _HomeFocusCardCarouselState();
+  final HomeEventOccurrence occurrence;
+
+  /// Builds the event's card; the callback closes the dialog.
+  final Widget Function(VoidCallback close) card;
 }
 
-class _HomeFocusCardCarouselState extends State<HomeFocusCardCarousel> {
-  final PageController _pageController = PageController();
-  Timer? _autoAdvanceTimer;
-  int _currentPage = 0;
+class _HomeEventDialog extends StatelessWidget {
+  const _HomeEventDialog({required this.card, required this.palette});
 
-  @override
-  void initState() {
-    super.initState();
-    _startAutoAdvance();
-  }
-
-  @override
-  void didUpdateWidget(covariant HomeFocusCardCarousel oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.cards.length == widget.cards.length &&
-        oldWidget.autoAdvanceDelay == widget.autoAdvanceDelay) {
-      return;
-    }
-
-    _autoAdvanceTimer?.cancel();
-    if (_currentPage >= widget.cards.length) {
-      _currentPage = 0;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted && _pageController.hasClients) {
-          _pageController.jumpToPage(0);
-        }
-      });
-    }
-    _startAutoAdvance();
-  }
-
-  void _startAutoAdvance() {
-    if (widget.cards.length < 2) return;
-    _autoAdvanceTimer = Timer.periodic(widget.autoAdvanceDelay, (_) {
-      if (!mounted || !_pageController.hasClients) return;
-      final nextPage = (_currentPage + 1) % widget.cards.length;
-      _pageController.animateToPage(
-        nextPage,
-        duration: const Duration(milliseconds: 450),
-        curve: Curves.easeInOutCubic,
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    _autoAdvanceTimer?.cancel();
-    _pageController.dispose();
-    super.dispose();
-  }
+  final Widget card;
+  final SettingsPalette palette;
 
   @override
   Widget build(BuildContext context) {
-    assert(widget.cards.isNotEmpty);
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          height: 176,
-          child: PageView.builder(
-            key: const Key('home-focus-carousel'),
-            controller: _pageController,
-            itemCount: widget.cards.length,
-            onPageChanged: (page) => setState(() => _currentPage = page),
-            itemBuilder: (context, index) => Semantics(
-              label: '${index + 1} of ${widget.cards.length}',
-              child: widget.cards[index],
-            ),
+    return Dialog(
+      key: const Key('home-event-dialog'),
+      backgroundColor: palette.background,
+      insetPadding: const EdgeInsets.all(16),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 520),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              card,
+              const SizedBox(height: 12),
+              FilledButton(
+                onPressed: () => Navigator.of(context).pop(),
+                style: FilledButton.styleFrom(
+                  backgroundColor: palette.accent,
+                  foregroundColor: palette.checkForeground,
+                  minimumSize: const Size.fromHeight(40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Text(
+                  context.loc.gotIt,
+                  style: TextStyle(
+                    fontFamily: localizedFontFamily(context),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        if (widget.cards.length > 1) ...[
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(widget.cards.length, (index) {
-              final selected = index == _currentPage;
-              return AnimatedContainer(
-                key: Key('home-focus-page-indicator-$index'),
-                duration: const Duration(milliseconds: 250),
-                margin: const EdgeInsets.symmetric(horizontal: 2),
-                width: selected ? 18 : 5,
-                height: 5,
-                decoration: BoxDecoration(
-                  color: selected
-                      ? SettingsPalette.of(context).accent
-                      : SettingsPalette.of(
-                          context,
-                        ).subtitle.withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(99),
-                ),
-              );
-            }),
-          ),
-        ],
-      ],
+      ),
     );
   }
 }
-
-enum _HomeEidType { fitr, adha, none }
 
 class _HomeSpecialEventCard extends StatelessWidget {
   const _HomeSpecialEventCard({

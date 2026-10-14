@@ -16,20 +16,26 @@ void main() {
   tearDown(() => clearSharedPreferences(container));
 
   group('AppSettings', () {
-    test('show all cards defaults to false', () {
-      expect(container.read(appSettingsNotifierProvider).showAllCards, isFalse);
+    test('event previews default to none', () {
+      expect(
+        container.read(appSettingsNotifierProvider).eventPreviews,
+        isEmpty,
+      );
     });
 
-    test('show all cards updates and persists', () {
-      container
-          .read(appSettingsNotifierProvider.notifier)
-          .toggleShowAllCards(true);
+    test('event previews toggle independently and persist', () {
+      final notifier = container.read(appSettingsNotifierProvider.notifier);
+      notifier.setEventPreview(HomeEvent.friday, true);
+      notifier.setEventPreview(HomeEvent.eid, true);
+      notifier.setEventPreview(HomeEvent.friday, false);
 
       final storedValue = container
           .read(sharedPreferencesProvider)
           .getString('app_settings');
-      expect(container.read(appSettingsNotifierProvider).showAllCards, isTrue);
-      expect(storedValue, contains('"showAllCards":true'));
+      expect(container.read(appSettingsNotifierProvider).eventPreviews, {
+        HomeEvent.eid,
+      });
+      expect(storedValue, contains('"eventPreviews":["eid"]'));
     });
 
     test('theme mode updates and persists', () {
