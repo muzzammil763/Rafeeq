@@ -268,6 +268,13 @@ class AppLocalizationsUr extends AppLocalizations {
   String get continueToNextSurahSubtitle => 'اگلی سورت خود بخود چلائیں';
 
   @override
+  String get contribute => 'تعاون کریں';
+
+  @override
+  String get contributeSubtitle =>
+      'رفیق اوپن سورس ہے۔ GitHub پر اسے بنانے میں مدد کریں';
+
+  @override
   String get country => 'ملک';
 
   @override
@@ -524,6 +531,21 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get licensesSubtitle => 'رفیق میں استعمال ہونے والے اوپن سورس پیکجز';
+
+  @override
+  String get reportIssue => 'مسئلہ رپورٹ کریں';
+
+  @override
+  String get reportIssueSubtitle => 'کوئی خرابی ملی؟ GitHub پر ہمیں بتائیں';
+
+  @override
+  String get settingsSectionAppInfo => 'ایپ کی معلومات';
+
+  @override
+  String get settingsSectionPrayer => 'نماز اور کیلنڈر';
+
+  @override
+  String get settingsSectionSupport => 'رفیق کا ساتھ دیں';
 
   @override
   String get showArabic => 'عربی دکھائیں';

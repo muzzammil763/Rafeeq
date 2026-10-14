@@ -18,6 +18,12 @@ final playStoreUri = Uri.parse(
 
 final feedbackFormUri = Uri.parse('https://forms.gle/cDLne2RtGvfmqrJn9');
 
+final repositoryUri = Uri.parse('https://github.com/muzzammil763/Rafeeq');
+
+final reportIssueUri = Uri.parse(
+  'https://github.com/muzzammil763/Rafeeq/issues/new',
+);
+
 void showHijriCorrectionModalSheet(BuildContext context) {
   final theme = context.mainTheme;
 

@@ -25,6 +25,7 @@ import 'package:rafeeq/ui/prayer_times/prayer_times_screen.dart';
 import 'package:rafeeq/ui/prayer_times/user_location_notifier.dart';
 import 'package:rafeeq/ui/quran/quran_audio_controller.dart';
 import 'package:rafeeq/ui/quran/quran_player_layout.dart';
+import 'package:rafeeq/utils/localized_font.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -55,220 +56,265 @@ class SettingsScreen extends ConsumerWidget {
     final userLocation = ref.watch(userLocationNotifierProvider);
     final showAboutNewBadge = ref.watch(_showAboutNewBadgeProvider);
 
-    final cards = <_SettingsCardData>[
-      _SettingsCardData(
-        icon: Icons.translate_outlined,
-        title: context.loc.language,
-        subtitle:
-            languageLabelFor(context, selectedLanguageId) ??
-            switch (language) {
-              AppLanguage.en => context.loc.languageEnglish,
-              AppLanguage.ur => context.loc.languageUrdu,
+    final sections = <(String, List<_SettingsCardData>)>[
+      (
+        context.loc.general,
+        [
+          _SettingsCardData(
+            icon: Icons.translate_outlined,
+            title: context.loc.language,
+            subtitle:
+                languageLabelFor(context, selectedLanguageId) ??
+                switch (language) {
+                  AppLanguage.en => context.loc.languageEnglish,
+                  AppLanguage.ur => context.loc.languageUrdu,
+                },
+            onTap: () {
+              analyticsService.logSettingsLanguageScreenOpened();
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  settings: const RouteSettings(
+                    name: AnalyticsScreenNames.language,
+                  ),
+                  builder: (context) => const LanguageScreen(),
+                ),
+              );
             },
-        onTap: () {
-          analyticsService.logSettingsLanguageScreenOpened();
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              settings: const RouteSettings(
-                name: AnalyticsScreenNames.language,
-              ),
-              builder: (context) => const LanguageScreen(),
-            ),
-          );
-        },
-      ),
-      _SettingsCardData(
-        icon: Icons.explore_outlined,
-        title: context.loc.location,
-        subtitle: _locationLabel(context, userLocation),
-        disableSubtitleTextScaling: true,
-        onTap: () {
-          analyticsService.logSettingsLocationScreenOpened();
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              settings: const RouteSettings(
-                name: AnalyticsScreenNames.location,
-              ),
-              builder: (context) => const LocationScreen(),
-            ),
-          );
-        },
-      ),
-      _SettingsCardData(
-        icon: Icons.palette_outlined,
-        title: context.loc.appTheme,
-        subtitle: themeModeLabel(context, settingsState.themeMode),
-        onTap: () {
-          analyticsService.logSettingsThemeScreenOpened();
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              settings: const RouteSettings(name: AnalyticsScreenNames.theme),
-              builder: (context) => const ThemeScreen(),
-            ),
-          );
-        },
-      ),
-      _SettingsCardData(
-        icon: CupertinoIcons.clock,
-        title: context.loc.calculationMethod,
-        subtitle: prayerSettings.prayerCalcMethod.getLabel(context),
-        onTap: () {
-          analyticsService.logSettingsCalculationScreenOpened();
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              settings: const RouteSettings(
-                name: AnalyticsScreenNames.calculationMethod,
-              ),
-              builder: (context) => const CalculationMethodScreen(),
-            ),
-          );
-        },
-      ),
-      _SettingsCardData(
-        icon: Icons.layers_outlined,
-        title: context.loc.juristicMethod,
-        subtitle: prayerSettings.asrCalculationMethod.getLabel(context),
-        onTap: () {
-          analyticsService.logSettingsJuristicScreenOpened();
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              settings: const RouteSettings(
-                name: AnalyticsScreenNames.juristicMethod,
-              ),
-              builder: (context) => const JuristicMethodScreen(),
-            ),
-          );
-        },
-      ),
-      _SettingsCardData(
-        icon: Icons.public_outlined,
-        title: context.loc.highLatitudeRule,
-        subtitle: prayerSettings.highLatitudeAdjustment.getLabel(context),
-        onTap: () {
-          analyticsService.logSettingsHighLatitudeScreenOpened();
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              settings: const RouteSettings(
-                name: AnalyticsScreenNames.highLatitudeRule,
-              ),
-              builder: (context) => const HighLatitudeRuleScreen(),
-            ),
-          );
-        },
-      ),
-      _SettingsCardData(
-        icon: CupertinoIcons.calendar,
-        title: context.loc.hijriCorrection,
-        subtitle: settingsState.hijriCorrection.getLabel(context),
-        onTap: () {
-          analyticsService.logSettingsHijriCorrectionScreenOpened();
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              settings: const RouteSettings(
-                name: AnalyticsScreenNames.hijriCorrection,
-              ),
-              builder: (context) => const HijriCorrectionScreen(),
-            ),
-          );
-        },
-      ),
-      _SettingsCardData(
-        icon: Icons.schedule_outlined,
-        title: context.loc.timeFormat,
-        subtitle: prayerSettings.timeFormat.getLabel(context),
-        onTap: () => showTimeFormatScreen(context),
-      ),
-      _SettingsCardData(
-        icon: Icons.access_time_outlined,
-        title: context.loc.prayerTimes,
-        subtitle: _locationLabel(context, userLocation),
-        disableSubtitleTextScaling: true,
-        onTap: () => Navigator.of(context).pushNamed(AppRoutes.prayerTimes),
-      ),
-      _SettingsCardData(
-        icon: Icons.notifications_none_outlined,
-        title: context.loc.notification,
-        subtitle: language == AppLanguage.ur
-            ? 'نماز کی یاددہانی اور اطلاع کی ترتیب'
-            : 'Prayer reminders and notification settings',
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            settings: const RouteSettings(
-              name: AnalyticsScreenNames.prayerNotificationSettings,
-            ),
-            builder: (context) => const PrayerNotificationSettingsScreen(),
           ),
-        ),
+          _SettingsCardData(
+            icon: Icons.explore_outlined,
+            title: context.loc.location,
+            subtitle: _locationLabel(context, userLocation),
+            disableSubtitleTextScaling: true,
+            onTap: () {
+              analyticsService.logSettingsLocationScreenOpened();
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  settings: const RouteSettings(
+                    name: AnalyticsScreenNames.location,
+                  ),
+                  builder: (context) => const LocationScreen(),
+                ),
+              );
+            },
+          ),
+          _SettingsCardData(
+            icon: Icons.palette_outlined,
+            title: context.loc.appTheme,
+            subtitle: themeModeLabel(context, settingsState.themeMode),
+            onTap: () {
+              analyticsService.logSettingsThemeScreenOpened();
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  settings: const RouteSettings(
+                    name: AnalyticsScreenNames.theme,
+                  ),
+                  builder: (context) => const ThemeScreen(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
-      _SettingsCardData(
-        icon: Icons.menu_book_outlined,
-        title: context.loc.quranViewSettings,
-        subtitle: language == AppLanguage.ur
-            ? 'خط، سائز، ترجمہ اور تلاوت کی ترتیبات'
-            : 'Script, font size, translation & recitation settings',
-        onTap: () {
-          Navigator.of(context).pushNamed(AppRoutes.quranViewSettings);
-        },
+      (
+        context.loc.settingsSectionPrayer,
+        [
+          _SettingsCardData(
+            icon: CupertinoIcons.clock,
+            title: context.loc.calculationMethod,
+            subtitle: prayerSettings.prayerCalcMethod.getLabel(context),
+            onTap: () {
+              analyticsService.logSettingsCalculationScreenOpened();
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  settings: const RouteSettings(
+                    name: AnalyticsScreenNames.calculationMethod,
+                  ),
+                  builder: (context) => const CalculationMethodScreen(),
+                ),
+              );
+            },
+          ),
+          _SettingsCardData(
+            icon: Icons.layers_outlined,
+            title: context.loc.juristicMethod,
+            subtitle: prayerSettings.asrCalculationMethod.getLabel(context),
+            onTap: () {
+              analyticsService.logSettingsJuristicScreenOpened();
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  settings: const RouteSettings(
+                    name: AnalyticsScreenNames.juristicMethod,
+                  ),
+                  builder: (context) => const JuristicMethodScreen(),
+                ),
+              );
+            },
+          ),
+          _SettingsCardData(
+            icon: Icons.public_outlined,
+            title: context.loc.highLatitudeRule,
+            subtitle: prayerSettings.highLatitudeAdjustment.getLabel(context),
+            onTap: () {
+              analyticsService.logSettingsHighLatitudeScreenOpened();
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  settings: const RouteSettings(
+                    name: AnalyticsScreenNames.highLatitudeRule,
+                  ),
+                  builder: (context) => const HighLatitudeRuleScreen(),
+                ),
+              );
+            },
+          ),
+          _SettingsCardData(
+            icon: CupertinoIcons.calendar,
+            title: context.loc.hijriCorrection,
+            subtitle: settingsState.hijriCorrection.getLabel(context),
+            onTap: () {
+              analyticsService.logSettingsHijriCorrectionScreenOpened();
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  settings: const RouteSettings(
+                    name: AnalyticsScreenNames.hijriCorrection,
+                  ),
+                  builder: (context) => const HijriCorrectionScreen(),
+                ),
+              );
+            },
+          ),
+          _SettingsCardData(
+            icon: Icons.schedule_outlined,
+            title: context.loc.timeFormat,
+            subtitle: prayerSettings.timeFormat.getLabel(context),
+            onTap: () => showTimeFormatScreen(context),
+          ),
+          _SettingsCardData(
+            icon: Icons.access_time_outlined,
+            title: context.loc.prayerTimes,
+            subtitle: _locationLabel(context, userLocation),
+            disableSubtitleTextScaling: true,
+            onTap: () => Navigator.of(context).pushNamed(AppRoutes.prayerTimes),
+          ),
+          _SettingsCardData(
+            icon: Icons.notifications_none_outlined,
+            title: context.loc.notification,
+            subtitle: language == AppLanguage.ur
+                ? 'نماز کی یاددہانی اور اطلاع کی ترتیب'
+                : 'Prayer reminders and notification settings',
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                settings: const RouteSettings(
+                  name: AnalyticsScreenNames.prayerNotificationSettings,
+                ),
+                builder: (context) => const PrayerNotificationSettingsScreen(),
+              ),
+            ),
+          ),
+        ],
       ),
-      _SettingsCardData(
-        icon: Icons.chat_bubble_outline_rounded,
-        title: context.loc.feedback,
-        subtitle: context.loc.feedbackSubtitle,
-        onTap: () async {
-          analyticsService.logSettingsFeedbackTapped();
-          if (await canLaunchUrl(feedbackFormUri)) {
-            await launchUrl(
-              feedbackFormUri,
-              mode: LaunchMode.externalApplication,
-            );
-          }
-        },
+      (
+        context.loc.quran,
+        [
+          _SettingsCardData(
+            icon: Icons.menu_book_outlined,
+            title: context.loc.quranViewSettings,
+            subtitle: language == AppLanguage.ur
+                ? 'خط، سائز، ترجمہ اور تلاوت کی ترتیبات'
+                : 'Script, font size, translation & recitation settings',
+            onTap: () {
+              Navigator.of(context).pushNamed(AppRoutes.quranViewSettings);
+            },
+          ),
+        ],
       ),
-      _SettingsCardData(
-        icon: Icons.star_border_rounded,
-        title: context.loc.rateThisApp,
-        subtitle: context.loc.rateThisAppSubtitle,
-        onTap: () async {
-          analyticsService.logSettingsRateAppTapped();
-          if (await canLaunchUrl(playStoreUri)) {
-            await launchUrl(playStoreUri, mode: LaunchMode.externalApplication);
-          }
-        },
+      (
+        context.loc.settingsSectionSupport,
+        [
+          _SettingsCardData(
+            icon: Icons.chat_bubble_outline_rounded,
+            title: context.loc.feedback,
+            subtitle: context.loc.feedbackSubtitle,
+            onTap: () async {
+              analyticsService.logSettingsFeedbackTapped();
+              if (await canLaunchUrl(feedbackFormUri)) {
+                await launchUrl(
+                  feedbackFormUri,
+                  mode: LaunchMode.externalApplication,
+                );
+              }
+            },
+          ),
+          _SettingsCardData(
+            icon: Icons.star_border_rounded,
+            title: context.loc.rateThisApp,
+            subtitle: context.loc.rateThisAppSubtitle,
+            onTap: () async {
+              analyticsService.logSettingsRateAppTapped();
+              if (await canLaunchUrl(playStoreUri)) {
+                await launchUrl(
+                  playStoreUri,
+                  mode: LaunchMode.externalApplication,
+                );
+              }
+            },
+          ),
+          _SettingsCardData(
+            icon: Icons.share_outlined,
+            title: context.loc.shareThisApp,
+            subtitle: context.loc.shareThisAppSubtitle,
+            onTap: () {
+              analyticsService.logSettingsShareAppTapped();
+              SharePlus.instance.share(ShareParams(uri: playStoreUri));
+            },
+          ),
+          _SettingsCardData(
+            icon: Icons.bug_report_outlined,
+            title: context.loc.reportIssue,
+            subtitle: context.loc.reportIssueSubtitle,
+            onTap: () =>
+                launchUrl(reportIssueUri, mode: LaunchMode.externalApplication),
+          ),
+          _SettingsCardData(
+            icon: Icons.code_rounded,
+            title: context.loc.contribute,
+            subtitle: context.loc.contributeSubtitle,
+            onTap: () =>
+                launchUrl(repositoryUri, mode: LaunchMode.externalApplication),
+          ),
+        ],
       ),
-      _SettingsCardData(
-        icon: Icons.share_outlined,
-        title: context.loc.shareThisApp,
-        subtitle: context.loc.shareThisAppSubtitle,
-        onTap: () {
-          analyticsService.logSettingsShareAppTapped();
-          SharePlus.instance.share(ShareParams(uri: playStoreUri));
-        },
-      ),
-      _SettingsCardData(
-        icon: Icons.description_outlined,
-        title: context.loc.licenses,
-        subtitle: context.loc.licensesSubtitle,
-        onTap: () => Navigator.of(context).pushNamed(AppRoutes.licenses),
-      ),
-      _SettingsCardData(
-        icon: Icons.info_outline_rounded,
-        title: context.loc.about,
-        subtitle: context.loc.aboutSubtitle,
-        badge: showAboutNewBadge ? 'NEW' : null,
-        onTap: () async {
-          await ref
-              .read(sharedPreferencesProvider)
-              .setBool(_aboutOpenedKey, true);
-          ref.invalidate(_showAboutNewBadgeProvider);
-          if (!context.mounted) return;
-          await Navigator.of(context).pushNamed(AppRoutes.about);
-        },
-      ),
-      _SettingsCardData(
-        icon: Icons.tag_rounded,
-        title: context.loc.version,
-        subtitle: '${context.loc.versionSubtitle}  •  ${packageInfo.version}',
-        onTap: () => Navigator.of(context).pushNamed(AppRoutes.version),
+      (
+        context.loc.settingsSectionAppInfo,
+        [
+          _SettingsCardData(
+            icon: Icons.description_outlined,
+            title: context.loc.licenses,
+            subtitle: context.loc.licensesSubtitle,
+            onTap: () => Navigator.of(context).pushNamed(AppRoutes.licenses),
+          ),
+          _SettingsCardData(
+            icon: Icons.info_outline_rounded,
+            title: context.loc.about,
+            subtitle: context.loc.aboutSubtitle,
+            badge: showAboutNewBadge ? 'NEW' : null,
+            onTap: () async {
+              await ref
+                  .read(sharedPreferencesProvider)
+                  .setBool(_aboutOpenedKey, true);
+              ref.invalidate(_showAboutNewBadgeProvider);
+              if (!context.mounted) return;
+              await Navigator.of(context).pushNamed(AppRoutes.about);
+            },
+          ),
+          _SettingsCardData(
+            icon: Icons.tag_rounded,
+            title: context.loc.version,
+            subtitle:
+                '${context.loc.versionSubtitle}  •  ${packageInfo.version}',
+            onTap: () => Navigator.of(context).pushNamed(AppRoutes.version),
+          ),
+        ],
       ),
     ];
 
@@ -285,7 +331,7 @@ class SettingsScreen extends ConsumerWidget {
           return Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 760),
-              child: ListView.separated(
+              child: ListView(
                 padding: EdgeInsets.fromLTRB(
                   12,
                   12,
@@ -294,26 +340,53 @@ class SettingsScreen extends ConsumerWidget {
                     playerVisible: playerVisible,
                   ),
                 ),
-                itemCount: cards.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 8),
-                itemBuilder: (context, index) {
-                  final data = cards[index];
-                  return SettingsCard(
-                    icon: data.icon,
-                    title: data.title,
-                    subtitle: data.subtitle,
-                    disableSubtitleTextScaling: data.disableSubtitleTextScaling,
-                    palette: palette,
-                    onTap: data.onTap,
-                    switchValue: data.switchValue,
-                    onSwitchChanged: data.onSwitchChanged,
-                    badge: data.badge,
-                  );
-                },
+                children: [
+                  for (final (index, (title, cards)) in sections.indexed) ...[
+                    if (index > 0) const SizedBox(height: 24),
+                    _SettingsSectionTitle(title: title, palette: palette),
+                    const SizedBox(height: 12),
+                    for (final (cardIndex, data) in cards.indexed) ...[
+                      if (cardIndex > 0) const SizedBox(height: 8),
+                      SettingsCard(
+                        icon: data.icon,
+                        title: data.title,
+                        subtitle: data.subtitle,
+                        disableSubtitleTextScaling:
+                            data.disableSubtitleTextScaling,
+                        palette: palette,
+                        onTap: data.onTap,
+                        switchValue: data.switchValue,
+                        onSwitchChanged: data.onSwitchChanged,
+                        badge: data.badge,
+                      ),
+                    ],
+                  ],
+                ],
               ),
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+/// Matches the section titles on the home screen.
+class _SettingsSectionTitle extends StatelessWidget {
+  const _SettingsSectionTitle({required this.title, required this.palette});
+
+  final String title;
+  final SettingsPalette palette;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: TextStyle(
+        color: palette.subtitle,
+        fontFamily: localizedFontFamily(context),
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
       ),
     );
   }

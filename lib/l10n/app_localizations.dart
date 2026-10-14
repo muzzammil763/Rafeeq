@@ -584,6 +584,18 @@ abstract class AppLocalizations {
   /// **'Automatically play the next Surah'**
   String get continueToNextSurahSubtitle;
 
+  /// No description provided for @contribute.
+  ///
+  /// In en, this message translates to:
+  /// **'Contribute'**
+  String get contribute;
+
+  /// No description provided for @contributeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rafeeq is open source. Help build it on GitHub'**
+  String get contributeSubtitle;
+
   /// No description provided for @country.
   ///
   /// In en, this message translates to:
@@ -1057,6 +1069,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open-source packages used in Rafeeq'**
   String get licensesSubtitle;
+
+  /// No description provided for @reportIssue.
+  ///
+  /// In en, this message translates to:
+  /// **'Report an issue'**
+  String get reportIssue;
+
+  /// No description provided for @reportIssueSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Found a bug? Let us know on GitHub'**
+  String get reportIssueSubtitle;
+
+  /// No description provided for @settingsSectionAppInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'App info'**
+  String get settingsSectionAppInfo;
+
+  /// No description provided for @settingsSectionPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer & Calendar'**
+  String get settingsSectionPrayer;
+
+  /// No description provided for @settingsSectionSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Rafeeq'**
+  String get settingsSectionSupport;
 
   /// No description provided for @showArabic.
   ///

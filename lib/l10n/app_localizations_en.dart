@@ -266,6 +266,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get continueToNextSurahSubtitle => 'Automatically play the next Surah';
 
   @override
+  String get contribute => 'Contribute';
+
+  @override
+  String get contributeSubtitle =>
+      'Rafeeq is open source. Help build it on GitHub';
+
+  @override
   String get country => 'Country';
 
   @override
@@ -520,6 +527,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get licensesSubtitle => 'Open-source packages used in Rafeeq';
+
+  @override
+  String get reportIssue => 'Report an issue';
+
+  @override
+  String get reportIssueSubtitle => 'Found a bug? Let us know on GitHub';
+
+  @override
+  String get settingsSectionAppInfo => 'App info';
+
+  @override
+  String get settingsSectionPrayer => 'Prayer & Calendar';
+
+  @override
+  String get settingsSectionSupport => 'Support Rafeeq';
 
   @override
   String get showArabic => 'Show Arabic';
