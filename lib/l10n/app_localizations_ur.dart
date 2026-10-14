@@ -506,16 +506,6 @@ class AppLocalizationsUr extends AppLocalizations {
   String get homeCalendar => 'کیلنڈر';
 
   @override
-  String get homeDailyAyah => 'آج کی آیت';
-
-  @override
-  String get homeDailyAyahSource => 'قرآن 20:124';
-
-  @override
-  String get homeDailyAyahText =>
-      'اور جو میرے ذکر سے منہ موڑے گا، اس کے لیے تنگ زندگی ہوگی، اور قیامت کے دن ہم اسے اندھا اٹھائیں گے۔';
-
-  @override
   String get homeDailyDua => 'آج کی دعا';
 
   @override

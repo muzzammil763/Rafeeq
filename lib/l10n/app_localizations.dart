@@ -1034,24 +1034,6 @@ abstract class AppLocalizations {
   /// **'Calendar'**
   String get homeCalendar;
 
-  /// No description provided for @homeDailyAyah.
-  ///
-  /// In en, this message translates to:
-  /// **'Daily Ayah'**
-  String get homeDailyAyah;
-
-  /// No description provided for @homeDailyAyahSource.
-  ///
-  /// In en, this message translates to:
-  /// **'Quran 20:124'**
-  String get homeDailyAyahSource;
-
-  /// No description provided for @homeDailyAyahText.
-  ///
-  /// In en, this message translates to:
-  /// **'And whoever turns away from My remembrance – indeed, he will have a depressed [i.e., difficult] life, and We will gather [i.e., raise] him on the Day of Resurrection blind.'**
-  String get homeDailyAyahText;
-
   /// No description provided for @homeDailyDua.
   ///
   /// In en, this message translates to:

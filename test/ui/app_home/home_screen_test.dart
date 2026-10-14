@@ -186,22 +186,14 @@ void main() {
     expect(find.text('Namaz destination'), findsOneWidget);
   });
 
-  testWidgets('shows a dynamic Daily Ayah and no Daily Dua card', (
-    tester,
-  ) async {
-    await tester.binding.setSurfaceSize(const Size(390, 844));
+  testWidgets('shows no Daily Ayah or Daily Dua card', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(390, 2400));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await pumpHome(tester);
-
-    await tester.dragUntilVisible(
-      find.byKey(const Key('home-daily-ayah-card')),
-      find.byType(ListView).first,
-      const Offset(0, -300),
-    );
     await tester.pumpAndSettle();
 
-    expect(find.text('Dynamic daily translation'), findsOneWidget);
-    expect(find.text('Quran 1:1'), findsOneWidget);
+    expect(find.text('Daily Ayah'), findsNothing);
+    expect(find.text('Dynamic daily translation'), findsNothing);
     expect(find.text('Daily Dua'), findsNothing);
   });
 

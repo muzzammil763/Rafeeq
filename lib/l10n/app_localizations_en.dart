@@ -502,16 +502,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeCalendar => 'Calendar';
 
   @override
-  String get homeDailyAyah => 'Daily Ayah';
-
-  @override
-  String get homeDailyAyahSource => 'Quran 20:124';
-
-  @override
-  String get homeDailyAyahText =>
-      'And whoever turns away from My remembrance – indeed, he will have a depressed [i.e., difficult] life, and We will gather [i.e., raise] him on the Day of Resurrection blind.';
-
-  @override
   String get homeDailyDua => 'Daily Dua';
 
   @override

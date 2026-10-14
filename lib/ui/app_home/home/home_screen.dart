@@ -12,14 +12,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rafeeq/core/app_settings_notifier.dart';
 import 'package:rafeeq/core/navigation/analytics_screen_names.dart';
 import 'package:rafeeq/core/navigation/app_routes.dart';
-import 'package:rafeeq/data/providers/quran_data_provider.dart';
-import 'package:rafeeq/data/model/quran_models.dart';
-import 'package:rafeeq/data/repo/quran_api_repo.dart';
 import 'package:rafeeq/data/providers/shared_prefs_provider.dart';
 import 'package:rafeeq/data/models/user_location.dart';
 import 'package:rafeeq/l10n/app_localization_ext.dart';
 import 'package:rafeeq/ui/app_home/home/app_home_screen.dart';
-import 'package:rafeeq/ui/app_home/home/daily_ayah.dart';
 import 'package:rafeeq/ui/app_home/home/home_prayer_data.dart';
 import 'package:rafeeq/ui/app_home/home/location_screen.dart';
 import 'package:rafeeq/ui/app_home/home/settings_palette.dart';
@@ -28,9 +24,7 @@ import 'package:rafeeq/ui/app_home/home/settings_sheets.dart' show playStoreUri;
 import 'package:rafeeq/ui/prayer_times/prayer_times_settings.dart';
 import 'package:rafeeq/ui/prayer_times/user_location_notifier.dart';
 import 'package:rafeeq/ui/quran/quran_audio_controller.dart';
-import 'package:rafeeq/ui/quran/quran_details_screen.dart' hide isRtlEdition;
 import 'package:rafeeq/ui/quran/quran_player_layout.dart';
-import 'package:rafeeq/ui/quran/quran_view_settings.dart';
 import 'package:rafeeq/ui/widgets/rafeeq_app_bar.dart';
 import 'package:rafeeq/utils/extensions/number_localization.dart';
 import 'package:rafeeq/utils/hijri_date_formatter.dart';
@@ -88,9 +82,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       appSettingsNotifierProvider.select((value) => value.showAllCards),
     );
     final now = DateTime.now();
-    final dailyAyah = ref
-        .watch(quranDataProvider)
-        .whenData((quran) => selectDailyAyah(quran.ayahs, now));
     final isFriday = now.weekday == DateTime.friday;
     final isRamadan = hijriDate.hMonth == 9;
     final eidType = switch ((hijriDate.hMonth, hijriDate.hDay)) {
@@ -394,20 +385,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   const SizedBox(height: 12),
                   _SharingCard(palette: palette),
-                  const SizedBox(height: 12),
-                  dailyAyah.when(
-                    data: (ayah) => _DailyAyahCard(
-                      key: const Key('home-daily-ayah-card'),
-                      eyebrow: context.loc.homeDailyAyah,
-                      ayah: ayah,
-                      quran: ref.read(quranDataProvider).value!,
-                      source:
-                          '${isUrdu ? 'القرآن' : 'Quran'} ${ayah.surahNumber.toLocalizedNumber(context)}:${ayah.numberInSurah.toLocalizedNumber(context)}',
-                      palette: palette,
-                    ),
-                    loading: () => const SizedBox.shrink(),
-                    error: (_, _) => const SizedBox.shrink(),
-                  ),
                 ],
               ),
             ),
@@ -1761,98 +1738,6 @@ class _SharingCard extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _DailyAyahCard extends ConsumerWidget {
-  const _DailyAyahCard({
-    super.key,
-    required this.eyebrow,
-    required this.ayah,
-    required this.quran,
-    required this.palette,
-    this.source,
-  });
-
-  final String eyebrow;
-  final Ayah ayah;
-  final QuranData quran;
-  final String? source;
-  final SettingsPalette palette;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(quranViewSettingsNotifierProvider);
-    final translation = ref.watch(
-      quranEditionTextProvider((
-        type: QuranFetchType.surah,
-        number: ayah.surahNumber,
-        editionId: settings.translationEditionId,
-      )),
-    );
-    final rtl = isRtlEdition(settings.translationEditionId);
-    final surah = quran.surah.firstWhere(
-      (value) => value.surahNumber == ayah.surahNumber,
-    );
-
-    return InkWell(
-      borderRadius: BorderRadius.circular(12),
-      onTap: () => Navigator.of(context).pushNamed(
-        AppRoutes.quranDetails,
-        arguments: QuranDetailsArgs(
-          SurahQuranDetailArgs(surah, quran.ayahs),
-          initialAyahNumber: ayah.numberInSurah,
-        ),
-      ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: palette.card,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                eyebrow,
-                style: TextStyle(
-                  color: palette.subtitle,
-                  fontFamily: localizedFontFamily(context),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              const SizedBox(height: 16),
-              translation.when(
-                data: (values) => Directionality(
-                  textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
-                  child: Text(
-                    values[ayah.number] ?? '',
-                    textAlign: rtl ? TextAlign.right : TextAlign.left,
-                    style: getTranslationTextStyle(settings, palette.title),
-                  ),
-                ),
-                loading: () => const SizedBox.shrink(),
-                error: (_, _) => const SizedBox.shrink(),
-              ),
-              if (source != null) ...[
-                const SizedBox(height: 16),
-                Text(
-                  source!,
-                  style: TextStyle(
-                    color: palette.subtitle,
-                    fontFamily: localizedFontFamily(context),
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ],
-          ),
         ),
       ),
     );
