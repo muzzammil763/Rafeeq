@@ -61,7 +61,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
     if (name != null && name.isNotEmpty) {
       if (kDebugMode) print('Analytics screen: $name');
       final analytics = _ref.read(analyticsProvider);
-      analytics.logScreenView(screenName: name);
+      analytics?.logScreenView(screenName: name);
     }
   }
 }

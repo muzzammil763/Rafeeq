@@ -4,8 +4,9 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rafeeq/data/app_database/app_database.dart';
 import 'package:rafeeq/data/app_database/daos/quran_text_cache_dao.dart';
 
-/// Provider for Firebase Analytics instance
-final analyticsProvider = Provider<FirebaseAnalytics>((ref) {
+/// Provider for Firebase Analytics instance; null when Firebase is disabled
+/// (debug and profile builds).
+final analyticsProvider = Provider<FirebaseAnalytics?>((ref) {
   throw UnimplementedError(
     'analyticsProvider must be overridden with a real FirebaseAnalytics instance',
   );

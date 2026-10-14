@@ -8,6 +8,12 @@ plugins {
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.gms.google-services'
 
+// Firebase only runs in release builds (see lib/main.dart), so debug builds
+// do not need a Firebase client for the `.debug` application ID.
+tasks.configureEach { task ->
+    if (task.name == 'processDebugGoogleServices') task.enabled = false
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {

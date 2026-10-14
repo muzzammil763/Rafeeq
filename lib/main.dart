@@ -45,12 +45,13 @@ void main() async {
     androidNotificationOngoing: true,
   );
 
-  await Firebase.initializeApp();
-
-  final analytics = FirebaseAnalytics.instance;
-
-  // Initialize Firebase Analytics and Crashlytics only in release mode
+  // Firebase (Analytics and Crashlytics) runs only in release builds. Debug
+  // builds skip it entirely, so they need no Firebase config for the
+  // `.debug` application ID.
+  FirebaseAnalytics? analytics;
   if (kReleaseMode) {
+    await Firebase.initializeApp();
+    analytics = FirebaseAnalytics.instance;
     await analytics.setAnalyticsCollectionEnabled(true);
 
     // Initialize Crashlytics and pass all uncaught errors to it
@@ -63,8 +64,6 @@ void main() async {
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       return true;
     };
-  } else {
-    await analytics.setAnalyticsCollectionEnabled(false);
   }
 
   final packageInfo = await PackageInfo.fromPlatform();
