@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class RafeeqBottomNavigationBar extends StatelessWidget {
   const RafeeqBottomNavigationBar({
@@ -96,8 +97,7 @@ class RafeeqBottomNavigationBar extends StatelessWidget {
                 onDestinationSelected: onDestinationSelected,
                 destinations: [
                   NavigationDestination(
-                    icon: const Icon(CupertinoIcons.home),
-                    selectedIcon: const Icon(CupertinoIcons.house_fill),
+                    icon: const _CalligraphyIcon(),
                     label: labels[0],
                   ),
                   NavigationDestination(
@@ -120,6 +120,28 @@ class RafeeqBottomNavigationBar extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// The Rafeeq wordmark, tinted like the other navigation icons.
+class _CalligraphyIcon extends StatelessWidget {
+  const _CalligraphyIcon();
+
+  @override
+  Widget build(BuildContext context) {
+    final iconTheme = IconTheme.of(context);
+    final size = iconTheme.size ?? 24;
+    return SvgPicture.asset(
+      'assets/calligraphy.svg',
+      key: const Key('nav-home-calligraphy'),
+      height: size,
+      width: size * 1.4,
+      fit: BoxFit.contain,
+      colorFilter: ColorFilter.mode(
+        iconTheme.color ?? Colors.white,
+        BlendMode.srcIn,
       ),
     );
   }
