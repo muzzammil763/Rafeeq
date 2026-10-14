@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:rafeeq/data/providers/shared_prefs_provider.dart';
@@ -89,15 +88,16 @@ void main() {
 
     await pumpHome(tester);
 
-    final englishTitle = find.byKey(const Key('home-english-title'));
-    expect(englishTitle, findsOneWidget);
-    expect(
-      find.descendant(of: find.byType(AppBar), matching: englishTitle),
-      findsOneWidget,
+    final title = find.descendant(
+      of: find.byType(AppBar),
+      matching: find.text('Rafeeq'),
     );
-    final titleWidget = tester.widget<Text>(englishTitle);
-    expect(titleWidget.data, 'Rafeeq');
-    expect(titleWidget.style?.color, SettingsPalette.light.title);
+    expect(title, findsOneWidget);
+    expect(
+      tester.widget<Text>(title).style?.color,
+      SettingsPalette.light.title,
+    );
+    expect(find.byKey(const Key('home-app-logo')), findsNothing);
     expect(find.byKey(const Key('home-calligraphy')), findsNothing);
     expect(find.text('Explore'), findsOneWidget);
     expect(find.text('New Look'), findsNothing);
@@ -227,24 +227,14 @@ void main() {
     expect(find.text('NEW'), findsNothing);
   });
 
-  testWidgets('localizes the calligraphy accessibility label in Urdu', (
-    tester,
-  ) async {
+  testWidgets('shows the Urdu app name as plain text in Urdu', (tester) async {
     await pumpHome(tester, locale: const Locale('ur'));
 
-    final calligraphy = tester.widget<SvgPicture>(
-      find.byKey(const Key('home-calligraphy')),
-    );
     expect(
-      (calligraphy.bytesLoader as SvgAssetLoader).assetName,
-      'assets/calligraphy.svg',
+      find.descendant(of: find.byType(AppBar), matching: find.text('رفیق')),
+      findsOneWidget,
     );
-    expect(
-      calligraphy.colorFilter,
-      ColorFilter.mode(SettingsPalette.light.selectedCard, BlendMode.srcIn),
-    );
-    expect(calligraphy.semanticsLabel, 'رفیق');
-    expect(find.byKey(const Key('home-english-title')), findsNothing);
+    expect(find.byKey(const Key('home-calligraphy')), findsNothing);
   });
 
   testWidgets('prayer focus artwork and countdown stay fixed in RTL', (

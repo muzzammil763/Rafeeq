@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -119,55 +118,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           : timeFormat.formatTimeWithContext(context, value);
     }
 
-    final isUrdu = Localizations.localeOf(context).languageCode == 'ur';
-
     return Scaffold(
       appBar: RafeeqAppBar(
         title: context.loc.appTitle,
-        titleWidget: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (!isUrdu)
-              ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: Image.asset(
-                  'assets/logo.png',
-                  key: const Key('home-app-logo'),
-                  width: 32,
-                  height: 32,
-                  fit: BoxFit.cover,
-                  excludeFromSemantics: true,
-                ),
-              )
-            else
-              SizedBox.shrink(),
-            const SizedBox(width: 8),
-            if (isUrdu)
-              SvgPicture.asset(
-                'assets/calligraphy.svg',
-                key: const Key('home-calligraphy'),
-                width: 64,
-                height: 40,
-                fit: BoxFit.contain,
-                semanticsLabel: context.loc.appTitle,
-                colorFilter: ColorFilter.mode(
-                  palette.selectedCard,
-                  BlendMode.srcIn,
-                ),
-              )
-            else
-              Text(
-                context.loc.appTitle,
-                key: const Key('home-english-title'),
-                style: TextStyle(
-                  color: palette.title,
-                  fontFamily: localizedFontFamily(context),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-          ],
-        ),
         palette: palette,
         actions: [
           Padding(
