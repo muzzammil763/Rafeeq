@@ -1,22 +1,17 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hooks_riverpod/legacy.dart';
 import 'package:rafeeq/core/app_theme.dart';
 import 'package:rafeeq/core/navigation/analytics_screen_names.dart';
 import 'package:rafeeq/data/services/app_update_service.dart';
 import 'package:rafeeq/data/services/analytics_service.dart';
-import 'package:rafeeq/data/providers/shared_prefs_provider.dart';
 import 'package:rafeeq/l10n/app_localization_ext.dart';
 import 'package:rafeeq/ui/widgets/cancel_button.dart';
 import 'package:rafeeq/ui/app_home/home/rafeeq_bottom_navigation_bar.dart';
 import 'package:rafeeq/ui/app_home/home/settings_screen.dart';
 import 'package:rafeeq/ui/app_home/home/settings_palette.dart';
 import 'package:rafeeq/ui/common/app_info_dialog.dart';
-import 'package:rafeeq/utils/localized_font.dart';
 
 import '../../qibla/qibla_screen.dart';
 import '../../quran/read_quran_home_screen.dart';
@@ -36,7 +31,6 @@ class AppHomeScreen extends ConsumerStatefulWidget {
 }
 
 class _AppHomeScreenState extends ConsumerState<AppHomeScreen> {
-  static const _redesignReleaseKey = 'redesign_dialog_seen_1_2_18';
   static const _navigationScreenNames = <String>[
     AnalyticsScreenNames.home,
     AnalyticsScreenNames.quran,
@@ -51,18 +45,8 @@ class _AppHomeScreenState extends ConsumerState<AppHomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         AppUpdateService.checkForUpdate(context);
-        _showRedesignDialog();
       }
     });
-  }
-
-  Future<void> _showRedesignDialog() async {
-    if (!mounted) return;
-    final preferences = ref.read(sharedPreferencesProvider);
-    if (preferences.getBool(_redesignReleaseKey) ?? false) return;
-    await preferences.setBool(_redesignReleaseKey, true);
-    if (!mounted) return;
-    showRafeeqRedesignSheet(context);
   }
 
   void _showExitConfirmation(BuildContext context) {
@@ -182,311 +166,6 @@ class _AppHomeScreenState extends ConsumerState<AppHomeScreen> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-Future<void> showRafeeqRedesignSheet(BuildContext context) =>
-    showGeneralDialog<void>(
-      context: context,
-      barrierDismissible: true,
-      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      barrierColor: Colors.black.withValues(alpha: 0.42),
-      transitionDuration: const Duration(milliseconds: 280),
-      pageBuilder: (context, animation, secondaryAnimation) => BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: DraggableScrollableSheet(
-            initialChildSize: .8,
-            minChildSize: .55,
-            maxChildSize: 1,
-            expand: true,
-            shouldCloseOnMinExtent: false,
-            builder: (context, controller) => _RedesignReleaseSheet(
-              scrollController: controller,
-              onClose: () => Navigator.of(context).pop(),
-            ),
-          ),
-        ),
-      ),
-      transitionBuilder: (context, animation, secondaryAnimation, child) =>
-          SlideTransition(
-            position: Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero)
-                .animate(
-                  CurvedAnimation(
-                    parent: animation,
-                    curve: Curves.easeOutCubic,
-                  ),
-                ),
-            child: child,
-          ),
-    );
-
-class _RedesignReleaseSheet extends StatefulWidget {
-  const _RedesignReleaseSheet({
-    required this.onClose,
-    required this.scrollController,
-  });
-
-  final VoidCallback onClose;
-  final ScrollController scrollController;
-
-  @override
-  State<_RedesignReleaseSheet> createState() => _RedesignReleaseSheetState();
-}
-
-class _RedesignReleaseSheetState extends State<_RedesignReleaseSheet> {
-  static const _oldHomeUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788515295/ohn1gnx840qimspovupd.png';
-  static const _newHomeUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788515301/rp10utf2hebln84c7zeo.png';
-  static const _oldQiblaUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788516086/WhatsApp_Image_2026-09-02_at_14.19.50_2_awmdo2.jpg';
-  static const _newQiblaUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788516072/WhatsApp_Image_2026-09-02_at_14.19.42_1_bfzof7.jpg';
-  static const _oldQuranUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788516085/WhatsApp_Image_2026-09-02_at_14.19.49_ihalv6.jpg';
-  static const _newQuranUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788516079/WhatsApp_Image_2026-09-02_at_14.19.47_npphu2.jpg';
-  static const _oldListUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788516087/WhatsApp_Image_2026-09-02_at_14.19.50_b7mbag.jpg';
-  static const _newListUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788516079/WhatsApp_Image_2026-09-02_at_14.19.47_2_chf3j3.jpg';
-  static const _ayahUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788516072/WhatsApp_Image_2026-09-02_at_14.19.41_lrfkta.jpg';
-  static const _extendedHomeUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788516073/WhatsApp_Image_2026-09-02_at_14.19.47_1_qabbj1.jpg';
-  static const _adaptiveThemeUrl =
-      'https://res.cloudinary.com/djzvkqwvx/image/upload/v1788516082/WhatsApp_Image_2026-09-02_at_14.19.48_turpkg.jpg';
-
-  @override
-  Widget build(BuildContext context) {
-    final palette = SettingsPalette.of(context);
-    return PopScope(
-      canPop: true,
-      child: Material(
-        color: palette.background,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-        clipBehavior: Clip.antiAlias,
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              controller: widget.scrollController,
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(height: 28),
-                  Text(
-                    context.loc.redesignDialogTitle,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: palette.title,
-                      fontFamily: localizedFontFamily(context),
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    context.loc.redesignDialogBody,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: palette.subtitle,
-                      fontFamily: localizedFontFamily(context),
-                      height: 1.5,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  _comparison(
-                    context.loc.redesignHomeScreen,
-                    _oldHomeUrl,
-                    _newHomeUrl,
-                    palette,
-                  ),
-                  _comparison(
-                    context.loc.redesignQiblaScreen,
-                    _oldQiblaUrl,
-                    _newQiblaUrl,
-                    palette,
-                  ),
-                  _comparison(
-                    context.loc.redesignQuranView,
-                    _oldQuranUrl,
-                    _newQuranUrl,
-                    palette,
-                  ),
-                  _comparison(
-                    context.loc.redesignSurahJuzList,
-                    _oldListUrl,
-                    _newListUrl,
-                    palette,
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Text(
-                      context.loc.redesignNewFeatures,
-                      style: TextStyle(
-                        color: palette.title,
-                        fontFamily: localizedFontFamily(context),
-                        fontSize: 19,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  _feature(
-                    context.loc.redesignAyahMaker,
-                    context.loc.redesignAyahMakerDescription,
-                    _ayahUrl,
-                    palette,
-                  ),
-                  _feature(
-                    context.loc.redesignExtendedHome,
-                    context.loc.redesignExtendedHomeDescription,
-                    _extendedHomeUrl,
-                    palette,
-                  ),
-                  _feature(
-                    context.loc.redesignAdaptiveTheme,
-                    context.loc.redesignAdaptiveThemeDescription,
-                    _adaptiveThemeUrl,
-                    palette,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: FilledButton(
-                      onPressed: widget.onClose,
-                      child: Text(context.loc.gotIt),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            PositionedDirectional(
-              top: 8,
-              end: 8,
-              child: IconButton.filledTonal(
-                tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
-                onPressed: widget.onClose,
-                icon: const Icon(Icons.close_rounded),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _comparison(
-    String title,
-    String oldUrl,
-    String newUrl,
-    SettingsPalette palette,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              color: palette.title,
-              fontFamily: localizedFontFamily(context),
-              fontSize: 17,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(child: _networkImage(oldUrl)),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Icon(Icons.arrow_forward_rounded, color: palette.accent),
-              ),
-              Expanded(child: _networkImage(newUrl)),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _feature(
-    String title,
-    String description,
-    String url,
-    SettingsPalette palette,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 22),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: palette.title,
-                    fontFamily: localizedFontFamily(context),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  description,
-                  style: TextStyle(
-                    color: palette.subtitle,
-                    fontFamily: localizedFontFamily(context),
-                    fontSize: 13,
-                    height: 1.45,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 12),
-          SizedBox(width: 112, child: _networkImage(url)),
-        ],
-      ),
-    );
-  }
-
-  Widget _networkImage(String url) {
-    final palette = SettingsPalette.of(context);
-    return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-      foregroundDecoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: palette.subtitle.withValues(alpha: .45),
-          width: 1.25,
-        ),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: CachedNetworkImage(
-        imageUrl: url,
-        width: double.infinity,
-        fit: BoxFit.fitWidth,
-        color: palette.background,
-        colorBlendMode: BlendMode.dstOver,
-        placeholder: (context, url) => const SizedBox(
-          height: 180,
-          child: Center(child: CircularProgressIndicator()),
-        ),
-        errorWidget: (context, url, error) => SizedBox(
-          height: 180,
-          child: Center(child: Text(context.loc.imageLoadError)),
         ),
       ),
     );

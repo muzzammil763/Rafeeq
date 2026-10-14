@@ -25,6 +25,7 @@ import 'package:rafeeq/ui/prayer_times/user_location_notifier.dart';
 import 'package:rafeeq/ui/quran/quran_audio_controller.dart';
 import 'package:rafeeq/ui/quran/quran_player_layout.dart';
 import 'package:rafeeq/ui/widgets/rafeeq_app_bar.dart';
+import 'package:rafeeq/ui/widgets/scene_artwork.dart';
 import 'package:rafeeq/utils/extensions/number_localization.dart';
 import 'package:rafeeq/utils/hijri_date_formatter.dart';
 import 'package:rafeeq/utils/localized_font.dart';
@@ -304,8 +305,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             const Duration(minutes: 15),
                           ),
                         ),
-                        imageAsset:
-                            'assets/home/forbidden-sunrise-placeholder.png',
+                        scene: SceneArt.sunrise,
                       ),
                       ForbiddenPrayerWindow(
                         label: context.loc.homeNoon,
@@ -315,8 +315,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           ),
                         ),
                         end: formatTime(prayerSnapshot?.today.dhuhr),
-                        imageAsset:
-                            'assets/home/forbidden-noon-placeholder.png',
+                        scene: SceneArt.noon,
                       ),
                       ForbiddenPrayerWindow(
                         label: context.loc.homeSunset,
@@ -326,8 +325,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           ),
                         ),
                         end: formatTime(prayerSnapshot?.today.maghrib),
-                        imageAsset:
-                            'assets/home/forbidden-sunset-placeholder.png',
+                        scene: SceneArt.sunset,
                       ),
                     ],
                   ),
@@ -452,12 +450,11 @@ class HomePrayerFocusCard extends StatelessWidget {
                   right: 0,
                   bottom: 0,
                   child: IgnorePointer(
-                    child: Image.asset(
-                      key: const Key('home-prayer-focus-image'),
-                      'assets/home/prayer-focus-placeholder.png',
+                    child: const SceneArtwork(
+                      key: Key('home-prayer-focus-image'),
+                      scene: SceneArt.mosque,
                       width: 210,
                       height: 140,
-                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
@@ -775,11 +772,10 @@ class _HomeSpecialEventCard extends StatelessWidget {
                   bottom: 0,
                   child: Opacity(
                     opacity: isLight ? 0.62 : 0.35,
-                    child: Image.asset(
-                      'assets/home/prayer-focus-placeholder.png',
+                    child: const SceneArtwork(
+                      scene: SceneArt.mosque,
                       width: 210,
                       height: 140,
-                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
@@ -1458,13 +1454,13 @@ class ForbiddenPrayerWindow {
     required this.label,
     this.start,
     this.end,
-    required this.imageAsset,
+    required this.scene,
   });
 
   final String label;
   final String? start;
   final String? end;
-  final String imageAsset;
+  final SceneArt scene;
 }
 
 class ForbiddenPrayerTimesCard extends StatelessWidget {
@@ -1516,93 +1512,77 @@ class ForbiddenPrayerTimeCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: palette.selectedCard.withValues(alpha: 0.5),
-              width: 1,
-            ),
-          ),
-          child: SizedBox(
-            height: 72,
-            child: Row(
-              children: [
-                const SizedBox(width: 1),
-                ClipRRect(
-                  borderRadius: const BorderRadiusDirectional.horizontal(
-                    start: Radius.circular(10),
+        child: SizedBox(
+          child: Row(
+            spacing: 12,
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadiusDirectional.horizontal(
+                  start: Radius.circular(10),
+                ),
+                child: ColoredBox(
+                  color: palette.background,
+                  child: SceneArtwork(
+                    scene: window.scene,
+                    width: 80,
+                    height: 64,
                   ),
-                  child: ColoredBox(
-                    color: palette.background,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Image.asset(
-                        window.imageAsset,
-                        width: 96,
-                        height: 70,
-                        fit: BoxFit.contain,
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      window.label,
+                      style: TextStyle(
+                        color: palette.subtitle,
+                        fontFamily: localizedFontFamily(context),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        window.label,
-                        style: TextStyle(
-                          color: palette.subtitle,
-                          fontFamily: localizedFontFamily(context),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                    const SizedBox(height: 4),
+                    Row(
+                      spacing: 8,
+                      children: [
+                        Flexible(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Text(
+                              window.start ?? _timePlaceholder,
+                              style: TextStyle(
+                                color: palette.title,
+                                fontFamily: localizedFontFamily(context),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 6),
-                      Row(
-                        children: [
-                          Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              alignment: AlignmentDirectional.centerStart,
-                              child: Text(
-                                window.start ?? _timePlaceholder,
-                                style: TextStyle(
-                                  color: palette.title,
-                                  fontFamily: localizedFontFamily(context),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                        Expanded(child: Divider(color: palette.selectedCard)),
+                        Flexible(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              window.end ?? _timePlaceholder,
+                              style: TextStyle(
+                                color: palette.title,
+                                fontFamily: localizedFontFamily(context),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
-                          const SizedBox(width: 8),
-                          Expanded(child: Divider(color: palette.selectedCard)),
-                          const SizedBox(width: 8),
-                          Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                window.end ?? _timePlaceholder,
-                                style: TextStyle(
-                                  color: palette.title,
-                                  fontFamily: localizedFontFamily(context),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 12),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -1824,17 +1804,12 @@ Widget homePrayerSectionsPreview() {
                   windows: const [
                     ForbiddenPrayerWindow(
                       label: 'Sunrise',
-                      imageAsset:
-                          'assets/home/forbidden-sunrise-placeholder.png',
+                      scene: SceneArt.sunrise,
                     ),
-                    ForbiddenPrayerWindow(
-                      label: 'Noon',
-                      imageAsset: 'assets/home/forbidden-noon-placeholder.png',
-                    ),
+                    ForbiddenPrayerWindow(label: 'Noon', scene: SceneArt.noon),
                     ForbiddenPrayerWindow(
                       label: 'Sunset',
-                      imageAsset:
-                          'assets/home/forbidden-sunset-placeholder.png',
+                      scene: SceneArt.sunset,
                     ),
                   ],
                 ),

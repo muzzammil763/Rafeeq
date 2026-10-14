@@ -17,20 +17,14 @@ import 'package:rafeeq/ui/app_home/home/location_screen.dart';
 import 'package:rafeeq/ui/app_home/home/settings_palette.dart';
 import 'package:rafeeq/ui/app_home/home/settings_picker.dart';
 import 'package:rafeeq/ui/app_home/home/theme_screen.dart';
+import 'package:rafeeq/ui/onboarding/onboarding_artwork.dart';
 import 'package:rafeeq/ui/prayer_times/prayer_times_settings.dart';
 import 'package:rafeeq/ui/prayer_times/user_location_notifier.dart';
 import 'package:rafeeq/ui/widgets/scrollable_column.dart';
 import 'package:rafeeq/ui/widgets/rafeeq_toast.dart';
 import 'package:rafeeq/utils/localized_font.dart';
 
-enum _OnboardingStep {
-  welcome,
-  language,
-  notifications,
-  location,
-  juristic,
-  theme,
-}
+enum _OnboardingStep { welcome, language, notifications, location, theme }
 
 const _actionButtonHeight = 40.0;
 const _actionsVerticalPadding = 12.0;
@@ -317,11 +311,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         onCountry: _chooseCountry,
         onCity: _chooseCity,
       ),
-      _OnboardingStep.juristic => _Juristic(
-        key: const ValueKey('juristic'),
-        palette: palette,
-        padding: padding,
-      ),
       _OnboardingStep.theme => _Theme(
         key: const ValueKey('theme'),
         palette: palette,
@@ -437,24 +426,7 @@ class _Welcome extends StatelessWidget {
         ],
       ),
       content: const [],
-      artwork: const _Artwork(asset: 'assets/onboarding/welcome.png'),
-    );
-  }
-}
-
-class _Artwork extends StatelessWidget {
-  const _Artwork({required this.asset});
-  final String asset;
-
-  @override
-  Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxHeight: 300),
-      child: Image.asset(
-        asset,
-        fit: BoxFit.contain,
-        filterQuality: FilterQuality.high,
-      ),
+      artwork: const OnboardingArtwork(art: OnboardingArt.welcome),
     );
   }
 }
@@ -592,7 +564,7 @@ class _Notifications extends StatelessWidget {
           ),
         ),
       ],
-      artwork: const _Artwork(asset: 'assets/onboarding/notifications.png'),
+      artwork: const OnboardingArtwork(art: OnboardingArt.notifications),
     );
   }
 }
@@ -666,41 +638,7 @@ class _Location extends ConsumerWidget {
               : null,
         ),
       ],
-      artwork: const _Artwork(asset: 'assets/onboarding/location.png'),
-    );
-  }
-}
-
-class _Juristic extends ConsumerWidget {
-  const _Juristic({super.key, required this.palette, required this.padding});
-  final SettingsPalette palette;
-  final EdgeInsets padding;
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final selected = ref
-        .watch(prayerTimesSettingsNotifierProvider)
-        .asrCalculationMethod;
-    return _Page(
-      key: key,
-      title: context.loc.juristicMethod,
-      subtitle: context.loc.onboardingJuristicDescription,
-      padding: padding,
-      palette: palette,
-      content: [
-        for (final method in AsrCalculationMethod.values) ...[
-          SettingsPickerTile(
-            title: method.getLabel(context),
-            selected: selected == method,
-            palette: palette,
-            onTap: () => ref
-                .read(prayerTimesSettingsNotifierProvider.notifier)
-                .setAsrCalculationMethod(method),
-          ),
-          if (method != AsrCalculationMethod.values.last)
-            const SizedBox(height: 8),
-        ],
-      ],
-      artwork: const _Artwork(asset: 'assets/onboarding/juristic.png'),
+      artwork: const OnboardingArtwork(art: OnboardingArt.location),
     );
   }
 }
@@ -733,7 +671,7 @@ class _Theme extends ConsumerWidget {
           if (mode != modes.last) const SizedBox(height: 8),
         ],
       ],
-      artwork: const _Artwork(asset: 'assets/onboarding/theme.png'),
+      artwork: const OnboardingArtwork(art: OnboardingArt.theme),
     );
   }
 }

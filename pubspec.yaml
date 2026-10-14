@@ -84,9 +84,6 @@ flutter:
   generate: true
   assets:
     - assets/
-    - assets/home/
-    - assets/onboarding/
-    - assets/quran/
     - assets/fonts/
     - assets/sounds/
     - shorebird.yaml

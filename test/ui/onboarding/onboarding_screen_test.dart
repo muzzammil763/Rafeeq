@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rafeeq/data/providers/shared_prefs_provider.dart';
 import 'package:rafeeq/data/services/notification_service.dart';
 import 'package:rafeeq/l10n/app_localizations.dart';
+import 'package:rafeeq/ui/onboarding/onboarding_artwork.dart';
 import 'package:rafeeq/ui/onboarding/onboarding_screen.dart';
 import 'package:rafeeq/ui/prayer_times/user_location_notifier.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -73,10 +74,7 @@ void main() {
       findsOneWidget,
     );
     expect(find.text('Get Started'), findsOneWidget);
-    expect(
-      find.image(const AssetImage('assets/onboarding/welcome.png')),
-      findsOneWidget,
-    );
+    expect(find.byType(OnboardingArtwork), findsOneWidget);
     expect(
       find.byWidgetPredicate(
         (widget) =>
@@ -139,7 +137,7 @@ void main() {
     expect(find.text('Location'), findsOneWidget);
   });
 
-  testWidgets('location next automatically requests and denial continues', (
+  testWidgets('location next automatically requests and continues to theme', (
     tester,
   ) async {
     final container = await _pumpOnboarding(
@@ -161,6 +159,6 @@ void main() {
         container.read(userLocationNotifierProvider.notifier)
             as _TestUserLocationNotifier;
     expect(locationNotifier.automaticRequests, 1);
-    expect(find.text('Juristic Method'), findsOneWidget);
+    expect(find.text('Finish'), findsOneWidget);
   });
 }

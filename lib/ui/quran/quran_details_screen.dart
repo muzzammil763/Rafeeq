@@ -20,6 +20,7 @@ import 'package:rafeeq/ui/quran/quran_reader_app_bar_title.dart';
 import 'package:rafeeq/ui/quran/quran_view_settings.dart';
 import 'package:rafeeq/ui/widgets/rafeeq_app_bar.dart';
 import 'package:rafeeq/ui/widgets/rafeeq_toast.dart';
+import 'package:rafeeq/ui/widgets/scene_artwork.dart';
 import 'package:rafeeq/utils/extensions/number_localization.dart';
 import 'package:rafeeq/utils/juz_names_provider.dart';
 import 'package:rafeeq/utils/surah_names_provider.dart';
@@ -622,11 +623,8 @@ class _SurahHeader extends StatelessWidget {
       children: [
         SizedBox(
           height: 150,
-          child: Image.asset(
-            isMakki
-                ? 'assets/quran/makki-surah.png'
-                : 'assets/quran/madani-surah.png',
-            fit: BoxFit.contain,
+          child: SceneArtwork(
+            scene: isMakki ? SceneArt.makkah : SceneArt.madinah,
             semanticLabel: isMakki
                 ? 'Makkah illustration'
                 : 'Madinah illustration',
