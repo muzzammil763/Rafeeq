@@ -2,6 +2,6 @@
 - Refreshed Rafeeq design and app experience
 - Added complete Urdu localization with Urdu typography
 - Improved Quran reading, navigation, recitation and sharing
-- Added IslamicTok with refreshed home features
+- Refreshed home screen features
 - Enhanced prayer times, Qibla and Hijri calendar experiences
 - Improved onboarding with location, notification and theme setup
