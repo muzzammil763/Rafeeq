@@ -185,4 +185,51 @@ abstract class ArtPainter extends CustomPainter {
     );
     canvas.restore();
   }
+
+  /// Rolling hills through [crest], filled down to [bottom].
+  void hills(
+    Canvas canvas,
+    List<Offset> crest,
+    Color color, {
+    double bottom = 200,
+  }) {
+    final path = Path()
+      ..moveTo(crest.first.dx, bottom)
+      ..lineTo(crest.first.dx, crest.first.dy);
+    for (var i = 1; i < crest.length; i++) {
+      final prev = crest[i - 1];
+      final cur = crest[i];
+      final half = (cur.dx - prev.dx) / 2;
+      path.cubicTo(
+        prev.dx + half,
+        prev.dy,
+        cur.dx - half,
+        cur.dy,
+        cur.dx,
+        cur.dy,
+      );
+    }
+    path
+      ..lineTo(crest.last.dx, bottom)
+      ..close();
+    canvas.drawPath(path, fill(color));
+  }
+
+  void cloud(Canvas canvas, Offset c, double s, Color color) {
+    final path = Path()
+      ..addOval(
+        Rect.fromCircle(center: c + Offset(-9 * s, 2 * s), radius: 7 * s),
+      )
+      ..addOval(Rect.fromCircle(center: c + Offset(0, -3 * s), radius: 9 * s))
+      ..addOval(
+        Rect.fromCircle(center: c + Offset(10 * s, 2 * s), radius: 7 * s),
+      )
+      ..addRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTRB(c.dx - 16 * s, c.dy, c.dx + 17 * s, c.dy + 9 * s),
+          Radius.circular(5 * s),
+        ),
+      );
+    canvas.drawPath(path, fill(color));
+  }
 }

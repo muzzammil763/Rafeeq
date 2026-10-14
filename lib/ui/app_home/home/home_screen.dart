@@ -26,6 +26,7 @@ import 'package:rafeeq/ui/quran/quran_audio_controller.dart';
 import 'package:rafeeq/ui/quran/quran_player_layout.dart';
 import 'package:rafeeq/ui/widgets/rafeeq_app_bar.dart';
 import 'package:rafeeq/ui/widgets/scene_artwork.dart';
+import 'package:rafeeq/ui/widgets/sky_artwork.dart';
 import 'package:rafeeq/utils/extensions/number_localization.dart';
 import 'package:rafeeq/utils/hijri_date_formatter.dart';
 import 'package:rafeeq/utils/localized_font.dart';
@@ -91,6 +92,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     };
 
     _HomePrayerSnapshot? prayerSnapshot;
+    var sky = SkyPhase.at(now);
     if (location != null) {
       final today = ref.watch(prayerTimesProvider(location));
       final yesterday = ref.watch(
@@ -110,6 +112,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         yesterday: yesterday,
         today: today,
         tomorrow: tomorrow,
+      );
+      sky = SkyPhase.at(
+        now,
+        sunrise: today.sunrise,
+        sunset: today.maghrib,
+        previousSunset: yesterday.maghrib,
+        nextSunrise: tomorrow.sunrise,
       );
     }
 
@@ -182,6 +191,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           prayerSnapshot?.nextPrayerTime.difference(now),
                         ),
                         progress: prayerSnapshot?.progress ?? 0,
+                        sky: sky,
                         palette: palette,
                         onTap: () => Navigator.of(
                           context,
@@ -412,6 +422,7 @@ class HomePrayerFocusCard extends StatelessWidget {
     required this.nextTime,
     required this.countdown,
     required this.progress,
+    this.sky,
     required this.palette,
     required this.onTap,
   });
@@ -422,6 +433,9 @@ class HomePrayerFocusCard extends StatelessWidget {
   final String nextTime;
   final String countdown;
   final double progress;
+
+  /// Where the sun or moon sits on the card; defaults to the current time.
+  final SkyPhase? sky;
   final SettingsPalette palette;
   final VoidCallback onTap;
 
@@ -446,15 +460,11 @@ class HomePrayerFocusCard extends StatelessWidget {
             height: 176,
             child: Stack(
               children: [
-                Positioned(
-                  right: 0,
-                  bottom: 0,
+                Positioned.fill(
                   child: IgnorePointer(
-                    child: const SceneArtwork(
-                      key: Key('home-prayer-focus-image'),
-                      scene: SceneArt.mosque,
-                      width: 210,
-                      height: 140,
+                    child: SkyArtwork(
+                      key: const Key('home-prayer-focus-image'),
+                      phase: sky ?? SkyPhase.at(DateTime.now()),
                     ),
                   ),
                 ),
