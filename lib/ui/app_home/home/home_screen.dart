@@ -7,6 +7,7 @@ import 'package:flutter/widget_previews.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hijri/hijri_calendar.dart';
+import 'package:intl/intl.dart' show DateFormat;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rafeeq/core/app_settings_notifier.dart';
 import 'package:rafeeq/core/navigation/analytics_screen_names.dart';
@@ -207,11 +208,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ),
                 children: [
-                  _GreetingRow(
+                  _TodayDates(
                     hijriDate: HijriDateFormatter.formatLong(
                       context,
                       hijriDate,
                     ),
+                    today: now,
                     palette: palette,
                   ),
                   const SizedBox(height: 16),
@@ -425,39 +427,49 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 }
 
-class _GreetingRow extends StatelessWidget {
-  const _GreetingRow({required this.hijriDate, required this.palette});
+class _TodayDates extends StatelessWidget {
+  const _TodayDates({
+    required this.hijriDate,
+    required this.today,
+    required this.palette,
+  });
 
   final String hijriDate;
+  final DateTime today;
   final SettingsPalette palette;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    final languageCode = Localizations.localeOf(context).languageCode;
+    final fontFamily = localizedFontFamily(context);
+    final gregorianDate =
+        '${today.day.toLocalizedNumber(context)} '
+        '${DateFormat.MMMM(languageCode).format(today)}, '
+        '${today.year.toLocalizedNumber(context)}';
+    final weekday = DateFormat.EEEE(languageCode).format(today);
+    TextStyle secondary() => TextStyle(
+      color: palette.subtitle,
+      fontFamily: fontFamily,
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+    );
+    return Column(
+      key: const Key('home-today-dates'),
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: Text(
-            "السلام عليكم",
-            style: TextStyle(
-              color: palette.title,
-              fontFamily: 'Jameel Noori Nastaleeq',
-              fontSize: 24,
-
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        const SizedBox(width: 12),
         Text(
-          "$hijriDate ",
+          hijriDate,
           style: TextStyle(
-            color: palette.subtitle,
-            fontFamily: localizedFontFamily(context),
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
+            color: palette.title,
+            fontFamily: fontFamily,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
           ),
         ),
+        const SizedBox(height: 2),
+        Text(gregorianDate, style: secondary()),
+        const SizedBox(height: 2),
+        Text(weekday, style: secondary()),
       ],
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart' show DateFormat;
 import 'package:rafeeq/data/providers/shared_prefs_provider.dart';
 import 'package:rafeeq/core/navigation/app_routes.dart';
 import 'package:rafeeq/data/model/quran_models.dart';
@@ -151,6 +152,29 @@ void main() {
           tester.getBottomLeft(forbiddenTitle).dy,
       12,
     );
+  });
+
+  testWidgets('shows Hijri, Gregorian and weekday stacked without greeting', (
+    tester,
+  ) async {
+    await pumpHome(tester);
+
+    final today = DateTime.now();
+    final dates = find.byKey(const Key('home-today-dates'));
+    expect(dates, findsOneWidget);
+    expect(find.text('السلام عليكم'), findsNothing);
+    final texts = tester
+        .widgetList<Text>(
+          find.descendant(of: dates, matching: find.byType(Text)),
+        )
+        .map((text) => text.data)
+        .toList();
+    expect(texts, hasLength(3));
+    expect(
+      texts[1],
+      '${today.day} ${DateFormat.MMMM('en').format(today)}, ${today.year}',
+    );
+    expect(texts[2], DateFormat.EEEE('en').format(today));
   });
 
   testWidgets('opens Namaz from the Explore grid', (tester) async {
