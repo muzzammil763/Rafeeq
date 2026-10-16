@@ -65,7 +65,7 @@ flutter test
 
 ## Website
 
-The landing page at [rafeeq-muslim-companion.pages.dev](https://rafeeq-muslim-companion.pages.dev) lives in [`website/`](website). It is a static [Astro](https://astro.build) site hosted on Cloudflare Pages.
+The landing page at [rafeeq.pages.dev](https://rafeeq.pages.dev) lives in [`website/`](website). It is a static [Astro](https://astro.build) site hosted on Cloudflare Pages.
 
 ```bash
 cd website

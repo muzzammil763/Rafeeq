@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 // `site` feeds canonical URLs and social preview links.
 export default defineConfig({
-  site: 'https://rafeeq-muslim-companion.pages.dev',
+  site: 'https://rafeeq.pages.dev',
   output: 'static',
   trailingSlash: 'never',
   build: { format: 'file' },
