@@ -110,6 +110,9 @@ const { script } = Astro.props;
     let idleTimer = 0;
     let asleep = false;
     let shownAt = 0;
+    let side: 'left' | 'right' = 'right';
+    let travel: { from: number; start: number; dur: number; arc: number } | null = null;
+    let arcY = 0;
     let shownScroll = 0;
 
     const pos = { x: innerWidth - 120, y: innerHeight + 80 };
@@ -195,12 +198,15 @@ const { script } = Astro.props;
     function computeTarget() {
       const s = size();
       if (compact.matches) {
-        target.x = innerWidth - s - 16;
+        target.x = side === 'right' ? innerWidth - s - 16 : 16;
         target.y = innerHeight - s - 28;
         return;
       }
       const content = Math.min(innerWidth - 32, 1180);
-      target.x = Math.min(innerWidth - s - 24, (innerWidth + content) / 2 + 20);
+      target.x =
+        side === 'right'
+          ? Math.min(innerWidth - s - 24, (innerWidth + content) / 2 + 20)
+          : Math.max(24, (innerWidth - content) / 2 - s - 20);
       const step = steps[active];
       if (!step) return;
       const r = step.el.getBoundingClientRect();
@@ -218,8 +224,25 @@ const { script } = Astro.props;
         mood = step.mood ?? 'neutral';
         tempMood = null;
         applyMood();
-        if (!first) hop();
-        window.setTimeout(() => say(step.text, step.actions), first ? 900 : 260);
+        const nextSide = step.side ?? (active % 2 === 0 ? 'right' : 'left');
+        let delay = first ? 900 : 260;
+        if (nextSide !== side) {
+          side = nextSide;
+          root!.dataset.side = side;
+          if (!first && !reduce) {
+            // Jump across the page to the other side in an arc, then talk.
+            collapse();
+            computeTarget();
+            const dist = Math.abs(target.x - pos.x);
+            travel = { from: pos.x, start: performance.now(), dur: clamp(dist * 0.85, 650, 1150), arc: clamp(dist * 0.14, 50, 130) };
+            delay = travel.dur + 120;
+          }
+        } else if (!first) {
+          hop();
+        }
+        window.setTimeout(() => {
+          if (steps[active] === step) say(step.text, step.actions);
+        }, delay);
       }
       computeTarget();
       wake();
@@ -236,9 +259,25 @@ const { script } = Astro.props;
       } else {
         const k = 0.075;
         const damping = Math.pow(0.78, dt);
-        vel.x = (vel.x + (target.x - pos.x) * k * dt) * damping;
+        if (travel) {
+          const p = clamp((now - travel.start) / travel.dur, 0, 1);
+          const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          const prev = pos.x;
+          pos.x = travel.from + (target.x - travel.from) * e;
+          vel.x = (pos.x - prev) / dt;
+          arcY = -Math.sin(p * Math.PI) * travel.arc;
+          if (p >= 1) {
+            travel = null;
+            arcY = 0;
+            vel.x = 0;
+            pos.x = target.x;
+            hop();
+          }
+        } else {
+          vel.x = (vel.x + (target.x - pos.x) * k * dt) * damping;
+          pos.x += vel.x * dt;
+        }
         vel.y = (vel.y + (target.y - pos.y) * k * dt) * damping;
-        pos.x += vel.x * dt;
         pos.y += vel.y * dt;
       }
 
@@ -249,9 +288,12 @@ const { script } = Astro.props;
 
       // Eyes follow the pointer while it moves, otherwise the scroll
       // direction, otherwise the content beside the companion.
-      let lx = -0.6;
+      let lx = side === 'right' ? -0.6 : 0.6;
       let ly = clamp(scrollVel / 18, -1, 1);
-      if (finePointer && now - pointer.at < 3500) {
+      if (travel) {
+        lx = Math.sign(target.x - travel.from);
+        ly = -0.3;
+      } else if (finePointer && now - pointer.at < 3500) {
         const dx = pointer.x - cx;
         const dy = pointer.y - cy;
         const d = Math.hypot(dx, dy) || 1;
@@ -263,15 +305,18 @@ const { script } = Astro.props;
       look.y += (ly - look.y) * 0.18 * dt;
 
       const tilt = reduce ? 0 : clamp(vel.x * 0.6 + vel.y * 0.5 + scrollVel * 0.25, -16, 16);
-      const stretch = reduce ? 0 : clamp(Math.abs(vel.y) * 0.012 + Math.abs(scrollVel) * 0.004, 0, 0.14);
+      const stretch = reduce
+        ? 0
+        : clamp(Math.abs(vel.y) * 0.012 + Math.abs(scrollVel) * 0.004 + (travel ? 0.08 : 0), 0, 0.14);
 
-      root!.style.transform = `translate3d(${pos.x.toFixed(1)}px, ${pos.y.toFixed(1)}px, 0)`;
+      root!.style.transform = `translate3d(${pos.x.toFixed(1)}px, ${(pos.y + arcY).toFixed(1)}px, 0)`;
       root!.style.setProperty('--tilt', `${tilt.toFixed(2)}deg`);
       root!.style.setProperty('--sy', (1 + stretch).toFixed(3));
       root!.style.setProperty('--sx', (1 - stretch * 0.7).toFixed(3));
       face.style.transform = `translate(${(look.x * 7).toFixed(2)}px, ${(look.y * 5).toFixed(2)}px)`;
 
       const settled =
+        !travel &&
         Math.abs(target.x - pos.x) < 0.3 &&
         Math.abs(target.y - pos.y) < 0.3 &&
         Math.abs(vel.x) + Math.abs(vel.y) < 0.05 &&
@@ -413,6 +458,8 @@ const { script } = Astro.props;
 
     resolve();
     if (!steps.length) return;
+    side = steps[0].side ?? 'right';
+    root.dataset.side = side;
     computeTarget();
     pos.x = target.x;
     pos.y = innerHeight + 40;
@@ -800,6 +847,26 @@ const { script } = Astro.props;
     height: 6px;
   }
 
+  /* On the left side the bubble opens to the right of the character. */
+  .buddy[data-side='left'] .bubble {
+    right: auto;
+    left: calc(100% + 18px);
+    border-radius: 22px 22px 22px 6px;
+    transform-origin: 0 100%;
+  }
+  .buddy[data-side='left'] .dots {
+    right: auto;
+    left: -16px;
+  }
+  .buddy[data-side='left'] .dots i:first-child {
+    right: auto;
+    left: 4px;
+  }
+  .buddy[data-side='left'] .dots i:last-child {
+    right: auto;
+    left: -6px;
+  }
+
   @keyframes blob {
     0%,
     100% {
@@ -903,6 +970,16 @@ const { script } = Astro.props;
     }
     .shadow {
       display: none;
+    }
+    .buddy[data-side='left'] .bubble {
+      left: 0;
+      border-radius: 22px 22px 22px 6px;
+    }
+    .buddy[data-side='left'] .dots {
+      left: 18px;
+    }
+    .buddy[data-side='left'] .dots i:last-child {
+      left: 6px;
     }
   }
 
