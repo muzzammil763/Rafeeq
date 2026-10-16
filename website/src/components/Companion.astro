@@ -1,0 +1,923 @@
+---
+import type { CompanionScript } from '../data/companion';
+
+// A small guide character that glides beside the section being read,
+// talks about it in a bubble, and watches the pointer. Everything it says
+// comes from the script prop, so another site only needs its own script.
+interface Props {
+  script: CompanionScript;
+}
+const { script } = Astro.props;
+---
+
+<div class="buddy" data-companion data-script={JSON.stringify(script)} data-mood="happy" hidden transition:persist>
+  <div class="bubble" role="status" aria-live="polite">
+    <button class="bubble-close" type="button" aria-label="Close message">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </button>
+    <p class="bubble-text"></p>
+    <div class="bubble-actions"></div>
+    <button class="bubble-hide" type="button">Hide helper</button>
+    <span class="dots" aria-hidden="true"><i></i><i></i></span>
+  </div>
+  <button class="pet" type="button" aria-label={`${script.name}: show message`}>
+    <span class="antenna" aria-hidden="true"><i></i></span>
+    <span class="body" aria-hidden="true">
+      <span class="gloss"></span>
+      <span class="face">
+        <span class="eye left"></span>
+        <span class="eye right"></span>
+        <span class="cheek left"></span>
+        <span class="cheek right"></span>
+        <span class="mouth"></span>
+      </span>
+    </span>
+    <span class="zzz" aria-hidden="true">z</span>
+  </button>
+  <span class="shadow" aria-hidden="true"></span>
+</div>
+
+<script>
+  import type { CompanionScript, CompanionStep, CompanionAction, Mood } from '../data/companion';
+
+  type Step = CompanionStep & { el: Element };
+  type TempMood = Mood | 'sleepy' | 'excited';
+
+  const store = {
+    get(key: string) {
+      try {
+        return localStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    },
+    set(key: string, value: string) {
+      try {
+        localStorage.setItem(key, value);
+      } catch {
+        // Private mode or blocked storage: the choice lasts for this visit.
+      }
+    },
+  };
+  const session = {
+    get(key: string) {
+      try {
+        return sessionStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    },
+    set(key: string) {
+      try {
+        sessionStorage.setItem(key, '1');
+      } catch {
+        // Ignore.
+      }
+    },
+  };
+
+  const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
+
+  let started = false;
+  let refresh: () => void = () => {};
+
+  function start() {
+    const root = document.querySelector<HTMLElement>('[data-companion]');
+    if (!root) return;
+    if (started) {
+      refresh();
+      return;
+    }
+    started = true;
+
+    const script: CompanionScript = JSON.parse(root.dataset.script || '{}');
+    const pet = root.querySelector<HTMLButtonElement>('.pet')!;
+    const face = root.querySelector<HTMLElement>('.face')!;
+    const bubble = root.querySelector<HTMLElement>('.bubble')!;
+    const text = root.querySelector<HTMLElement>('.bubble-text')!;
+    const actions = root.querySelector<HTMLElement>('.bubble-actions')!;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const compact = matchMedia('(max-width: 760px)');
+    const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    if (store.get(script.dismissKey) === '1') return;
+
+    let steps: Step[] = [];
+    let active = -1;
+    let mood: Mood = 'happy';
+    let tempMood: TempMood | null = null;
+    let collapseTimer = 0;
+    let idleTimer = 0;
+    let asleep = false;
+    let shownAt = 0;
+    let shownScroll = 0;
+
+    const pos = { x: innerWidth - 120, y: innerHeight + 80 };
+    const vel = { x: 0, y: 0 };
+    const target = { x: pos.x, y: pos.y };
+    const look = { x: 0, y: 0 };
+    const pointer = { x: 0, y: 0, at: 0 };
+    let lastScroll = scrollY;
+    let scrollVel = 0;
+    let running = false;
+    let lastFrame = 0;
+
+    const size = () => (compact.matches ? 58 : 72);
+
+    function setMood(next: TempMood) {
+      root!.dataset.mood = next;
+    }
+    function applyMood() {
+      setMood(asleep ? 'sleepy' : (tempMood ?? mood));
+    }
+
+    function renderActions(list: CompanionAction[] = []) {
+      actions.replaceChildren(
+        ...list.map((a) => {
+          const link = document.createElement('a');
+          link.href = a.href;
+          link.textContent = a.label;
+          link.className = a.primary ? 'mini primary' : 'mini';
+          if (/^https?:/.test(a.href)) link.rel = 'noopener';
+          link.addEventListener('click', () => collapse());
+          return link;
+        }),
+      );
+      actions.hidden = list.length === 0;
+    }
+
+    function say(message: string, list?: CompanionAction[], hold = compact.matches ? 6000 : 8000) {
+      text.textContent = message;
+      shownAt = performance.now();
+      shownScroll = scrollY;
+      renderActions(list);
+      root!.classList.remove('talking');
+      void bubble.offsetWidth; // Restart the pop-in transition.
+      root!.classList.add('talking');
+      clearTimeout(collapseTimer);
+      if (hold > 0) collapseTimer = window.setTimeout(collapse, hold);
+      wake();
+    }
+    function collapse() {
+      root!.classList.remove('talking');
+      clearTimeout(collapseTimer);
+    }
+
+    function hop() {
+      if (reduce) return;
+      pet.classList.remove('hop');
+      void pet.offsetWidth;
+      pet.classList.add('hop');
+    }
+
+    function resolve() {
+      steps = script.steps
+        .map((s) => ({ ...s, el: document.querySelector(s.anchor) }))
+        .filter((s): s is Step => s.el !== null);
+      root!.hidden = steps.length === 0;
+      active = -1;
+    }
+
+    function pickActive() {
+      const line = innerHeight * 0.42;
+      let best = 0;
+      for (let i = 0; i < steps.length; i++) {
+        const r = steps[i].el.getBoundingClientRect();
+        if (r.top <= line) best = i;
+        if (r.top <= line && r.bottom >= line) {
+          best = i;
+          break;
+        }
+      }
+      return best;
+    }
+
+    function computeTarget() {
+      const s = size();
+      if (compact.matches) {
+        target.x = innerWidth - s - 16;
+        target.y = innerHeight - s - 28;
+        return;
+      }
+      const content = Math.min(innerWidth - 32, 1180);
+      target.x = Math.min(innerWidth - s - 24, (innerWidth + content) / 2 + 20);
+      const step = steps[active];
+      if (!step) return;
+      const r = step.el.getBoundingClientRect();
+      const anchorY = r.top + Math.min(r.height * 0.3, 180);
+      target.y = clamp(anchorY, 230, innerHeight - s - 36);
+    }
+
+    function update() {
+      if (!steps.length) return;
+      const next = pickActive();
+      if (next !== active) {
+        const first = active === -1;
+        active = next;
+        const step = steps[active];
+        mood = step.mood ?? 'neutral';
+        tempMood = null;
+        applyMood();
+        if (!first) hop();
+        window.setTimeout(() => say(step.text, step.actions), first ? 900 : 260);
+      }
+      computeTarget();
+      wake();
+    }
+
+    function frame(now: number) {
+      const dt = clamp((now - (lastFrame || now)) / 16.67, 0.5, 3);
+      lastFrame = now;
+
+      if (reduce) {
+        pos.x = target.x;
+        pos.y = target.y;
+        vel.x = vel.y = 0;
+      } else {
+        const k = 0.075;
+        const damping = Math.pow(0.78, dt);
+        vel.x = (vel.x + (target.x - pos.x) * k * dt) * damping;
+        vel.y = (vel.y + (target.y - pos.y) * k * dt) * damping;
+        pos.x += vel.x * dt;
+        pos.y += vel.y * dt;
+      }
+
+      scrollVel *= Math.pow(0.86, dt);
+      const s = size();
+      const cx = pos.x + s / 2;
+      const cy = pos.y + s / 2;
+
+      // Eyes follow the pointer while it moves, otherwise the scroll
+      // direction, otherwise the content beside the companion.
+      let lx = -0.6;
+      let ly = clamp(scrollVel / 18, -1, 1);
+      if (finePointer && now - pointer.at < 3500) {
+        const dx = pointer.x - cx;
+        const dy = pointer.y - cy;
+        const d = Math.hypot(dx, dy) || 1;
+        const reach = clamp(d / 220, 0, 1);
+        lx = (dx / d) * reach;
+        ly = (dy / d) * reach;
+      }
+      look.x += (lx - look.x) * 0.18 * dt;
+      look.y += (ly - look.y) * 0.18 * dt;
+
+      const tilt = reduce ? 0 : clamp(vel.x * 0.6 + vel.y * 0.5 + scrollVel * 0.25, -16, 16);
+      const stretch = reduce ? 0 : clamp(Math.abs(vel.y) * 0.012 + Math.abs(scrollVel) * 0.004, 0, 0.14);
+
+      root!.style.transform = `translate3d(${pos.x.toFixed(1)}px, ${pos.y.toFixed(1)}px, 0)`;
+      root!.style.setProperty('--tilt', `${tilt.toFixed(2)}deg`);
+      root!.style.setProperty('--sy', (1 + stretch).toFixed(3));
+      root!.style.setProperty('--sx', (1 - stretch * 0.7).toFixed(3));
+      face.style.transform = `translate(${(look.x * 7).toFixed(2)}px, ${(look.y * 5).toFixed(2)}px)`;
+
+      const settled =
+        Math.abs(target.x - pos.x) < 0.3 &&
+        Math.abs(target.y - pos.y) < 0.3 &&
+        Math.abs(vel.x) + Math.abs(vel.y) < 0.05 &&
+        Math.abs(scrollVel) < 0.05 &&
+        now - pointer.at > 3600;
+      if (settled) {
+        running = false;
+        lastFrame = 0;
+        return;
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function wake() {
+      if (running || document.hidden) return;
+      running = true;
+      requestAnimationFrame(frame);
+    }
+
+    function blinkLoop() {
+      window.setTimeout(() => {
+        if (!asleep && !document.hidden) {
+          root!.classList.add('blink');
+          window.setTimeout(() => root!.classList.remove('blink'), 150);
+        }
+        blinkLoop();
+      }, 2400 + Math.random() * 3800);
+    }
+
+    function activity() {
+      if (asleep) {
+        asleep = false;
+        applyMood();
+        collapse();
+      }
+      clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => {
+        asleep = true;
+        applyMood();
+        say(script.idle, [], 0);
+      }, 30000);
+    }
+
+    let ticking = false;
+    addEventListener(
+      'scroll',
+      () => {
+        scrollVel += (scrollY - lastScroll) * 0.35;
+        scrollVel = clamp(scrollVel, -60, 60);
+        lastScroll = scrollY;
+        activity();
+        // Step aside once the reader keeps scrolling through the section.
+        if (
+          root.classList.contains('talking') &&
+          performance.now() - shownAt > 2200 &&
+          Math.abs(scrollY - shownScroll) > 180
+        ) {
+          collapse();
+        }
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          update();
+        });
+      },
+      { passive: true },
+    );
+    addEventListener('resize', () => update(), { passive: true });
+    compact.addEventListener('change', () => update());
+
+    addEventListener(
+      'pointermove',
+      (e) => {
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+        pointer.at = performance.now();
+        activity();
+        wake();
+      },
+      { passive: true },
+    );
+
+    // Gets excited whenever the pointer is over a download button.
+    document.addEventListener('pointerover', (e) => {
+      const over = (e.target as Element | null)?.closest?.('.btn-primary, .mini.primary');
+      const next: TempMood | null = over ? 'excited' : null;
+      if (next !== tempMood) {
+        tempMood = next as TempMood | null;
+        applyMood();
+      }
+    });
+
+    // Leaving through the top of the window on desktop, once per visit.
+    document.addEventListener('mouseout', (e) => {
+      if (!finePointer || e.relatedTarget || e.clientY > 0) return;
+      if (session.get('companion-exit')) return;
+      session.set('companion-exit');
+      tempMood = 'surprised';
+      applyMood();
+      hop();
+      say(script.exit.text, script.exit.actions, 12000);
+      window.setTimeout(() => {
+        tempMood = null;
+        applyMood();
+      }, 2500);
+    });
+
+    pet.addEventListener('click', () => {
+      hop();
+      if (root!.classList.contains('talking')) {
+        tempMood = 'excited';
+        applyMood();
+        window.setTimeout(() => {
+          tempMood = null;
+          applyMood();
+        }, 900);
+        return;
+      }
+      const step = steps[active] ?? steps[0];
+      if (step) say(step.text, step.actions);
+    });
+    root.querySelector('.bubble-close')!.addEventListener('click', collapse);
+    root.querySelector('.bubble-hide')!.addEventListener('click', () => {
+      store.set(script.dismissKey, '1');
+      root!.hidden = true;
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') collapse();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) wake();
+    });
+
+    refresh = () => {
+      resolve();
+      update();
+    };
+
+    resolve();
+    if (!steps.length) return;
+    computeTarget();
+    pos.x = target.x;
+    pos.y = innerHeight + 40;
+    window.setTimeout(() => {
+      root.classList.add('ready');
+      update();
+    }, 600);
+    blinkLoop();
+    activity();
+  }
+
+  document.addEventListener('astro:page-load', start);
+</script>
+
+<style>
+  .buddy {
+    --s: 72px;
+    --body-a: #4bb3aa;
+    --body-b: #176765;
+    --body-c: #0a4644;
+    --eye: #06201f;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 60;
+    width: var(--s);
+    height: var(--s);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    will-change: transform;
+  }
+  .buddy[hidden] {
+    display: none;
+  }
+  .buddy.ready {
+    opacity: 1;
+  }
+  .buddy.ready .pet,
+  .buddy.ready.talking .bubble {
+    pointer-events: auto;
+  }
+
+  /* Character */
+  .pet {
+    all: unset;
+    position: relative;
+    display: block;
+    width: var(--s);
+    height: var(--s);
+    font-size: calc(var(--s) / 7.2);
+    cursor: pointer;
+    transform-origin: 50% 100%;
+    transform: rotate(var(--tilt, 0deg)) scale(var(--sx, 1), var(--sy, 1));
+  }
+  .pet:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+    border-radius: 50%;
+  }
+  .body {
+    position: absolute;
+    inset: 0;
+    border-radius: 52% 48% 46% 54% / 55% 50% 50% 45%;
+    background: radial-gradient(circle at 34% 28%, var(--body-a), var(--body-b) 58%, var(--body-c));
+    box-shadow:
+      inset -0.5em -0.7em 1.2em rgba(0, 0, 0, 0.22),
+      inset 0.3em 0.3em 0.8em rgba(255, 255, 255, 0.16),
+      0 0.9em 1.8em -0.6em rgba(3, 55, 54, 0.55);
+    animation: blob 7s ease-in-out infinite, float 3.6s ease-in-out infinite;
+    overflow: hidden;
+  }
+  .gloss {
+    position: absolute;
+    left: 18%;
+    top: 12%;
+    width: 30%;
+    height: 20%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.32);
+    filter: blur(1px);
+    rotate: -24deg;
+  }
+  .face {
+    position: absolute;
+    inset: 0;
+    transition: rotate 0.4s ease;
+  }
+  .eye {
+    position: absolute;
+    top: 34%;
+    width: 0.95em;
+    height: 1.55em;
+    border-radius: 0.6em;
+    background: var(--eye);
+    transition:
+      height 0.18s ease,
+      width 0.18s ease,
+      border-radius 0.18s ease,
+      transform 0.09s ease,
+      top 0.18s ease;
+  }
+  .eye.left {
+    left: 30%;
+    rotate: -9deg;
+  }
+  .eye.right {
+    right: 30%;
+    rotate: 9deg;
+  }
+  .blink .eye {
+    transform: scaleY(0.1);
+  }
+  .cheek {
+    position: absolute;
+    top: 58%;
+    width: 1.1em;
+    height: 0.6em;
+    border-radius: 50%;
+    background: rgba(252, 171, 150, 0.55);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .cheek.left {
+    left: 16%;
+  }
+  .cheek.right {
+    right: 16%;
+  }
+  .mouth {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    width: 1em;
+    height: 0.5em;
+    translate: -50% 0;
+    border: 0.22em solid var(--eye);
+    border-top: 0;
+    border-radius: 0 0 1em 1em;
+    opacity: 0;
+    transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
+  }
+  .antenna {
+    position: absolute;
+    left: 50%;
+    top: -1.25em;
+    width: 0.22em;
+    height: 1.5em;
+    translate: -50% 0;
+    border-radius: 1em;
+    background: linear-gradient(#e2c07e, #a07a3c);
+    transform-origin: 50% 100%;
+    animation: sway 2.8s ease-in-out infinite;
+  }
+  .antenna i {
+    position: absolute;
+    left: 50%;
+    top: -0.75em;
+    width: 1.2em;
+    height: 1.2em;
+    translate: -50% 0;
+    background: #f1cf86;
+    filter: drop-shadow(0 0 0.35em rgba(241, 207, 134, 0.8));
+    clip-path: polygon(50% 0, 63% 21%, 85% 15%, 79% 37%, 100% 50%, 79% 63%, 85% 85%, 63% 79%, 50% 100%, 37% 79%, 15% 85%, 21% 63%, 0 50%, 21% 37%, 15% 15%, 37% 21%);
+    animation: twinkle 3.2s ease-in-out infinite;
+  }
+  .zzz {
+    position: absolute;
+    right: -0.6em;
+    top: -0.6em;
+    font: 700 1.6em/1 var(--body);
+    color: var(--gold);
+    opacity: 0;
+  }
+  .shadow {
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: -14px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(3, 55, 54, 0.22);
+    filter: blur(4px);
+    animation: shadow 3.6s ease-in-out infinite;
+  }
+
+  /* Moods */
+  [data-mood='happy'] .eye,
+  [data-mood='love'] .eye,
+  [data-mood='excited'] .eye,
+  [data-mood='wink'] .eye.right {
+    top: 38%;
+    width: 1.25em;
+    height: 0.7em;
+    background: transparent;
+    border: 0.26em solid var(--eye);
+    border-bottom: 0;
+    border-radius: 1em 1em 0 0;
+    rotate: 0deg;
+  }
+  [data-mood='happy'] .mouth,
+  [data-mood='love'] .mouth,
+  [data-mood='wink'] .mouth,
+  [data-mood='excited'] .mouth {
+    opacity: 1;
+  }
+  [data-mood='excited'] .mouth {
+    width: 1.3em;
+    height: 0.75em;
+    background: var(--eye);
+  }
+  [data-mood='love'] .cheek,
+  [data-mood='excited'] .cheek,
+  [data-mood='wink'] .cheek {
+    opacity: 1;
+  }
+  [data-mood='surprised'] .eye {
+    top: 30%;
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 50%;
+    rotate: 0deg;
+  }
+  [data-mood='surprised'] .mouth {
+    opacity: 1;
+    top: 64%;
+    width: 0.7em;
+    height: 0.8em;
+    border: 0.22em solid var(--eye);
+    border-radius: 50%;
+  }
+  [data-mood='curious'] .face {
+    rotate: -10deg;
+  }
+  [data-mood='curious'] .eye.right {
+    height: 1.8em;
+    top: 31%;
+  }
+  [data-mood='sleepy'] .eye {
+    top: 46%;
+    width: 1.2em;
+    height: 0.24em;
+    rotate: 0deg;
+  }
+  [data-mood='sleepy'] .zzz {
+    animation: zzz 2.4s ease-in-out infinite;
+  }
+  [data-mood='sleepy'] .body {
+    animation-duration: 7s, 6s;
+  }
+  [data-mood='excited'] .body {
+    animation-duration: 7s, 0.9s;
+  }
+
+  .pet.hop .body {
+    animation: blob 7s ease-in-out infinite, hop 0.55s cubic-bezier(0.3, 1.6, 0.5, 1);
+  }
+
+  /* Speech bubble */
+  .bubble {
+    position: absolute;
+    right: calc(100% + 18px);
+    bottom: 48%;
+    width: 248px;
+    padding: 14px 16px 12px;
+    border-radius: 22px 22px 6px 22px;
+    background: var(--card);
+    color: var(--ink);
+    border: 1.5px solid var(--gold);
+    box-shadow: 0 22px 44px -18px rgba(3, 55, 54, 0.45);
+    font-size: 15px;
+    line-height: 1.45;
+    transform-origin: 100% 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px) scale(0.86);
+    transition:
+      opacity 0.25s ease,
+      transform 0.35s cubic-bezier(0.3, 1.5, 0.5, 1),
+      visibility 0s linear 0.35s;
+  }
+  .talking .bubble {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.25s ease,
+      transform 0.4s cubic-bezier(0.3, 1.5, 0.5, 1),
+      visibility 0s;
+  }
+  .bubble-text {
+    margin: 0 18px 0 0;
+    font-weight: 500;
+  }
+  .bubble-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .bubble-actions[hidden] {
+    display: none;
+  }
+  .bubble :global(.mini) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.2s ease;
+  }
+  .bubble :global(.mini.primary) {
+    background: var(--primary-bg);
+    color: var(--primary-fg);
+    border-color: transparent;
+  }
+  .bubble :global(.mini:hover) {
+    transform: translateY(-1px);
+  }
+  .bubble-close {
+    all: unset;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .bubble-close:hover {
+    background: var(--soft);
+  }
+  .bubble-close svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+  }
+  .bubble-hide {
+    all: unset;
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .bubble-close:focus-visible,
+  .bubble-hide:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .dots {
+    position: absolute;
+    right: -16px;
+    bottom: -4px;
+  }
+  .dots i {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1.5px solid var(--gold);
+  }
+  .dots i:first-child {
+    right: 4px;
+    bottom: 4px;
+    width: 10px;
+    height: 10px;
+  }
+  .dots i:last-child {
+    right: -6px;
+    bottom: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  @keyframes blob {
+    0%,
+    100% {
+      border-radius: 52% 48% 46% 54% / 55% 50% 50% 45%;
+    }
+    33% {
+      border-radius: 46% 54% 52% 48% / 50% 56% 44% 50%;
+    }
+    66% {
+      border-radius: 55% 45% 50% 50% / 46% 50% 50% 54%;
+    }
+  }
+  @keyframes float {
+    50% {
+      translate: 0 -5px;
+    }
+  }
+  @keyframes shadow {
+    50% {
+      transform: scaleX(0.82);
+      opacity: 0.7;
+    }
+  }
+  @keyframes sway {
+    0%,
+    100% {
+      rotate: -9deg;
+    }
+    50% {
+      rotate: 9deg;
+    }
+  }
+  @keyframes twinkle {
+    50% {
+      scale: 1.18;
+      rotate: 22deg;
+    }
+  }
+  @keyframes hop {
+    30% {
+      translate: 0 -22px;
+      scale: 0.94 1.08;
+    }
+    62% {
+      translate: 0 0;
+      scale: 1.1 0.9;
+    }
+    100% {
+      translate: 0 0;
+      scale: 1;
+    }
+  }
+  @keyframes zzz {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) scale(0.6);
+    }
+    40% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0.8em, -1.4em) scale(1.1);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .buddy {
+      --body-a: #7ad6cc;
+      --body-b: #2b8f88;
+      --body-c: #125c58;
+    }
+    :global(:root:not([data-theme='light'])) .body {
+      box-shadow:
+        inset -0.5em -0.7em 1.2em rgba(0, 0, 0, 0.25),
+        inset 0.3em 0.3em 0.8em rgba(255, 255, 255, 0.16),
+        0 0 1.6em -0.2em rgba(226, 192, 126, 0.35);
+    }
+    :global(:root:not([data-theme='light'])) .shadow {
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .buddy {
+      --s: 58px;
+    }
+    .bubble {
+      right: 0;
+      bottom: calc(100% + 26px);
+      width: min(280px, calc(100vw - 32px));
+      border-radius: 22px 22px 6px 22px;
+    }
+    .dots {
+      right: 18px;
+      bottom: -14px;
+    }
+    .dots i:last-child {
+      right: 6px;
+      bottom: -12px;
+    }
+    .shadow {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .body,
+    .antenna,
+    .antenna i,
+    .shadow,
+    .pet.hop .body {
+      animation: none;
+    }
+    .bubble,
+    .talking .bubble {
+      transition: opacity 0.2s ease;
+      transform: none;
+    }
+  }
+</style>

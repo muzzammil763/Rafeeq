@@ -67,6 +67,8 @@ flutter test
 
 The landing page at [rafeeq.pages.dev](https://rafeeq.pages.dev) lives in [`website/`](website). It is a static [Astro](https://astro.build) site hosted on Cloudflare Pages.
 
+A small guide character walks visitors through the page as they scroll. Its lines live in [`website/src/data/companion.ts`](website/src/data/companion.ts) and the character itself in [`website/src/components/Companion.astro`](website/src/components/Companion.astro).
+
 ```bash
 cd website
 npm install
