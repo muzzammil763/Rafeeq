@@ -1,0 +1,253 @@
+@font-face {
+  font-family: 'Google Sans';
+  src: url('/fonts/google-sans.woff2') format('woff2');
+  font-display: swap;
+}
+
+/* Rafeeq's own palette: deep teal and ivory from the app theme, the warm
+   gold of the calligraphy wordmark, and the cream of the app's cards. */
+:root {
+  --bg: #fffefa;
+  --ink: #202624;
+  --muted: #5d6763;
+  --line: rgba(3, 55, 54, 0.12);
+  --soft: #f6f0e4;
+  --card: #fffdf7;
+  --cream: #efe8d8;
+  --teal: #176765;
+  --teal-deep: #033736;
+  --gold: #a07a3c;
+  --gold-soft: #fce6bc;
+  --accent: #176765;
+  --on-ink: #fffefa;
+  --primary-bg: #033736;
+  --primary-fg: #fce6bc;
+  --pattern: rgba(160, 122, 60, 0.22);
+  --shadow: 0 30px 60px -22px rgba(3, 55, 54, 0.32);
+  --radius: 20px;
+  --max: 1180px;
+  --display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --body: 'Google Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --arabic: 'Amiri', 'Noto Naskh Arabic', serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #011918;
+    --ink: #f4eedf;
+    --muted: #a9bab5;
+    --line: rgba(252, 230, 188, 0.12);
+    --soft: #03211f;
+    --card: #042827;
+    --cream: #063230;
+    --teal: #6cc7bf;
+    --teal-deep: #033736;
+    --gold: #e2c07e;
+    --gold-soft: #fce6bc;
+    --accent: #6cc7bf;
+    --on-ink: #011918;
+    --primary-bg: #fce6bc;
+    --primary-fg: #033736;
+    --pattern: rgba(226, 192, 126, 0.14);
+    --shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.container {
+  width: min(100% - 32px, var(--max));
+  margin-inline: auto;
+}
+
+.display {
+  font-family: var(--display);
+  font-weight: 560;
+  font-variation-settings: 'SOFT' 60, 'WONK' 0;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.arabic {
+  font-family: var(--arabic);
+  direction: rtl;
+  line-height: 1.9;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+/* A small eight-pointed star before every eyebrow. */
+.eyebrow::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: currentColor;
+  clip-path: polygon(50% 0, 63% 21%, 85% 15%, 79% 37%, 100% 50%, 79% 63%, 85% 85%, 63% 79%, 50% 100%, 37% 79%, 15% 85%, 21% 63%, 0 50%, 21% 37%, 15% 15%, 37% 21%);
+}
+
+.lead {
+  font-size: clamp(17px, 2.2vw, 20px);
+  color: var(--muted);
+  max-width: 36ch;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn-primary {
+  background: var(--primary-bg);
+  color: var(--primary-fg);
+  box-shadow: 0 14px 30px -14px rgba(3, 55, 54, 0.6);
+}
+.btn-ghost {
+  border-color: var(--line);
+  color: var(--ink);
+  background: var(--card);
+}
+.btn svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+.btn small {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.75;
+  line-height: 1.1;
+}
+.btn span {
+  line-height: 1.15;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.underline-mark {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  font-style: italic;
+  color: var(--teal);
+}
+.underline-mark::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: 0.02em;
+  height: 0.14em;
+  border-radius: 99px;
+  background: var(--gold-soft);
+  transform: rotate(-1.2deg);
+  z-index: -1;
+}
+
+/* Girih-style tile of eight-pointed stars, painted through a mask so it
+   takes whatever colour --pattern holds in the current theme. */
+.pattern {
+  position: relative;
+  isolation: isolate;
+}
+.pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--pattern);
+  -webkit-mask: url('/pattern.svg') center / 88px repeat;
+  mask: url('/pattern.svg') center / 88px repeat;
+  pointer-events: none;
+}
+
+/* Scroll reveal: enabled only when JavaScript runs, so content is never
+   hidden without it, and skipped entirely for reduced motion. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--delay, 0s);
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .btn,
+  .btn:hover {
+    transition: none;
+    transform: none;
+  }
+}

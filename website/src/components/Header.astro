@@ -1,0 +1,142 @@
+---
+import Wordmark from './Wordmark.astro';
+import { nav, site } from '../data/site';
+---
+
+<header class="header">
+  <div class="container bar">
+    <a class="brand" href="/" aria-label="Rafeeq home">
+      <Wordmark height={34} label="" />
+      <span class="display">Rafeeq</span>
+    </a>
+    <nav class="links" aria-label="Main">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <a class="btn btn-primary cta" href={site.playStoreUrl}>Get the app</a>
+    <details class="menu">
+      <summary aria-label="Open menu">
+        <span></span><span></span>
+      </summary>
+      <div class="sheet">
+        {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+        <a href={site.githubUrl} rel="noopener">GitHub</a>
+        <a href={site.privacyUrl} rel="noopener">Privacy Policy</a>
+        <a class="btn btn-primary" href={site.playStoreUrl}>Get the app</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter: saturate(1.6) blur(18px);
+    -webkit-backdrop-filter: saturate(1.6) blur(18px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 72px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-right: auto;
+    color: var(--teal);
+  }
+  .brand .display {
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .links {
+    display: flex;
+    gap: 28px;
+  }
+  .links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .links a:hover {
+    color: var(--ink);
+  }
+  .cta {
+    min-height: 44px;
+    padding: 0 18px;
+    font-size: 15px;
+  }
+  .menu {
+    display: none;
+    position: relative;
+  }
+  .menu summary {
+    list-style: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    display: grid;
+    place-content: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .menu summary::-webkit-details-marker {
+    display: none;
+  }
+  .menu summary span {
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--ink);
+    transition: transform 0.25s ease;
+  }
+  .menu[open] summary span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+  .menu[open] summary span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+  .sheet {
+    position: absolute;
+    right: 0;
+    top: 56px;
+    width: min(86vw, 300px);
+    padding: 12px;
+    display: grid;
+    gap: 4px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+  }
+  .sheet a:not(.btn) {
+    padding: 12px 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .sheet a:not(.btn):hover {
+    background: var(--soft);
+  }
+  .sheet .btn {
+    margin-top: 6px;
+    justify-content: center;
+  }
+  @media (max-width: 860px) {
+    .links,
+    .cta {
+      display: none;
+    }
+    .menu {
+      display: block;
+    }
+  }
+</style>

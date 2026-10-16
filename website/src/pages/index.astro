@@ -1,0 +1,997 @@
+---
+import Base from '../layouts/Base.astro';
+import Phone from '../components/Phone.astro';
+import Wordmark from '../components/Wordmark.astro';
+import StoreButtons from '../components/StoreButtons.astro';
+import { site } from '../data/site';
+
+import home from '../assets/screens/home.png';
+import quran from '../assets/screens/quran.png';
+import quranSettings from '../assets/screens/quran-settings.png';
+import ayahPicture from '../assets/screens/ayah-picture.png';
+import prayerTimes from '../assets/screens/prayer-times.png';
+import namazGuide from '../assets/screens/namaz-guide.png';
+import qibla from '../assets/screens/qibla.png';
+import theme from '../assets/screens/theme.png';
+
+const trust = [
+  { label: 'Free for life, In Sha Allah', icon: 'M12 21s-7-4.4-9.3-9A5.3 5.3 0 0 1 12 6.6 5.3 5.3 0 0 1 21.3 12C19 16.6 12 21 12 21z' },
+  { label: 'No ads, ever', icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM5 5l14 14' },
+  { label: 'Open source', icon: 'M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16' },
+  { label: 'English & اردو', icon: 'M3 5h12M9 3v2M5 9c1.5 4 4.5 6.5 8 7.5M13 5c-1 5-4.5 9-9 11M14 21l4-9 4 9M15.5 18h5' },
+];
+
+const more = [
+  {
+    title: 'Hijri & Ramadan calendars',
+    body: 'The Islamic date at a glance, Ramadan timings, and a Hijri correction for your local moon sighting.',
+    icon: 'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4M14.5 13.5a2.5 2.5 0 1 0 2 4 3 3 0 0 1-2-4z',
+  },
+  {
+    title: 'Asma ul Husna',
+    body: 'The 99 Beautiful Names of Allah, each with its meaning, to read and reflect upon.',
+    icon: 'M12 2l2.6 4.4L19 4.8l-1.6 4.6L22 12l-4.6 2.6L19 19.2l-4.4-1.6L12 22l-2.6-4.4L5 19.2l1.6-4.6L2 12l4.6-2.6L5 4.8l4.4 1.6z',
+  },
+  {
+    title: 'Daily duas',
+    body: 'Categorised supplications for the moments of everyday life, with translation.',
+    icon: 'M7 11V6.5a1.5 1.5 0 0 1 3 0V11M10 10V5a1.5 1.5 0 0 1 3 0v5M13 10V6a1.5 1.5 0 0 1 3 0v6c0 4-2.5 8-7 8-3 0-4.5-2-5.5-4L2 12.5a1.5 1.5 0 0 1 2.6-1.4L7 14',
+  },
+  {
+    title: '16-line mushaf',
+    body: 'Read in the familiar 16-line Qur’an layout, page by page, alongside the ayah-by-ayah view.',
+    icon: 'M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2zM12 6v14',
+  },
+  {
+    title: 'Search & bookmarks',
+    body: 'Find any ayah in seconds and keep a Bookmarks tab of the ones you return to.',
+    icon: 'M6 3h12v18l-6-4-6 4zM10 9h4',
+  },
+  {
+    title: 'Your choice of reciter',
+    body: 'Listen to renowned qaris, with a mini-player that keeps going in the background.',
+    icon: 'M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H4zM17 14h3v6h-3z',
+  },
+];
+
+const faq = [
+  {
+    q: 'Is Rafeeq really free?',
+    a: 'Yes. Rafeeq is free for everyone, with no ads, and we intend to keep it that way for its entire lifetime, In Sha Allah.',
+  },
+  {
+    q: 'How are prayer times calculated?',
+    a: 'On your phone, from your location, using established calculation methods. You can choose the method, the Asr juristic method (Hanafi or Shafi), and a high-latitude rule, and adjust the Hijri date for your local moon sighting.',
+  },
+  {
+    q: 'Does it work without internet?',
+    a: 'The Qur’an text ships with the app and prayer times are calculated on your device, so both keep working offline once your location is set. Recitations stream from the internet.',
+  },
+  {
+    q: 'What data does Rafeeq use?',
+    a: 'Your location is used to calculate prayer times and the Qibla direction. Release builds use Firebase Analytics and Crashlytics to understand usage and fix crashes. See our Privacy Policy for details.',
+  },
+  {
+    q: 'Is there an iPhone version?',
+    a: 'Rafeeq is available on Google Play today, and the App Store version is coming soon, In Sha Allah.',
+  },
+  {
+    q: 'How can I help?',
+    a: 'Make dua for us, share Rafeeq with family and friends, request a feature or report a bug. Rafeeq is open source, so developers are welcome to contribute on GitHub too.',
+  },
+];
+---
+
+<Base>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <p class="arabic bismillah" lang="ar">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+        <span class="eyebrow">Your Muslim companion</span>
+        <h1 class="display hero-title">
+          Your faith,<br />close at <span class="underline-mark">hand.</span>
+        </h1>
+        <p class="lead">
+          The Holy Qur’an, accurate prayer times, Qibla, the Hijri calendar and your daily duas,
+          gathered in one calm, beautiful app.
+        </p>
+        <StoreButtons />
+        <p class="fine">Free for everyone · No ads · English & Urdu</p>
+      </div>
+      <div class="hero-stage reveal" style="--delay: 0.12s">
+        <div class="mihrab pattern" aria-hidden="true"></div>
+        <Phone class="hp hp-left" src={prayerTimes} alt="Prayer times with Fajr highlighted" sizes="(max-width: 720px) 40vw, 230px" />
+        <Phone class="hp hp-right" src={ayahPicture} alt="Ayah picture maker with an ayah from Al-Baqarah" sizes="(max-width: 720px) 40vw, 230px" />
+        <Phone class="hp hp-center" src={quran} alt="Surah An-Naas with Arabic text and Urdu translation" eager sizes="(max-width: 720px) 52vw, 290px" />
+        <div class="float chip chip-a">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0" /></svg>
+          Fajr · Adhan on
+        </div>
+        <div class="float stat">
+          <span>Today in the Hijri calendar</span>
+          <strong class="display" data-hijri>Hijri date</strong>
+          <em data-gregorian>&nbsp;</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust strip -->
+  <section class="trust">
+    <div class="container trust-row">
+      {
+        trust.map((item, i) => (
+          <div class="trust-item reveal" style={`--delay:${i * 0.06}s`}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d={item.icon} />
+            </svg>
+            {item.label}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="section">
+    <div class="container head reveal">
+      <span class="eyebrow">Features</span>
+      <h2 class="display h2">Everything for your day,<br />in one place.</h2>
+    </div>
+
+    <div class="container feature">
+      <div class="feature-stage arch-stage peek-stage reveal">
+        <div class="arch pattern" aria-hidden="true"></div>
+        <Phone src={home} peek="bottom" alt="Rafeeq home with the next prayer countdown and Explore shortcuts" style="--w: clamp(230px, 27vw, 320px)" />
+      </div>
+      <div class="feature-copy reveal" style="--delay: 0.08s">
+        <span class="eyebrow">Home</span>
+        <h3 class="display h3">Assalamu alaikum.</h3>
+        <p>Open Rafeeq and see the Hijri date, the time until the next prayer under a live sky, and one-tap shortcuts to the Qur’an, Namaz, Qibla, the calendar, Allah’s Names and Ayah Pictures.</p>
+        <ul class="ticks">
+          <li>Live countdown to the next prayer</li>
+          <li>Greets Jumu’ah, Eid and special days</li>
+          <li>Everything one tap away</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="quran" class="container feature flip">
+      <div class="feature-stage reveal">
+        <div class="arch pattern" aria-hidden="true"></div>
+        <Phone class="back-phone" src={quranSettings} peek="bottom" alt="Qur’an view settings for font size, translation and reciter" style="--w: clamp(170px, 19vw, 230px)" />
+        <Phone class="front-phone" src={quran} alt="Reading Surah An-Naas while a recitation plays" style="--w: clamp(210px, 24vw, 290px)" />
+      </div>
+      <div class="feature-copy reveal" style="--delay: 0.08s">
+        <span class="eyebrow">The Holy Qur’an</span>
+        <h3 class="display h3">Read, listen, reflect.</h3>
+        <p>Every surah with translation, beautiful Arabic typography, and recitations from renowned qaris. Tune font sizes, translation and reciter until it reads just right.</p>
+        <ul class="ticks">
+          <li>Translations in English and Urdu</li>
+          <li>Background mini-player for recitations</li>
+          <li>Search, bookmarks and sharing</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container feature">
+      <div class="feature-stage reveal">
+        <div class="arch pattern" aria-hidden="true"></div>
+        <Phone src={prayerTimes} alt="Prayer times with reminders for each salah" style="--w: clamp(210px, 25vw, 300px)" />
+        <div class="float chip c1">Fajr 04:16</div>
+        <div class="float chip c2">Asr 04:38</div>
+        <div class="float chip c3">Maghrib 06:27</div>
+      </div>
+      <div class="feature-copy reveal" style="--delay: 0.08s">
+        <span class="eyebrow">Prayer times</span>
+        <h3 class="display h3">Never miss a salah.</h3>
+        <p>Accurate times for your location, with an adhan or gentle reminder for each prayer. Rafeeq also marks the forbidden times around sunrise, noon and sunset, plus Suhoor and Iftar.</p>
+        <ul class="ticks">
+          <li>Calculated on your device</li>
+          <li>Hanafi or Shafi Asr, any method</li>
+          <li>Notifications with adhan sounds</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container feature flip">
+      <div class="feature-stage bowl-stage reveal">
+        <div class="bowl pattern" aria-hidden="true"></div>
+        <Phone src={qibla} peek="top" alt="Qibla compass telling you to turn 45 degrees left" style="--w: clamp(230px, 27vw, 320px)" />
+      </div>
+      <div class="feature-copy reveal" style="--delay: 0.08s">
+        <span class="eyebrow">Qibla</span>
+        <h3 class="display h3">Face the Kaaba, anywhere.</h3>
+        <p>A clear, real-time compass points you towards the Kaaba in Makkah and tells you exactly how far to turn, with a short guide to calibrate your phone.</p>
+      </div>
+    </div>
+
+    <div class="container feature">
+      <div class="feature-stage reveal">
+        <div class="arch pattern" aria-hidden="true"></div>
+        <Phone src={namazGuide} alt="Complete Namaz guide with Takbeer, Sana and Ta’awwuz" style="--w: clamp(210px, 25vw, 300px)" />
+        <div class="float chip arabic-chip"><span class="arabic" lang="ar">ٱللَّهُ أَكْبَرُ</span></div>
+      </div>
+      <div class="feature-copy reveal" style="--delay: 0.08s">
+        <span class="eyebrow">Namaz & Wudu</span>
+        <h3 class="display h3">Learn to pray, step by step.</h3>
+        <p>A complete guide to salah, from Takbeer to Tasleem, with the Arabic, its meaning, and a step-by-step Wudu guide before you begin. Ideal for new Muslims and children.</p>
+      </div>
+    </div>
+
+    <div class="container feature flip">
+      <div class="feature-stage reveal">
+        <div class="arch pattern" aria-hidden="true"></div>
+        <Phone src={ayahPicture} alt="Ayah picture maker with options for Arabic, translation and Urdu mode" style="--w: clamp(210px, 25vw, 300px)" />
+      </div>
+      <div class="feature-copy reveal" style="--delay: 0.08s">
+        <span class="eyebrow">Ayah pictures</span>
+        <h3 class="display h3">Share the words of Allah.</h3>
+        <p>Turn any ayah into an elegant picture with its Arabic and translation, in English or Urdu layout, ready to save or send to the people you love.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- More features band -->
+  <section id="more" class="band pattern">
+    <div class="container">
+      <div class="band-head reveal">
+        <span class="eyebrow on-dark">And much more</span>
+        <h2 class="display h2">A companion for<br /><span class="gold">every moment.</span></h2>
+      </div>
+      <div class="more-grid">
+        {
+          more.map((item, i) => (
+            <div class="m-card reveal" style={`--delay:${(i % 3) * 0.06}s`}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d={item.icon} />
+              </svg>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Language and theme -->
+  <section class="section">
+    <div class="container theme-grid">
+      <div class="reveal">
+        <span class="eyebrow">Made for you</span>
+        <h2 class="display h2">In your language,<br />in your light.</h2>
+        <p class="lead">Rafeeq is fully translated into Urdu with proper Nastaleeq typography, and follows your phone in light or dark, or the theme you choose.</p>
+        <div class="langs">
+          <div class="card lang">
+            <span class="lang-big">Rafeeq</span>
+            <span>English</span>
+          </div>
+          <div class="card lang">
+            <span class="lang-big urdu" lang="ur">رفیق</span>
+            <span>اردو</span>
+          </div>
+        </div>
+      </div>
+      <div class="theme-stage bowl-stage reveal" style="--delay: 0.08s">
+        <div class="bowl pattern" aria-hidden="true"></div>
+        <Phone src={theme} peek="top" alt="Theme picker with light, system and dark options over a split light and dark screen" style="--w: clamp(230px, 27vw, 320px)" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Open source -->
+  <section id="open-source" class="section soft">
+    <div class="container os-grid">
+      <div class="reveal">
+        <span class="eyebrow">Open source</span>
+        <h2 class="display h2">Built by two brothers,<br />for the Ummah.</h2>
+        <p class="lead">Rafeeq began as a simple idea: bring a Muslim’s daily essentials together in one place. Two brothers, both software developers, have been building it ever since, whenever life leaves them time.</p>
+        <div class="os-actions">
+          <a class="btn btn-primary" href={site.githubUrl} rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z" /></svg>
+            <span>View on GitHub</span>
+          </a>
+          <a class="btn btn-ghost" href={site.feedbackUrl} rel="noopener">Request a feature</a>
+          <a class="btn btn-ghost" href={site.issuesUrl} rel="noopener">Report a bug</a>
+        </div>
+      </div>
+      <div class="os-cards">
+        {
+          [
+            ['Free for life', 'No price, no ads, no paywall. If support is ever offered, it will only go towards keeping Rafeeq running and improving.'],
+            ['In the open', 'Every line of code is public, so anyone can see how Rafeeq works and help make it better.'],
+            ['We listen', 'Request a feature, report a bug or share an idea. We read every message.'],
+          ].map(([title, body], i) => (
+            <div class="card p-card reveal" style={`--delay:${i * 0.06}s`}>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container faq-grid">
+      <div class="head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="display h2">Questions,<br />answered.</h2>
+        <p class="lead">Something else? Email <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+      </div>
+      <div class="faq">
+        {
+          faq.map((item) => (
+            <details class="card qa reveal">
+              <summary>
+                {item.q}
+                <span class="plus" aria-hidden="true" />
+              </summary>
+              <p>
+                {item.a}
+                {item.q.startsWith('What data') && (
+                  <>
+                    {' '}
+                    <a href={site.privacyUrl} rel="noopener">Read the Privacy Policy</a>.
+                  </>
+                )}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Final call to action -->
+  <section class="container final reveal">
+    <div class="final-card pattern">
+      <Wordmark height={84} />
+      <h2 class="display h2">Take Rafeeq<br />with you.</h2>
+      <p>Your Qur’an, your prayers and your Qibla, wherever you are.</p>
+      <StoreButtons invert />
+    </div>
+  </section>
+</Base>
+
+<script>
+  // The Hijri date is rendered on the visitor's device so it is always
+  // today's, using the Umm al-Qura calendar built into the browser.
+  function armHijri() {
+    const hijri = document.querySelector<HTMLElement>('[data-hijri]');
+    const greg = document.querySelector<HTMLElement>('[data-gregorian]');
+    if (!hijri) return;
+    try {
+      const now = new Date();
+      const parts = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }).formatToParts(now);
+      const get = (type: string) => parts.find((p) => p.type === type)?.value ?? '';
+      const month = get('month');
+      const day = get('day');
+      const year = get('year');
+      if (month && day && year && !/^\d+$/.test(month)) {
+        hijri.textContent = `${day} ${month}`;
+        if (greg) {
+          greg.textContent = `${year} AH · ${now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}`;
+        }
+      }
+    } catch {
+      // Keep the static fallback when the calendar is unsupported.
+    }
+    document.querySelectorAll<HTMLAnchorElement>('.menu .sheet a').forEach((link) => {
+      link.addEventListener('click', () => link.closest('details')?.removeAttribute('open'));
+    });
+  }
+  document.addEventListener('astro:page-load', armHijri);
+</script>
+
+<style>
+  .fine {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 14px 0 0;
+  }
+
+  /* Hero */
+  .hero {
+    padding: clamp(36px, 6vw, 84px) 0 40px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .bismillah {
+    font-size: clamp(22px, 2.6vw, 28px);
+    color: var(--teal);
+    margin: 0 0 10px;
+    text-align: left;
+    direction: rtl;
+    display: block;
+  }
+  .hero-title {
+    font-size: clamp(44px, 6.6vw, 84px);
+    margin: 14px 0 20px;
+  }
+  .hero-copy .lead {
+    margin: 0 0 28px;
+    max-width: 32ch;
+  }
+  .hero-stage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 24px 0 32px;
+  }
+  .mihrab {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 8%;
+    width: min(100%, 470px);
+    translate: -50% 0;
+    border-radius: 999px 999px 32px 32px;
+    background: var(--teal-deep);
+    overflow: hidden;
+    --pattern: rgba(252, 230, 188, 0.16);
+  }
+  .mihrab::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border-radius: 999px 999px 22px 22px;
+    border: 1.5px solid rgba(252, 230, 188, 0.35);
+  }
+  .hero-stage :global(.hp-center) {
+    --w: clamp(220px, 22vw, 290px);
+    position: relative;
+    z-index: 2;
+    margin-top: 56px;
+  }
+  .hero-stage :global(.hp-left),
+  .hero-stage :global(.hp-right) {
+    --w: clamp(165px, 16.5vw, 222px);
+    position: absolute;
+    left: 50%;
+    top: 22%;
+    z-index: 1;
+  }
+  .hero-stage :global(.hp-left) {
+    transform: translateX(-130%) rotate(-9deg);
+  }
+  .hero-stage :global(.hp-right) {
+    transform: translateX(30%) rotate(9deg);
+  }
+
+  .float {
+    position: absolute;
+    z-index: 3;
+    background: var(--card);
+    color: var(--ink);
+    border: 1.5px solid var(--gold);
+    box-shadow: 0 18px 40px -14px rgba(160, 122, 60, 0.45);
+    animation: bob 6s ease-in-out infinite;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  .chip svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--teal);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .chip-a {
+    left: -2%;
+    top: 64%;
+  }
+  .stat {
+    right: -3%;
+    top: 14%;
+    padding: 14px 18px;
+    border-radius: 20px;
+    display: grid;
+    gap: 2px;
+    animation-delay: -3s;
+  }
+  .stat span {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .stat strong {
+    font-size: 24px;
+    line-height: 1.25;
+    color: var(--teal);
+  }
+  .stat em {
+    font-style: normal;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  @keyframes bob {
+    50% {
+      translate: 0 -8px;
+    }
+  }
+
+  /* Trust */
+  .trust {
+    padding: 8px 0 24px;
+  }
+  .trust-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--card);
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .trust-item svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: var(--teal);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex: none;
+  }
+
+  /* Sections */
+  .section {
+    padding: clamp(64px, 9vw, 120px) 0;
+  }
+  .section.soft {
+    background: var(--soft);
+  }
+  .head {
+    margin-bottom: 48px;
+  }
+  .h2 {
+    font-size: clamp(34px, 4.8vw, 58px);
+    margin: 14px 0 16px;
+  }
+  .h3 {
+    font-size: clamp(30px, 3.4vw, 44px);
+    margin: 12px 0 14px;
+  }
+
+  .feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: center;
+    margin-bottom: clamp(56px, 8vw, 104px);
+  }
+  .feature.flip .feature-stage {
+    order: 2;
+  }
+  .feature-copy p {
+    color: var(--muted);
+    font-size: 18px;
+    max-width: 44ch;
+  }
+  .feature-stage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 32px 0;
+  }
+
+  /* Mihrab-arch backdrop behind each phone. */
+  .arch,
+  .bowl {
+    position: absolute;
+    left: 50%;
+    width: min(100%, 420px);
+    translate: -50% 0;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .arch {
+    top: 0;
+    bottom: 12%;
+    border-radius: 999px 999px 28px 28px;
+  }
+  .arch::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border-radius: 999px 999px 18px 18px;
+    border: 1.5px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  }
+  .feature-stage > :global(.phone) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Screenshots that run past the stage edge are clipped by it. */
+  .peek-stage {
+    padding-bottom: 0;
+    padding-top: 56px;
+    align-items: flex-end;
+    overflow: hidden;
+    max-height: 640px;
+    border-radius: 999px 999px 0 0;
+  }
+  .peek-stage .arch {
+    bottom: 0;
+    border-radius: 999px 999px 0 0;
+  }
+  .peek-stage .arch::after {
+    bottom: -20px;
+  }
+  .bowl-stage {
+    padding-top: 0;
+    padding-bottom: 56px;
+    align-items: flex-start;
+    overflow: hidden;
+    max-height: 600px;
+  }
+  .bowl {
+    top: 0;
+    bottom: 0;
+    border-radius: 28px 28px 999px 999px;
+  }
+  .bowl::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border-radius: 18px 18px 999px 999px;
+    border: 1.5px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  }
+
+  .ticks {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+    display: grid;
+    gap: 10px;
+  }
+  .ticks li {
+    position: relative;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-weight: 500;
+  }
+  .ticks li::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    flex: none;
+    background: var(--teal);
+    clip-path: polygon(50% 0, 63% 21%, 85% 15%, 79% 37%, 100% 50%, 79% 63%, 85% 85%, 63% 79%, 50% 100%, 37% 79%, 15% 85%, 21% 63%, 0 50%, 21% 37%, 15% 15%, 37% 21%);
+  }
+
+  .feature-stage :global(.back-phone) {
+    position: absolute;
+    right: 4%;
+    top: 16%;
+    rotate: 7deg;
+    opacity: 0.95;
+    z-index: 0;
+    -webkit-mask: linear-gradient(to bottom, #000 62%, transparent 92%);
+    mask: linear-gradient(to bottom, #000 62%, transparent 92%);
+  }
+  .feature-stage :global(.front-phone) {
+    rotate: -3deg;
+    margin-right: 22%;
+  }
+  .c1 {
+    left: 4%;
+    top: 22%;
+    rotate: -5deg;
+  }
+  .c2 {
+    right: 4%;
+    top: 42%;
+    rotate: 4deg;
+    animation-delay: -2s;
+  }
+  .c3 {
+    left: 6%;
+    top: 64%;
+    rotate: 3deg;
+    animation-delay: -4s;
+  }
+  .arabic-chip {
+    right: 6%;
+    top: 20%;
+    padding: 4px 18px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal);
+  }
+
+  /* More band */
+  .band {
+    background: var(--teal-deep);
+    color: #f4eedf;
+    padding: clamp(64px, 9vw, 120px) 0;
+    overflow: hidden;
+    --pattern: rgba(252, 230, 188, 0.06);
+  }
+  .on-dark {
+    color: #e2c07e;
+  }
+  .gold {
+    color: #fce6bc;
+    font-style: italic;
+  }
+  .band-head {
+    margin-bottom: 44px;
+  }
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .m-card {
+    padding: 26px;
+    border-radius: var(--radius);
+    background: rgba(252, 230, 188, 0.05);
+    border: 1px solid rgba(252, 230, 188, 0.14);
+    backdrop-filter: blur(2px);
+  }
+  .m-card svg {
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke: #e2c07e;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .m-card h3 {
+    margin: 16px 0 6px;
+    font-size: 19px;
+  }
+  .m-card p {
+    margin: 0;
+    color: #b9c8c3;
+    font-size: 16px;
+  }
+
+  /* Language and theme */
+  .theme-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .theme-stage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .theme-stage > :global(.phone) {
+    position: relative;
+    z-index: 1;
+  }
+  .langs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 28px;
+    max-width: 420px;
+  }
+  .lang {
+    padding: 20px;
+    display: grid;
+    gap: 2px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .lang-big {
+    font-family: var(--display);
+    font-size: 32px;
+    color: var(--teal);
+    line-height: 1.4;
+  }
+  .lang-big.urdu {
+    font-family: var(--arabic);
+    font-size: 34px;
+  }
+
+  /* Open source */
+  .os-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .os-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .os-cards {
+    display: grid;
+    gap: 12px;
+  }
+  .p-card {
+    padding: 24px;
+  }
+  .p-card h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    color: var(--teal);
+  }
+  .p-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  /* FAQ */
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .faq {
+    display: grid;
+    gap: 10px;
+  }
+  .qa {
+    padding: 0 22px;
+  }
+  .qa summary {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    font-weight: 600;
+    font-size: 17px;
+    cursor: pointer;
+  }
+  .qa summary::-webkit-details-marker {
+    display: none;
+  }
+  .plus {
+    width: 14px;
+    height: 14px;
+    position: relative;
+    flex: none;
+  }
+  .plus::before,
+  .plus::after {
+    content: '';
+    position: absolute;
+    inset: 6px 0;
+    background: var(--teal);
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+  }
+  .plus::after {
+    transform: rotate(90deg);
+  }
+  .qa[open] .plus::after {
+    transform: rotate(0deg);
+  }
+  .qa p {
+    margin: 0 0 20px;
+    color: var(--muted);
+  }
+
+  /* Final CTA */
+  .final {
+    padding-bottom: 40px;
+  }
+  .final-card {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: clamp(56px, 8vw, 104px) 24px;
+    border-radius: 999px 999px 40px 40px;
+    background: #033736;
+    color: #fce6bc;
+    overflow: hidden;
+    --pattern: rgba(252, 230, 188, 0.1);
+  }
+  .final-card .h2 {
+    color: #fffefa;
+  }
+  .final-card p {
+    margin: 0 0 22px;
+    color: #b9c8c3;
+  }
+
+  @media (max-width: 960px) {
+    .hero-grid,
+    .feature,
+    .theme-grid,
+    .os-grid,
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+    .feature.flip .feature-stage {
+      order: 0;
+    }
+    .trust-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .more-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    /* One whole phone on small screens instead of three clipped ones. */
+    .hero-stage :global(.hp-left),
+    .hero-stage :global(.hp-right) {
+      display: none;
+    }
+    .mihrab {
+      width: 86%;
+    }
+    .stat {
+      padding: 10px 14px;
+      right: 0;
+    }
+    .stat strong {
+      font-size: 19px;
+    }
+    .chip-a {
+      left: 0;
+    }
+    .chip {
+      font-size: 13px;
+      padding: 8px 12px;
+    }
+    .more-grid {
+      grid-template-columns: 1fr;
+    }
+    .trust-item {
+      font-size: 14px;
+      padding: 14px;
+    }
+    .feature-stage :global(.back-phone) {
+      display: none;
+    }
+    .feature-stage :global(.front-phone) {
+      margin-right: 0;
+    }
+    .final-card {
+      border-radius: 200px 200px 32px 32px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .float {
+      animation: none;
+    }
+  }
+</style>

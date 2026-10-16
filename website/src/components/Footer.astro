@@ -1,0 +1,103 @@
+---
+import Wordmark from './Wordmark.astro';
+import { nav, site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container grid">
+    <div class="about">
+      <a class="brand" href="/">
+        <Wordmark height={44} label="" />
+        <span class="display">Rafeeq</span>
+      </a>
+      <p>{site.description}</p>
+      <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+    <nav aria-label="Product">
+      <h2>App</h2>
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a href={site.playStoreUrl} rel="noopener">Google Play</a>
+    </nav>
+    <nav aria-label="Community">
+      <h2>Community</h2>
+      <a href={site.githubUrl} rel="noopener">GitHub</a>
+      <a href={site.feedbackUrl} rel="noopener">Request a feature</a>
+      <a href={site.issuesUrl} rel="noopener">Report a bug</a>
+      <a href={site.privacyUrl} rel="noopener">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="container base">
+    <span>© {year} Rafeeq. Free for everyone, In Sha Allah.</span>
+    <span>Made with ❤️ for the Ummah</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 64px 0 32px;
+    margin-top: 40px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--teal);
+  }
+  .brand .display {
+    font-size: 26px;
+    color: var(--ink);
+  }
+  .about p {
+    color: var(--muted);
+    max-width: 44ch;
+    margin: 16px 0 12px;
+  }
+  .mail {
+    font-weight: 600;
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  h2 {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 4px 0 6px;
+  }
+  nav a {
+    text-decoration: none;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+  .base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 14px;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .about {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

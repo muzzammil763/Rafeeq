@@ -1,0 +1,29 @@
+---
+// The app's Urdu calligraphy wordmark (رفیق), painted through a mask so it
+// follows the current theme colour.
+interface Props {
+  height?: number;
+  label?: string;
+}
+const { height = 36, label = 'Rafeeq' } = Astro.props;
+---
+
+{
+  label ? (
+    <span class="wordmark" role="img" aria-label={label} style={`--h:${height}px`} />
+  ) : (
+    <span class="wordmark" aria-hidden="true" style={`--h:${height}px`} />
+  )
+}
+
+<style>
+  .wordmark {
+    display: inline-block;
+    height: var(--h);
+    width: calc(var(--h) * 1.31);
+    background: currentColor;
+    -webkit-mask: url('/calligraphy.svg') center / contain no-repeat;
+    mask: url('/calligraphy.svg') center / contain no-repeat;
+    flex: none;
+  }
+</style>

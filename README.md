@@ -63,6 +63,19 @@ flutter test
 
 ---
 
+## Website
+
+The landing page at [rafeeq-muslim-companion.pages.dev](https://rafeeq-muslim-companion.pages.dev) lives in [`website/`](website). It is a static [Astro](https://astro.build) site hosted on Cloudflare Pages.
+
+```bash
+cd website
+npm install
+npm run dev      # local preview at http://localhost:4321
+npm run deploy   # build and publish to Cloudflare Pages (needs `wrangler login`)
+```
+
+---
+
 ## Contributing
 
 Contributions are welcome. Open an issue to discuss bigger changes first, then send a pull request from a feature branch. The maintainers review every pull request before it is merged.

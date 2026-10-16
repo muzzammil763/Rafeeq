@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found">
+  <section class="container nf">
+    <p class="arabic" lang="ar">إِنَّ مَعَ ٱلْعُسْرِ يُسْرًا</p>
+    <span class="eyebrow">404</span>
+    <h1 class="display">This page isn’t here.</h1>
+    <p class="lead">“Indeed, with hardship comes ease.” Let’s get you back home.</p>
+    <a class="btn btn-primary" href="/">Back to Rafeeq</a>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    min-height: 60vh;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 80px 0;
+  }
+  .nf .arabic {
+    font-size: 30px;
+    color: var(--teal);
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(36px, 5vw, 56px);
+  }
+  .lead {
+    margin: 0 0 16px;
+  }
+</style>
