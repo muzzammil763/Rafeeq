@@ -1,5 +1,6 @@
 import 'package:adhan/adhan.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rafeeq/core/current_day_provider.dart';
 import 'package:rafeeq/data/models/user_location.dart';
 import 'package:rafeeq/ui/prayer_times/prayer_times_settings.dart';
 
@@ -14,10 +15,10 @@ final prayerTimesProvider = Provider.family
         ..highLatitudeRule = highLatitudeRuleFor(
           settings.highLatitudeAdjustment,
         );
-      final now = DateTime.now();
+      final today = ref.watch(currentDayProvider);
       return PrayerTimes(
         Coordinates(location.latitude, location.longitude),
-        DateComponents(now.year, now.month, now.day),
+        DateComponents(today.year, today.month, today.day),
         parameters,
       );
     });
