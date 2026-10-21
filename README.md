@@ -1,9 +1,7 @@
 <div align="center">
-  <img src="assets/logo.png" alt="Rafeeq app logo" width="100" align="middle">
-  &nbsp;&nbsp;
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset=".github/readme/calligraphy-dark.svg">
-    <img src=".github/readme/calligraphy-light.svg" alt="Rafeeq calligraphy" width="220" align="middle">
+    <img src=".github/readme/calligraphy-light.svg" alt="Rafeeq" width="220">
   </picture>
 
   <h3>Your Islamic Companion</h3>
