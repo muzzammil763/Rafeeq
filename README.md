@@ -70,6 +70,12 @@ From our [Google Play listing](https://play.google.com/store/apps/details?id=com
 
 ---
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for recorded Android build notes and upcoming changes.
+
+---
+
 ## Tech Stack
 
 - **Framework:** Flutter (Dart ≥ 3.10)
