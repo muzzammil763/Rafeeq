@@ -120,6 +120,16 @@ npm run deploy   # build and publish to Cloudflare Pages (needs `wrangler login`
 
 ---
 
+## License & Branding
+
+The source code is licensed under [MIT](LICENSE): use, modify, and share all or part of it, including commercially, while keeping the required copyright and license notices.
+
+The **Rafeeq name, logos, app icons, and branded artwork are not licensed for reuse as your own app branding**. Published forks should use their own identity unless permission is granted. See the [branding policy](BRANDING.md); third-party content retains its own terms.
+
+Rafeeq is fully free. To improve the official app under the Rafeeq name, contributions here are always welcome.
+
+---
+
 ## Contributing
 
 Contributions are welcome. Open an issue to discuss bigger changes first, then send a pull request from a feature branch. The maintainers review every pull request before it is merged.
