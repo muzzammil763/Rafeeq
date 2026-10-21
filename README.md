@@ -10,6 +10,13 @@
     <strong>Rafeeq</strong> is an open-source Islamic companion app built with Flutter
     to support Muslims in their daily spiritual practice.
   </p>
+  <p>
+    <a href="https://play.google.com/store/apps/details?id=com.satechdev.rafeeqapp">
+      <img src=".github/readme/google-play.svg" alt="Get Rafeeq on Google Play" width="220" height="72">
+    </a>
+    &nbsp;&nbsp;
+    <img src=".github/readme/app-store-coming-soon.svg" alt="Rafeeq on the App Store — coming soon" width="220" height="72">
+  </p>
 </div>
 
 ---
