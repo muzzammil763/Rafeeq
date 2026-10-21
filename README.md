@@ -33,6 +33,18 @@
 
 ---
 
+## Trailer
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=iWyPNnMnj8E">
+    <img src=".github/readme/trailer.jpg" alt="Watch the Rafeeq app trailer on YouTube" width="720">
+  </a>
+  <br>
+  <a href="https://www.youtube.com/watch?v=iWyPNnMnj8E"><strong>▶ Watch the trailer</strong></a>
+</p>
+
+---
+
 ## Screenshots
 
 From our [Google Play listing](https://play.google.com/store/apps/details?id=com.satechdev.rafeeqapp). Select any screenshot to view it full size.
