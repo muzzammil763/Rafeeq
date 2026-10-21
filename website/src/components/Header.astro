@@ -20,7 +20,8 @@ import { nav, site } from '../data/site';
       <div class="sheet">
         {nav.map((item) => <a href={item.href}>{item.label}</a>)}
         <a href={site.githubUrl} rel="noopener">GitHub</a>
-        <a href={site.privacyUrl} rel="noopener">Privacy Policy</a>
+        <a href={site.privacyUrl}>Privacy Policy</a>
+      <a href={site.termsUrl}>Terms &amp; Conditions</a>
         <a class="btn btn-primary" href={site.playStoreUrl}>Get the app</a>
       </div>
     </details>

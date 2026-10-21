@@ -1514,4 +1514,19 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get saveName => 'نام محفوظ کریں';
+
+  @override
+  String get privacyPolicy => 'رازداری کی پالیسی';
+
+  @override
+  String get privacyPolicySubtitle => 'آپ کا ڈیٹا، اجازتیں اور اختیارات';
+
+  @override
+  String get termsAndConditions => 'شرائط و ضوابط';
+
+  @override
+  String get termsAndConditionsSubtitle => 'رفیق اور اس کے مواد کا استعمال';
+
+  @override
+  String get legalRetry => 'صفحہ لوڈ نہیں ہو سکا۔ دوبارہ کوشش کریں۔';
 }

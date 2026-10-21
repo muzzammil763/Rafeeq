@@ -8,7 +8,8 @@ export const site = {
   githubUrl: 'https://github.com/muzzammil763/Rafeeq',
   issuesUrl: 'https://github.com/muzzammil763/Rafeeq/issues/new',
   feedbackUrl: 'https://forms.gle/cDLne2RtGvfmqrJn9',
-  privacyUrl: 'https://www.freeprivacypolicy.com/live/b8410068-59a9-4b57-a58d-0df2f7bbedd1',
+  privacyUrl: '/privacy',
+  termsUrl: '/terms',
 };
 
 export const nav = [

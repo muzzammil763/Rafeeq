@@ -32,6 +32,8 @@ abstract final class AnalyticsScreenNames {
 
   static const _routeNames = <String, String>{
     Navigator.defaultRouteName: home,
+    AppRoutes.privacy: 'Privacy Policy Screen',
+    AppRoutes.terms: 'Terms and Conditions Screen',
     AppRoutes.prayerTimes: 'Prayer Times Screen',
     AppRoutes.ramadanCalendar: 'Ramadan Calendar Screen',
     AppRoutes.hijriCalendar: 'Hijri Calendar Screen',

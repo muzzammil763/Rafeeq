@@ -7,7 +7,6 @@ import { site } from '../data/site';
 
 import home from '../assets/screens/home.png';
 import quran from '../assets/screens/quran.png';
-import quranSettings from '../assets/screens/quran-settings.png';
 import ayahPicture from '../assets/screens/ayah-picture.png';
 import prayerTimes from '../assets/screens/prayer-times.png';
 import namazGuide from '../assets/screens/namaz-guide.png';
@@ -101,18 +100,9 @@ const faq = [
       </div>
       <div class="hero-stage reveal" style="--delay: 0.12s">
         <div class="mihrab pattern" aria-hidden="true"></div>
-        <Phone class="hp hp-left" src={prayerTimes} alt="Prayer times with Fajr highlighted" sizes="(max-width: 720px) 40vw, 230px" />
+        <Phone class="hp hp-left" src={prayerTimes} alt="Prayer times and reminders" sizes="(max-width: 720px) 40vw, 230px" />
         <Phone class="hp hp-right" src={ayahPicture} alt="Ayah picture maker with an ayah from Al-Baqarah" sizes="(max-width: 720px) 40vw, 230px" />
-        <Phone class="hp hp-center" src={quran} alt="Surah An-Naas with Arabic text and Urdu translation" eager sizes="(max-width: 720px) 52vw, 290px" />
-        <div class="float chip chip-a">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0" /></svg>
-          Fajr · Adhan on
-        </div>
-        <div class="float stat">
-          <span>Today in the Hijri calendar</span>
-          <strong class="display" data-hijri>Hijri date</strong>
-          <em data-gregorian>&nbsp;</em>
-        </div>
+        <Phone class="hp hp-center" src={quran} alt="Quran reader with Arabic text and Urdu translation" eager sizes="(max-width: 720px) 52vw, 290px" />
       </div>
     </div>
   </section>
@@ -141,9 +131,9 @@ const faq = [
     </div>
 
     <div id="f-home" class="container feature">
-      <div class="feature-stage arch-stage peek-stage reveal">
+      <div class="feature-stage reveal">
         <div class="arch pattern" aria-hidden="true"></div>
-        <Phone src={home} peek="bottom" alt="Rafeeq home with the next prayer countdown and Explore shortcuts" style="--w: clamp(230px, 27vw, 320px)" />
+        <Phone src={home} alt="Rafeeq home with the next prayer countdown and Explore shortcuts" style="--w: clamp(230px, 27vw, 320px)" />
       </div>
       <div class="feature-copy reveal" style="--delay: 0.08s">
         <span class="eyebrow">Home</span>
@@ -160,8 +150,7 @@ const faq = [
     <div id="quran" class="container feature flip">
       <div class="feature-stage reveal">
         <div class="arch pattern" aria-hidden="true"></div>
-        <Phone class="back-phone" src={quranSettings} peek="bottom" alt="Qur’an view settings for font size, translation and reciter" style="--w: clamp(170px, 19vw, 230px)" />
-        <Phone class="front-phone" src={quran} alt="Reading Surah An-Naas while a recitation plays" style="--w: clamp(210px, 24vw, 290px)" />
+        <Phone src={quran} alt="Quran reader with translation and audio controls" style="--w: clamp(210px, 24vw, 290px)" />
       </div>
       <div class="feature-copy reveal" style="--delay: 0.08s">
         <span class="eyebrow">The Holy Qur’an</span>
@@ -179,9 +168,6 @@ const faq = [
       <div class="feature-stage reveal">
         <div class="arch pattern" aria-hidden="true"></div>
         <Phone src={prayerTimes} alt="Prayer times with reminders for each salah" style="--w: clamp(210px, 25vw, 300px)" />
-        <div class="float chip c1">Fajr 04:16</div>
-        <div class="float chip c2">Asr 04:38</div>
-        <div class="float chip c3">Maghrib 06:27</div>
       </div>
       <div class="feature-copy reveal" style="--delay: 0.08s">
         <span class="eyebrow">Prayer times</span>
@@ -196,9 +182,9 @@ const faq = [
     </div>
 
     <div id="f-qibla" class="container feature flip">
-      <div class="feature-stage bowl-stage reveal">
-        <div class="bowl pattern" aria-hidden="true"></div>
-        <Phone src={qibla} peek="top" alt="Qibla compass telling you to turn 45 degrees left" style="--w: clamp(230px, 27vw, 320px)" />
+      <div class="feature-stage reveal">
+        <div class="arch pattern" aria-hidden="true"></div>
+        <Phone src={qibla} alt="Qibla compass and direction guidance" style="--w: clamp(230px, 27vw, 320px)" />
       </div>
       <div class="feature-copy reveal" style="--delay: 0.08s">
         <span class="eyebrow">Qibla</span>
@@ -211,7 +197,6 @@ const faq = [
       <div class="feature-stage reveal">
         <div class="arch pattern" aria-hidden="true"></div>
         <Phone src={namazGuide} alt="Complete Namaz guide with Takbeer, Sana and Ta’awwuz" style="--w: clamp(210px, 25vw, 300px)" />
-        <div class="float chip arabic-chip"><span class="arabic" lang="ar">ٱللَّهُ أَكْبَرُ</span></div>
       </div>
       <div class="feature-copy reveal" style="--delay: 0.08s">
         <span class="eyebrow">Namaz & Wudu</span>
@@ -274,9 +259,9 @@ const faq = [
           </div>
         </div>
       </div>
-      <div class="theme-stage bowl-stage reveal" style="--delay: 0.08s">
-        <div class="bowl pattern" aria-hidden="true"></div>
-        <Phone src={theme} peek="top" alt="Theme picker with light, system and dark options over a split light and dark screen" style="--w: clamp(230px, 27vw, 320px)" />
+      <div class="theme-stage reveal" style="--delay: 0.08s">
+        <div class="arch pattern" aria-hidden="true"></div>
+        <Phone src={theme} alt="App settings with light, system and dark theme options" style="--w: clamp(230px, 27vw, 320px)" />
       </div>
     </div>
   </section>
@@ -358,37 +343,11 @@ const faq = [
 </Base>
 
 <script>
-  // The Hijri date is rendered on the visitor's device so it is always
-  // today's, using the Umm al-Qura calendar built into the browser.
-  function armHijri() {
-    const hijri = document.querySelector<HTMLElement>('[data-hijri]');
-    const greg = document.querySelector<HTMLElement>('[data-gregorian]');
-    if (!hijri) return;
-    try {
-      const now = new Date();
-      const parts = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      }).formatToParts(now);
-      const get = (type: string) => parts.find((p) => p.type === type)?.value ?? '';
-      const month = get('month');
-      const day = get('day');
-      const year = get('year');
-      if (month && day && year && !/^\d+$/.test(month)) {
-        hijri.textContent = `${day} ${month}`;
-        if (greg) {
-          greg.textContent = `${year} AH · ${now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}`;
-        }
-      }
-    } catch {
-      // Keep the static fallback when the calendar is unsupported.
-    }
+  document.addEventListener('astro:page-load', () => {
     document.querySelectorAll<HTMLAnchorElement>('.menu .sheet a').forEach((link) => {
       link.addEventListener('click', () => link.closest('details')?.removeAttribute('open'));
     });
-  }
-  document.addEventListener('astro:page-load', armHijri);
+  });
 </script>
 
 <style>
@@ -426,6 +385,7 @@ const faq = [
   }
   .hero-stage {
     position: relative;
+    isolation: isolate;
     display: flex;
     justify-content: center;
     padding: 24px 0 32px;
@@ -468,68 +428,6 @@ const faq = [
   }
   .hero-stage :global(.hp-right) {
     transform: translateX(30%) rotate(9deg);
-  }
-
-  .float {
-    position: absolute;
-    z-index: 3;
-    background: var(--card);
-    color: var(--ink);
-    border: 1.5px solid var(--gold);
-    box-shadow: 0 18px 40px -14px rgba(160, 122, 60, 0.45);
-    animation: bob 6s ease-in-out infinite;
-  }
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 15px;
-    white-space: nowrap;
-  }
-  .chip svg {
-    width: 18px;
-    height: 18px;
-    fill: none;
-    stroke: var(--teal);
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .chip-a {
-    left: -2%;
-    top: 64%;
-  }
-  .stat {
-    right: -3%;
-    top: 14%;
-    padding: 14px 18px;
-    border-radius: 20px;
-    display: grid;
-    gap: 2px;
-    animation-delay: -3s;
-  }
-  .stat span {
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .stat strong {
-    font-size: 24px;
-    line-height: 1.25;
-    color: var(--teal);
-  }
-  .stat em {
-    font-style: normal;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-  }
-  @keyframes bob {
-    50% {
-      translate: 0 -8px;
-    }
   }
 
   /* Trust */
@@ -599,6 +497,7 @@ const faq = [
   }
   .feature-stage {
     position: relative;
+    isolation: isolate;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -607,8 +506,7 @@ const faq = [
   }
 
   /* Mihrab-arch backdrop behind each phone. */
-  .arch,
-  .bowl {
+  .arch {
     position: absolute;
     left: 50%;
     width: min(100%, 420px);
@@ -633,42 +531,6 @@ const faq = [
     z-index: 1;
   }
 
-  /* Screenshots that run past the stage edge are clipped by it. */
-  .peek-stage {
-    padding-bottom: 0;
-    padding-top: 56px;
-    align-items: flex-end;
-    overflow: hidden;
-    max-height: 640px;
-    border-radius: 999px 999px 0 0;
-  }
-  .peek-stage .arch {
-    bottom: 0;
-    border-radius: 999px 999px 0 0;
-  }
-  .peek-stage .arch::after {
-    bottom: -20px;
-  }
-  .bowl-stage {
-    padding-top: 0;
-    padding-bottom: 56px;
-    align-items: flex-start;
-    overflow: hidden;
-    max-height: 600px;
-  }
-  .bowl {
-    top: 0;
-    bottom: 0;
-    border-radius: 28px 28px 999px 999px;
-  }
-  .bowl::after {
-    content: '';
-    position: absolute;
-    inset: 12px;
-    border-radius: 18px 18px 999px 999px;
-    border: 1.5px solid color-mix(in srgb, var(--gold) 40%, transparent);
-  }
-
   .ticks {
     list-style: none;
     padding: 0;
@@ -690,46 +552,6 @@ const faq = [
     flex: none;
     background: var(--teal);
     clip-path: polygon(50% 0, 63% 21%, 85% 15%, 79% 37%, 100% 50%, 79% 63%, 85% 85%, 63% 79%, 50% 100%, 37% 79%, 15% 85%, 21% 63%, 0 50%, 21% 37%, 15% 15%, 37% 21%);
-  }
-
-  .feature-stage :global(.back-phone) {
-    position: absolute;
-    right: 4%;
-    top: 16%;
-    rotate: 7deg;
-    opacity: 0.95;
-    z-index: 0;
-    -webkit-mask: linear-gradient(to bottom, #000 62%, transparent 92%);
-    mask: linear-gradient(to bottom, #000 62%, transparent 92%);
-  }
-  .feature-stage :global(.front-phone) {
-    rotate: -3deg;
-    margin-right: 22%;
-  }
-  .c1 {
-    left: 4%;
-    top: 22%;
-    rotate: -5deg;
-  }
-  .c2 {
-    right: 4%;
-    top: 42%;
-    rotate: 4deg;
-    animation-delay: -2s;
-  }
-  .c3 {
-    left: 6%;
-    top: 64%;
-    rotate: 3deg;
-    animation-delay: -4s;
-  }
-  .arabic-chip {
-    right: 6%;
-    top: 20%;
-    padding: 4px 18px;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--teal);
   }
 
   /* More band */
@@ -789,7 +611,9 @@ const faq = [
     align-items: center;
   }
   .theme-stage {
+    padding: 32px 0;
     position: relative;
+    isolation: isolate;
     display: flex;
     justify-content: center;
   }
@@ -958,20 +782,6 @@ const faq = [
     .mihrab {
       width: 86%;
     }
-    .stat {
-      padding: 10px 14px;
-      right: 0;
-    }
-    .stat strong {
-      font-size: 19px;
-    }
-    .chip-a {
-      left: 0;
-    }
-    .chip {
-      font-size: 13px;
-      padding: 8px 12px;
-    }
     .more-grid {
       grid-template-columns: 1fr;
     }
@@ -979,19 +789,8 @@ const faq = [
       font-size: 14px;
       padding: 14px;
     }
-    .feature-stage :global(.back-phone) {
-      display: none;
-    }
-    .feature-stage :global(.front-phone) {
-      margin-right: 0;
-    }
     .final-card {
       border-radius: 200px 200px 32px 32px;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .float {
-      animation: none;
     }
   }
 </style>

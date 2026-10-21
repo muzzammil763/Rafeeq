@@ -3,8 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 // A device frame around a real app screenshot. Width is set by the parent
-// through the `--w` custom property. `peek` drops the frame edge on one
-// side for screenshots that continue past the stage (the stage clips them).
+// through the `--w` custom property. Keep the complete screenshot visible.
 interface Props {
   src: ImageMetadata;
   alt: string;
@@ -12,7 +11,6 @@ interface Props {
   style?: string;
   eager?: boolean;
   sizes?: string;
-  peek?: 'top' | 'bottom';
 }
 const {
   src,
@@ -21,11 +19,10 @@ const {
   style,
   eager = false,
   sizes = '(max-width: 720px) 60vw, 320px',
-  peek,
 } = Astro.props;
 ---
 
-<div class:list={['phone', className, peek && `peek-${peek}`]} style={style}>
+<div class:list={['phone', className]} style={style}>
   <Image
     src={src}
     alt={alt}
@@ -42,6 +39,8 @@ const {
   .phone {
     --w: 300px;
     width: var(--w);
+    max-width: 100%;
+    overflow: hidden;
     padding: calc(var(--w) * 0.03);
     border-radius: calc(var(--w) * 0.16);
     background: #121514;
@@ -51,25 +50,9 @@ const {
     flex: none;
   }
   .phone :global(img) {
+    display: block;
     width: 100%;
+    height: auto;
     border-radius: calc(var(--w) * 0.13);
-  }
-  .peek-bottom {
-    padding-bottom: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-  .peek-bottom :global(img) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-  .peek-top {
-    padding-top: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-  .peek-top :global(img) {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
   }
 </style>

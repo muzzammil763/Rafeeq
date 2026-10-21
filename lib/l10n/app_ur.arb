@@ -470,5 +470,10 @@
   "redesignAdaptiveTheme": "خودکار تھیم سپورٹ",
   "redesignAdaptiveThemeDescription": "لائٹ اور ڈارک تھیم کے درمیان تبدیل کریں، یا رفیق کی مکمل شکل خودکار طور پر بدلنے کے لیے سسٹم تھیم استعمال کریں۔",
   "firstNameRequired": "براہ کرم اپنا پہلا نام درج کریں۔",
-  "saveName": "نام محفوظ کریں"
+  "saveName": "نام محفوظ کریں",
+  "privacyPolicy": "رازداری کی پالیسی",
+  "privacyPolicySubtitle": "آپ کا ڈیٹا، اجازتیں اور اختیارات",
+  "termsAndConditions": "شرائط و ضوابط",
+  "termsAndConditionsSubtitle": "رفیق اور اس کے مواد کا استعمال",
+  "legalRetry": "صفحہ لوڈ نہیں ہو سکا۔ دوبارہ کوشش کریں۔"
 }

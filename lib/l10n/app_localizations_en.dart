@@ -1519,4 +1519,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get saveName => 'Save Name';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get privacyPolicySubtitle => 'Your data, permissions and choices';
+
+  @override
+  String get termsAndConditions => 'Terms & Conditions';
+
+  @override
+  String get termsAndConditionsSubtitle => 'Using Rafeeq and its content';
+
+  @override
+  String get legalRetry => 'Unable to load this page. Tap to retry.';
 }

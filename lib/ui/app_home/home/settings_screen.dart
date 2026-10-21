@@ -288,6 +288,18 @@ class SettingsScreen extends ConsumerWidget {
         context.loc.settingsSectionAppInfo,
         [
           _SettingsCardData(
+            icon: Icons.privacy_tip_outlined,
+            title: context.loc.privacyPolicy,
+            subtitle: context.loc.privacyPolicySubtitle,
+            onTap: () => Navigator.of(context).pushNamed(AppRoutes.privacy),
+          ),
+          _SettingsCardData(
+            icon: Icons.gavel_outlined,
+            title: context.loc.termsAndConditions,
+            subtitle: context.loc.termsAndConditionsSubtitle,
+            onTap: () => Navigator.of(context).pushNamed(AppRoutes.terms),
+          ),
+          _SettingsCardData(
             icon: Icons.description_outlined,
             title: context.loc.licenses,
             subtitle: context.loc.licensesSubtitle,

@@ -1,0 +1,57 @@
+---
+import Base from './Base.astro';
+import Wordmark from '../components/Wordmark.astro';
+import content from '../../../assets/legal.json';
+import { site } from '../data/site';
+interface Props { kind: 'privacy' | 'terms' }
+const { kind } = Astro.props;
+const document = content[kind].en;
+---
+<Base title={document.title} description={`${document.title} for the Rafeeq app and website.`} showCompanion={false}>
+  <article class="container legal">
+    <a class="back" href="/">← Back to Rafeeq</a>
+    <header class="identity">
+      <Wordmark height={64} />
+      <div><span class="eyebrow">Your Muslim companion</span><h1 class="display">{document.title}</h1></div>
+    </header>
+    <p class="updated">{document.updated}</p>
+    <nav class="legal-nav" aria-label="Legal documents">
+      <a href={site.privacyUrl} aria-current={kind === 'privacy' ? 'page' : undefined}>Privacy Policy</a>
+      <a href={site.termsUrl} aria-current={kind === 'terms' ? 'page' : undefined}>Terms &amp; Conditions</a>
+    </nav>
+    {document.sections.map((section, i) => (
+      <section aria-labelledby={`section-${i}`}>
+        <h2 id={`section-${i}`}>{section.title}</h2>
+        <p>{section.body}</p>
+      </section>
+    ))}
+    {kind === 'privacy' && <section>
+      <h2>Service provider policies</h2>
+      <ul>
+        <li><a href="https://firebase.google.com/support/privacy">Firebase privacy and security</a></li>
+        <li><a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+        <li><a href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</a></li>
+        <li><a href="https://shorebird.dev/privacy">Shorebird Privacy Policy</a></li>
+      </ul>
+    </section>}
+    {kind === 'terms' && <p><a href={`${site.githubUrl}/blob/main/LICENSE`}>MIT License</a> · <a href={`${site.githubUrl}/blob/main/BRANDING.md`}>Branding policy</a></p>}
+    <aside class="contact"><strong>Here to help.</strong><br />Questions about Rafeeq? <a href={`mailto:${site.email}`}>{site.email}</a></aside>
+  </article>
+</Base>
+<style>
+  .legal { max-width: 800px; padding-block: clamp(32px, 6vw, 72px); }
+  .back { color: var(--muted); text-decoration: none; }
+  .identity { display: flex; align-items: center; gap: 24px; margin-top: 36px; }
+  .identity :global(svg) { flex: none; max-width: 90px; }
+  h1 { font-size: clamp(30px, 5vw, 48px); margin: 8px 0 0; }
+  .updated { color: var(--muted); margin-block: 22px; font-size: 14px; }
+  .legal-nav { display: flex; flex-wrap: wrap; gap: 12px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .legal-nav a { padding: 10px 16px; border-radius: 12px; background: var(--card); text-decoration: none; }
+  .legal-nav a[aria-current] { color: var(--primary-fg); background: var(--primary-bg); }
+  section { margin-top: 32px; }
+  h2 { font-size: 20px; margin: 0 0 10px; color: var(--ink); }
+  section p, li { color: var(--muted); line-height: 1.8; }
+  section p { margin: 0; }
+  .contact { margin-top: 36px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; line-height: 1.8; overflow-wrap: anywhere; }
+  @media (max-width: 480px) { .identity { align-items: flex-start; flex-direction: column; gap: 16px; } }
+</style>

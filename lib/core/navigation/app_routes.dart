@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rafeeq/data/model/quran_models.dart';
 import 'package:rafeeq/data/models/daily_prayer.dart';
 import 'package:rafeeq/ui/about/about_screen.dart';
+import 'package:rafeeq/ui/about/legal_screen.dart';
 import 'package:rafeeq/ui/about/licenses_screen.dart';
 import 'package:rafeeq/ui/about/version_screen.dart';
 import 'package:rafeeq/ui/asma_ul_husna/asma_ul_husna_screen.dart';
@@ -36,6 +37,8 @@ class AppRoutes {
   // -- General --
   static const prayerTimes = '/prayer-times';
   static const about = '/about';
+  static const privacy = '/privacy';
+  static const terms = '/terms';
   static const version = '/version';
   static const licenses = '/licenses';
   static const licenseDetail = '/licenses/detail';
@@ -72,6 +75,18 @@ class AppRoutes {
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case privacy:
+        return _build(
+          settings,
+          const LegalScreen(document: LegalDocument.privacy),
+        );
+
+      case terms:
+        return _build(
+          settings,
+          const LegalScreen(document: LegalDocument.terms),
+        );
+
       case about:
         return _build(settings, const AboutScreen());
 

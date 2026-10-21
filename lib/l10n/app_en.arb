@@ -505,5 +505,10 @@
   "redesignAdaptiveTheme": "Adaptive Theme Support",
   "redesignAdaptiveThemeDescription": "Switch between Light and Dark themes, or follow the system setting to automatically adapt Rafeeq's complete appearance.",
   "firstNameRequired": "Please enter your first name.",
-  "saveName": "Save Name"
+  "saveName": "Save Name",
+  "privacyPolicy": "Privacy Policy",
+  "privacyPolicySubtitle": "Your data, permissions and choices",
+  "termsAndConditions": "Terms & Conditions",
+  "termsAndConditionsSubtitle": "Using Rafeeq and its content",
+  "legalRetry": "Unable to load this page. Tap to retry."
 }

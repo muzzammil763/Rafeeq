@@ -1,0 +1,158 @@
+{
+  "privacy": {
+    "en": {
+      "title": "Privacy Policy",
+      "updated": "Last updated: 21 October 2026",
+      "sections": [
+        {
+          "title": "About this policy",
+          "body": "Rafeeq is a free, open-source Islamic companion maintained by the Rafeeq team (SA Apps Dev). This policy covers the app and rafeeq.pages.dev. You do not need an account to use the current app. Contact us at satechdev18@gmail.com with privacy questions."
+        },
+        {
+          "title": "Location and permissions",
+          "body": "With your permission, Rafeeq obtains your location to calculate prayer times and the Qibla direction on your device. Your saved coordinates and place name stay in local app storage. Device geocoding services may process coordinates or a manually selected city to resolve place names. You can choose a city manually and change location or notification permissions in device settings. Prayer reminders are scheduled locally; disabling notifications stops their delivery."
+        },
+        {
+          "title": "What stays on your device",
+          "body": "Preferences, bookmarks, reading progress, selected location and downloaded content are stored on your device. The app does not provide account-based cloud sync. Operating-system backups may include app data according to your device settings. Pictures you export or share are passed to the destination you choose."
+        },
+        {
+          "title": "Usage analytics and crash reports",
+          "body": "Release builds enable Google Firebase Analytics and Crashlytics to help us understand feature usage and diagnose failures. These services process app interactions, screen visits, device and app information, installation identifiers and crash diagnostics. Some events identify the Quran juz viewed or downloaded, or a setting changed. The current app has no in-app analytics opt-out switch. Debug builds skip Firebase initialization."
+        },
+        {
+          "title": "Online content and updates",
+          "body": "Recitations, Quran downloads, translations, images and city lists can use external services, including AlQuran Cloud / Islamic Network, GitHub and content-delivery providers. Requests expose ordinary connection information such as your IP address and the requested resource to those services. Builds using Shorebird contact its servers to check for and download code updates. External websites, feedback forms and sharing apps operate under their own privacy policies."
+        },
+        {
+          "title": "Website and messages",
+          "body": "Cloudflare hosts our website and may process IP addresses and request logs to deliver and protect it. The site stores the guide character dismissal preference in your browser. If you email us, submit feedback or open an issue, we receive the information you choose to send. GitHub issues are public: do not include private information in them."
+        },
+        {
+          "title": "Sharing and retention",
+          "body": "We do not sell personal information or run advertising in Rafeeq. Service providers process information for the functions described here; information may also be disclosed where legally required. Local data remains until removed through app/device controls or uninstallation, subject to system backups. Provider-held data follows their retention policies and the project configuration. Support correspondence is kept as needed to handle requests and meet legal obligations."
+        },
+        {
+          "title": "Your choices and privacy requests",
+          "body": "You can manage permissions, remove downloads, clear app data where your device supports it, or uninstall the app. Clearing local data does not automatically delete provider-held diagnostics or system backups. Email us to request access, correction or deletion of information we can identify as yours. Available rights depend on applicable law; we may need information to verify and locate your request. Service providers may process data outside your country. No storage or transmission method is completely secure."
+        },
+        {
+          "title": "Children and policy changes",
+          "body": "Rafeeq offers religious learning content. Parents and guardians should supervise children’s use of online features and external links. We do not ask children to create accounts or provide personal profiles. Contact us if a child has sent personal information so we can address it. We update this policy when practices change and show the revision date above."
+        }
+      ]
+    },
+    "ur": {
+      "title": "رازداری کی پالیسی",
+      "updated": "آخری ترمیم: ۲۱ اکتوبر ۲۰۲۶",
+      "sections": [
+        {
+          "title": "اس پالیسی کے بارے میں",
+          "body": "رفیق ایک مفت، اوپن سورس اسلامی ساتھی ہے جسے رفیق ٹیم (SA Apps Dev) چلاتی ہے۔ یہ پالیسی ایپ اور rafeeq.pages.dev پر لاگو ہوتی ہے۔ موجودہ ایپ کے لیے اکاؤنٹ ضروری نہیں۔ رازداری سے متعلق سوالات satechdev18@gmail.com پر بھیجیں۔"
+        },
+        {
+          "title": "مقام اور اجازتیں",
+          "body": "آپ کی اجازت سے رفیق نماز کے اوقات اور قبلے کی سمت کا حساب آپ کے آلے پر کرنے کے لیے مقام حاصل کرتا ہے۔ محفوظ نقاط اور شہر کا نام ایپ کے مقامی ڈیٹا میں رہتے ہیں۔ آلے کی جیوکوڈنگ سروس مقام کا نام معلوم کرنے کے لیے نقاط یا منتخب شہر کو پراسیس کر سکتی ہے۔ آپ شہر خود منتخب کر سکتے ہیں اور مقام یا اطلاع کی اجازت آلے کی ترتیبات میں بدل سکتے ہیں۔ نماز کی یاددہانیاں مقامی طور پر طے ہوتی ہیں؛ اطلاعات بند کرنے سے ان کی ترسیل رک جاتی ہے۔"
+        },
+        {
+          "title": "آپ کے آلے پر محفوظ ڈیٹا",
+          "body": "ترجیحات، بک مارکس، مطالعے کی پیش رفت، منتخب مقام اور ڈاؤن لوڈ کردہ مواد آپ کے آلے پر محفوظ ہوتے ہیں۔ ایپ اکاؤنٹ کے ذریعے کلاؤڈ سنک فراہم نہیں کرتی۔ آلے کی ترتیبات کے مطابق سسٹم بیک اپ میں ایپ کا ڈیٹا شامل ہو سکتا ہے۔ شیئر یا برآمد کردہ تصاویر آپ کی منتخب کردہ منزل کو بھیجی جاتی ہیں۔"
+        },
+        {
+          "title": "استعمال کے اعداد و شمار اور خرابی کی رپورٹس",
+          "body": "ریلیز بلڈز میں Google Firebase Analytics اور Crashlytics فعال ہوتے ہیں تاکہ خصوصیات کے استعمال اور خرابیوں کو سمجھا جا سکے۔ یہ خدمات ایپ کے استعمال، کھولی گئی اسکرینز، آلے اور ایپ کی معلومات، انسٹالیشن شناخت کاروں اور خرابی کی تفصیلات کو پراسیس کرتی ہیں۔ بعض واقعات پڑھے یا ڈاؤن لوڈ کیے گئے قرآنی پارے یا تبدیل شدہ ترتیب کو ظاہر کرتے ہیں۔ موجودہ ایپ میں اینالیٹکس بند کرنے کا سوئچ نہیں ہے۔ ڈیبگ بلڈز میں Firebase شروع نہیں کیا جاتا۔"
+        },
+        {
+          "title": "آن لائن مواد اور اپ ڈیٹس",
+          "body": "تلاوت، قرآن کے ڈاؤن لوڈز، تراجم، تصاویر اور شہروں کی فہرستیں بیرونی خدمات استعمال کر سکتی ہیں، جن میں AlQuran Cloud / Islamic Network، GitHub اور مواد فراہم کرنے والی خدمات شامل ہیں۔ درخواستوں سے ان خدمات کو آئی پی ایڈریس اور مطلوبہ مواد جیسی عام کنکشن معلومات ملتی ہیں۔ Shorebird استعمال کرنے والے بلڈز کوڈ اپ ڈیٹس کی جانچ اور ڈاؤن لوڈ کے لیے اس کے سرور سے رابطہ کرتے ہیں۔ بیرونی ویب سائٹس، فیڈبیک فارمز اور شیئرنگ ایپس کی اپنی رازداری پالیسیاں ہوتی ہیں۔"
+        },
+        {
+          "title": "ویب سائٹ اور پیغامات",
+          "body": "ہماری ویب سائٹ Cloudflare پر ہوسٹ ہے، جو اسے فراہم اور محفوظ کرنے کے لیے آئی پی ایڈریس اور درخواستوں کے لاگز پراسیس کر سکتا ہے۔ ویب سائٹ رہنما کردار کو بند کرنے کی ترجیح براؤزر میں محفوظ کرتی ہے۔ ای میل، فیڈبیک یا ایشو میں ہم وہ معلومات وصول کرتے ہیں جو آپ بھیجتے ہیں۔ GitHub ایشوز عوامی ہوتے ہیں، ان میں نجی معلومات شامل نہ کریں۔"
+        },
+        {
+          "title": "معلومات کی فراہمی اور مدت",
+          "body": "ہم ذاتی معلومات فروخت نہیں کرتے اور رفیق میں اشتہارات نہیں چلاتے۔ خدمات فراہم کرنے والے یہاں بیان کردہ کاموں کے لیے معلومات پراسیس کرتے ہیں؛ قانونی ضرورت پر معلومات فراہم کی جا سکتی ہیں۔ مقامی ڈیٹا ایپ یا آلے کے کنٹرولز سے حذف کرنے یا ایپ ہٹانے تک رہتا ہے، جبکہ سسٹم بیک اپ الگ ہو سکتا ہے۔ خدمات کے پاس موجود ڈیٹا ان کی پالیسیوں اور پروجیکٹ کی ترتیبات کے مطابق محفوظ رہتا ہے۔ معاونت کے پیغامات درخواستیں حل کرنے اور قانونی ذمہ داریوں کے لیے ضرورت کے مطابق رکھے جاتے ہیں۔"
+        },
+        {
+          "title": "آپ کے اختیارات اور درخواستیں",
+          "body": "آپ اجازتیں بدل سکتے ہیں، ڈاؤن لوڈز ہٹا سکتے ہیں، آلہ اجازت دے تو ایپ ڈیٹا صاف کر سکتے ہیں یا ایپ حذف کر سکتے ہیں۔ مقامی ڈیٹا حذف کرنے سے خدمات کے پاس موجود رپورٹس یا سسٹم بیک اپ خودکار طور پر حذف نہیں ہوتے۔ جو معلومات ہم آپ سے منسوب کر سکیں ان تک رسائی، درستگی یا حذف کرنے کے لیے ای میل کریں۔ حقوق قابل اطلاق قانون کے مطابق ہوتے ہیں؛ درخواست کی تصدیق اور معلومات تلاش کرنے کے لیے مزید تفصیل درکار ہو سکتی ہے۔ خدمات آپ کے ملک سے باہر بھی ڈیٹا پراسیس کر سکتی ہیں۔ ذخیرہ یا ترسیل کا کوئی طریقہ مکمل طور پر محفوظ نہیں ہے۔"
+        },
+        {
+          "title": "بچے اور پالیسی میں تبدیلیاں",
+          "body": "رفیق دینی تعلیمی مواد فراہم کرتا ہے۔ والدین اور سرپرست بچوں کے آن لائن خصوصیات اور بیرونی لنکس کے استعمال کی نگرانی کریں۔ ہم بچوں سے اکاؤنٹ یا ذاتی پروفائل بنانے کو نہیں کہتے۔ اگر کسی بچے نے ذاتی معلومات بھیجی ہوں تو ہم سے رابطہ کریں۔ طریقہ کار بدلنے پر پالیسی اور اوپر درج تاریخ اپ ڈیٹ کی جائے گی۔"
+        }
+      ]
+    }
+  },
+  "terms": {
+    "en": {
+      "title": "Terms & Conditions",
+      "updated": "Last updated: 21 October 2026",
+      "sections": [
+        {
+          "title": "Using Rafeeq",
+          "body": "These terms cover the official Rafeeq app and website, maintained by the Rafeeq team (SA Apps Dev). Please read them when using the service. Rafeeq is free to use and has no ads. Contact satechdev18@gmail.com if you have questions."
+        },
+        {
+          "title": "Prayer times and religious content",
+          "body": "Prayer times, Qibla guidance and Hijri dates depend on your location, device sensors, calculation settings and local practice. Notifications also depend on device permissions, battery settings and operating-system behavior. Check important timings with a trusted local mosque or authority. Texts, translations and learning guides support study; they are not a substitute for qualified religious guidance. Please report errors respectfully."
+        },
+        {
+          "title": "Responsible use",
+          "body": "Use the app and website lawfully. Do not attack services, distribute malicious code, misuse other people’s information or claim to represent the Rafeeq team without permission. You are responsible for content you choose to export, share or submit through external services."
+        },
+        {
+          "title": "Code, content and branding",
+          "body": "Rafeeq source code is available under the MIT License, including reuse of all or part of the code with the required notices. These service terms do not restrict rights granted by that license. The Rafeeq name, logos, app icons and branded artwork are not licensed as branding for your own published app; use your own identity unless permission is granted. Third-party texts, translations, fonts, audio and other content retain their own rights. Contributions to the official free app are welcome."
+        },
+        {
+          "title": "External services and privacy",
+          "body": "Streaming, downloads, updates and external links may rely on third parties and internet access. Their availability and terms are outside our control; network charges may apply. Our Privacy Policy explains local storage, permissions, analytics, diagnostics and service providers."
+        },
+        {
+          "title": "Availability and responsibility",
+          "body": "We aim to keep Rafeeq useful and reliable, but provide it as available without promising uninterrupted service, perfect accuracy or compatibility with every device. To the extent permitted by applicable law, the maintainers are not responsible for losses caused by interruptions, errors or reliance on the service. Nothing in these terms excludes rights or liabilities that cannot lawfully be excluded."
+        },
+        {
+          "title": "Updates and contact",
+          "body": "Features and these terms may change as Rafeeq develops. The latest terms are published here with a revision date. You may stop using the service at any time; existing open-source license rights remain governed by that license. For questions or concerns, email satechdev18@gmail.com."
+        }
+      ]
+    },
+    "ur": {
+      "title": "شرائط و ضوابط",
+      "updated": "آخری ترمیم: ۲۱ اکتوبر ۲۰۲۶",
+      "sections": [
+        {
+          "title": "رفیق کا استعمال",
+          "body": "یہ شرائط رفیق ٹیم (SA Apps Dev) کی سرکاری ایپ اور ویب سائٹ پر لاگو ہوتی ہیں۔ سروس استعمال کرتے وقت انہیں پڑھیں۔ رفیق کا استعمال مفت ہے اور اس میں اشتہارات نہیں ہیں۔ سوالات کے لیے satechdev18@gmail.com سے رابطہ کریں۔"
+        },
+        {
+          "title": "نماز کے اوقات اور دینی مواد",
+          "body": "نماز کے اوقات، قبلے کی رہنمائی اور ہجری تاریخ آپ کے مقام، آلے کے سینسرز، حساب کی ترتیبات اور مقامی طریقے پر منحصر ہیں۔ اطلاعات بھی آلے کی اجازتوں، بیٹری کی ترتیبات اور سسٹم کے رویے پر منحصر ہیں۔ اہم اوقات کی تصدیق معتبر مقامی مسجد یا ادارے سے کریں۔ متون، تراجم اور رہنما مواد مطالعے میں مدد دیتے ہیں، مستند دینی رہنمائی کا متبادل نہیں۔ غلطیوں کی اطلاع احترام سے دیں۔"
+        },
+        {
+          "title": "ذمہ دارانہ استعمال",
+          "body": "ایپ اور ویب سائٹ قانون کے مطابق استعمال کریں۔ خدمات پر حملہ، نقصان دہ کوڈ کی تقسیم، دوسروں کی معلومات کا غلط استعمال یا بغیر اجازت رفیق ٹیم کی نمائندگی کا دعویٰ نہ کریں۔ جو مواد آپ برآمد، شیئر یا بیرونی خدمات پر جمع کرتے ہیں اس کی ذمہ داری آپ کی ہے۔"
+        },
+        {
+          "title": "کوڈ، مواد اور برانڈنگ",
+          "body": "رفیق کا سورس کوڈ MIT لائسنس کے تحت دستیاب ہے؛ ضروری نوٹس برقرار رکھ کر مکمل کوڈ یا اس کا حصہ استعمال کیا جا سکتا ہے۔ یہ سروس شرائط لائسنس کے دیے گئے حقوق محدود نہیں کرتیں۔ رفیق کا نام، لوگو، ایپ آئیکن اور برانڈڈ تصاویر اپنی شائع کردہ ایپ کی شناخت کے طور پر استعمال کرنے کی اجازت شامل نہیں؛ اجازت کے بغیر اپنی شناخت استعمال کریں۔ تیسرے فریق کے متون، تراجم، فونٹس، آڈیو اور دوسرے مواد کے حقوق برقرار رہتے ہیں۔ سرکاری مفت ایپ میں تعاون خوش آئند ہے۔"
+        },
+        {
+          "title": "بیرونی خدمات اور رازداری",
+          "body": "اسٹریمنگ، ڈاؤن لوڈز، اپ ڈیٹس اور بیرونی لنکس کے لیے تیسرے فریق اور انٹرنیٹ کی ضرورت ہو سکتی ہے۔ ان کی دستیابی اور شرائط ہمارے اختیار سے باہر ہیں؛ نیٹ ورک چارجز لاگو ہو سکتے ہیں۔ ہماری رازداری پالیسی مقامی ڈیٹا، اجازتوں، اینالیٹکس، خرابی کی رپورٹس اور خدمات کی وضاحت کرتی ہے۔"
+        },
+        {
+          "title": "دستیابی اور ذمہ داری",
+          "body": "ہم رفیق کو مفید اور قابل اعتماد رکھنے کی کوشش کرتے ہیں، لیکن مسلسل دستیابی، مکمل درستگی یا ہر آلے سے مطابقت کی ضمانت نہیں دیتے۔ قابل اطلاق قانون کی اجازت کی حد تک، سروس کی رکاوٹ، غلطی یا اس پر انحصار سے ہونے والے نقصانات کی ذمہ داری منتظمین پر نہیں ہوتی۔ یہ شرائط ان حقوق یا ذمہ داریوں کو خارج نہیں کرتیں جنہیں قانوناً خارج نہیں کیا جا سکتا۔"
+        },
+        {
+          "title": "تبدیلیاں اور رابطہ",
+          "body": "رفیق کی ترقی کے ساتھ خصوصیات اور شرائط بدل سکتی ہیں۔ تازہ شرائط یہاں ترمیم کی تاریخ کے ساتھ شائع ہوتی ہیں۔ آپ کسی بھی وقت سروس کا استعمال روک سکتے ہیں؛ موجودہ اوپن سورس حقوق متعلقہ لائسنس کے مطابق رہتے ہیں۔ سوالات کے لیے satechdev18@gmail.com پر ای میل کریں۔"
+        }
+      ]
+    }
+  }
+}

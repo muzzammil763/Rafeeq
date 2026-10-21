@@ -2929,6 +2929,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save Name'**
   String get saveName;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @privacyPolicySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data, permissions and choices'**
+  String get privacyPolicySubtitle;
+
+  /// No description provided for @termsAndConditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms & Conditions'**
+  String get termsAndConditions;
+
+  /// No description provided for @termsAndConditionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Using Rafeeq and its content'**
+  String get termsAndConditionsSubtitle;
+
+  /// No description provided for @legalRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load this page. Tap to retry.'**
+  String get legalRetry;
 }
 
 class _AppLocalizationsDelegate

@@ -12,9 +12,10 @@ import { site } from '../data/site';
 
 interface Props {
   title?: string;
+  showCompanion?: boolean;
   description?: string;
 }
-const { title, description = site.description } = Astro.props;
+const { title, description = site.description, showCompanion = true } = Astro.props;
 const fullTitle = title ? `${title} · Rafeeq` : `Rafeeq · ${site.tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -60,7 +61,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <Footer />
-    <Companion script={companion} />
+    {showCompanion && <Companion script={companion} />}
     <script>
       // Fade sections in as they enter the viewport; re-armed after each
       // client-side navigation.
