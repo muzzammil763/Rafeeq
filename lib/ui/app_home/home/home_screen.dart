@@ -9,6 +9,7 @@ import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rafeeq/core/app_settings_notifier.dart';
+import 'package:rafeeq/core/current_day_provider.dart';
 import 'package:rafeeq/core/navigation/analytics_screen_names.dart';
 import 'package:rafeeq/core/navigation/app_routes.dart';
 import 'package:rafeeq/data/providers/shared_prefs_provider.dart';
@@ -51,7 +52,8 @@ class HomeScreen extends ConsumerStatefulWidget {
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen>
+    with WidgetsBindingObserver {
   Timer? _clock;
   List<_HomeEventEntry> _events = const [];
   bool _showingEventDialog = false;
@@ -59,6 +61,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _clock = Timer.periodic(const Duration(seconds: 1), (_) {
       if (mounted) setState(() {});
     });
@@ -66,8 +69,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _clock?.cancel();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // The midnight timer doesn't fire while the app is suspended.
+    if (state == AppLifecycleState.resumed) {
+      ref.invalidate(currentDayProvider);
+    }
   }
 
   /// Shows each of today's events once, one after another. An event isn't

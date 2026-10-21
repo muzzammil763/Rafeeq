@@ -6,21 +6,33 @@ import 'package:rafeeq/ui/app_home/home/settings_palette.dart';
 
 void main() {
   test('palette text colors meet readable contrast targets', () {
-    for (final palette in [SettingsPalette.light, SettingsPalette.dark]) {
-      expect(_contrast(palette.title, palette.card), greaterThanOrEqualTo(4.5));
-      expect(
-        _contrast(palette.subtitle, palette.card),
-        greaterThanOrEqualTo(4.5),
+    for (final (name, palette) in [
+      ('light', SettingsPalette.light),
+      ('dark', SettingsPalette.dark),
+    ]) {
+      void expectContrast(String pair, Color a, Color b, double minimum) {
+        expect(
+          _contrast(a, b),
+          greaterThanOrEqualTo(minimum),
+          reason: '$name $pair',
+        );
+      }
+
+      expectContrast('title on card', palette.title, palette.card, 4.5);
+      expectContrast('subtitle on card', palette.subtitle, palette.card, 4.5);
+      expectContrast(
+        'title on selected card',
+        palette.selectedTitle,
+        palette.selectedCard,
+        4.5,
       );
-      expect(
-        _contrast(palette.selectedTitle, palette.selectedCard),
-        greaterThanOrEqualTo(4.5),
+      expectContrast(
+        'subtitle on selected card',
+        palette.selectedSubtitle,
+        palette.selectedCard,
+        4.5,
       );
-      expect(
-        _contrast(palette.selectedSubtitle, palette.selectedCard),
-        greaterThanOrEqualTo(4.5),
-      );
-      expect(_contrast(palette.accent, palette.card), greaterThanOrEqualTo(3));
+      expectContrast('accent on card', palette.accent, palette.card, 3);
     }
   });
 }

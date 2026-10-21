@@ -30,7 +30,7 @@ class SettingsPalette {
   static const dark = SettingsPalette(
     background: Color(0xFF111212),
     card: Color(0xFF172021),
-    selectedCard: Color.fromARGB(255, 67, 128, 122),
+    selectedCard: Color.fromARGB(255, 40, 88, 83),
     title: Color(0xFFF6F6F2),
     subtitle: Color(0xFFC4C9C7),
     accent: Color(0xFFC0A35C),

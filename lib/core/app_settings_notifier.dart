@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rafeeq/core/current_day_provider.dart';
 import 'package:rafeeq/data/models/hijri_correction.dart';
 import 'package:rafeeq/data/storage/storage_box.dart';
 
@@ -28,7 +30,9 @@ final correctedDateTimeProvider = Provider.autoDispose<DateTime>((ref) {
   final hijriCorrection = ref.watch(
     appSettingsNotifierProvider.select((e) => e.hijriCorrection),
   );
-  return DateTime.now().getAdjusted(hijriCorrection);
+  // Re-evaluate when the day changes so the Hijri date doesn't go stale.
+  ref.watch(currentDayProvider);
+  return clock.now().getAdjusted(hijriCorrection);
 });
 
 class AppSettingsNotifier extends Notifier<AppSettings> {
