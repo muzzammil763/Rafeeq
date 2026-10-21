@@ -89,6 +89,19 @@ Contributions are welcome. Open an issue to discuss bigger changes first, then s
 
 ---
 
+## Contributors
+
+Thank you to everyone who contributes to Rafeeq! Listed by commit contributions, highest first. Select a picture to visit their GitHub profile.
+
+<!-- CONTRIBUTORS:START -->
+<p>
+  <a href="https://github.com/muzzammil763"><img src=".github/readme/contributors/98111211.png" alt="muzzammil763" title="muzzammil763" width="64" height="64"></a>
+  <a href="https://github.com/abdushakoor12"><img src=".github/readme/contributors/60779242.png" alt="abdushakoor12" title="abdushakoor12" width="64" height="64"></a>
+</p>
+<!-- CONTRIBUTORS:END -->
+
+---
+
 <div align="center">
   <p>Made with ❤️ for the Ummah</p>
 </div>
