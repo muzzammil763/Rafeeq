@@ -33,6 +33,31 @@
 
 ---
 
+## Screenshots
+
+From our [Google Play listing](https://play.google.com/store/apps/details?id=com.satechdev.rafeeqapp). Select any screenshot to view it full size.
+
+<p align="center">
+  <a href=".github/readme/screenshots/home.png"><img src=".github/readme/screenshots/home.png" alt="Home screen and prayer countdown" width="180"></a>
+  <a href=".github/readme/screenshots/quran-reader.png"><img src=".github/readme/screenshots/quran-reader.png" alt="Quran reader with translation and audio" width="180"></a>
+  <a href=".github/readme/screenshots/prayer-times.png"><img src=".github/readme/screenshots/prayer-times.png" alt="Prayer times and reminders" width="180"></a>
+  <a href=".github/readme/screenshots/qibla.png"><img src=".github/readme/screenshots/qibla.png" alt="Qibla compass" width="180"></a>
+</p>
+
+<details>
+  <summary>More screenshots</summary>
+
+<p align="center">
+  <a href=".github/readme/screenshots/quran-settings.png"><img src=".github/readme/screenshots/quran-settings.png" alt="Quran reading preferences" width="180"></a>
+  <a href=".github/readme/screenshots/ayah-picture.png"><img src=".github/readme/screenshots/ayah-picture.png" alt="Ayah picture maker" width="180"></a>
+  <a href=".github/readme/screenshots/themes.png"><img src=".github/readme/screenshots/themes.png" alt="Light and dark themes" width="180"></a>
+  <a href=".github/readme/screenshots/namaz-guide.png"><img src=".github/readme/screenshots/namaz-guide.png" alt="Step-by-step Namaz guide" width="180"></a>
+</p>
+
+</details>
+
+---
+
 ## Tech Stack
 
 - **Framework:** Flutter (Dart ≥ 3.10)
