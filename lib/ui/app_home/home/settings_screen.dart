@@ -251,12 +251,12 @@ class SettingsScreen extends ConsumerWidget {
             subtitle: context.loc.rateThisAppSubtitle,
             onTap: () async {
               analyticsService.logSettingsRateAppTapped();
-              if (await canLaunchUrl(playStoreUri)) {
-                await launchUrl(
-                  playStoreUri,
-                  mode: LaunchMode.externalApplication,
-                );
-              }
+              // Launch directly: package visibility can make canLaunchUrl
+              // return false even when the Play Store or a browser can open it.
+              await launchUrl(
+                playStoreUri,
+                mode: LaunchMode.externalApplication,
+              );
             },
           ),
           _SettingsCardData(

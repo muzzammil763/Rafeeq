@@ -158,3 +158,9 @@ Thank you to everyone who contributes to Rafeeq! Listed by commit contributions,
 <div align="center">
   <p>Made with ❤️ for the Ummah</p>
 </div>
+
+## Feature graphic
+
+<p align="center">
+  <img src="website/public/og.png" alt="Rafeeq — Your Muslim Companion. Quran, prayer times, Qibla and duas." width="1024">
+</p>
