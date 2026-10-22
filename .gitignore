@@ -60,3 +60,6 @@ app.*.map.json
 # Firebase config is project-specific; each developer adds their own
 /android/app/google-services.json
 /ios/Runner/GoogleService-Info.plist
+
+# Social post plan (local only)
+/LINKEDIN-POSTS.md
