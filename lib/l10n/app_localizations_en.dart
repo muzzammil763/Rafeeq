@@ -12,65 +12,71 @@ class AppLocalizationsEn extends AppLocalizations {
   String get about => 'About';
 
   @override
-  String get aboutSubtitle => 'The story and purpose behind Rafeeq';
-
-  @override
-  String get aboutTagline => 'Your Muslim Companion';
-
-  @override
-  String get aboutBeginningTitle => 'How Rafeeq began';
-
-  @override
   String get aboutBeginningBody =>
       'Rafeeq began with a simple idea from my elder brother. We are both software developers, and one day he decided to build an Islamic app that would bring essential Muslim needs such as the Qur\'an, Qiblah, prayer times and more together in one place. Later, I — Muzamil Ghafoor — joined him, and Rafeeq became a journey shared by two brothers.';
 
   @override
-  String get aboutTogetherTitle => 'Growing together';
-
-  @override
-  String get aboutTogetherBody =>
-      'Since then, my brother and I have worked on Rafeeq as a team. We started again together, gradually implemented the core features and kept adding more over time. Whenever our other responsibilities leave us some time, we come back to Rafeeq to improve it and thoughtfully prepare the next update.';
-
-  @override
-  String get aboutDesignTitle => 'Our design journey';
-
-  @override
-  String get aboutDesignBody =>
-      'When we first started, we did not have a complete design plan. Even after adding features, we often felt that something was still missing, so we rebuilt the app\'s entire design system twice. With this latest version, we have tried to create something minimal, clear and pleasantly refined. The Islamic app Sadiq was also a meaningful source of inspiration for us, and I am grateful for it.';
-
-  @override
-  String get aboutUmmahTitle => 'For the Ummah';
-
-  @override
-  String get aboutUmmahBody =>
-      'For me, Rafeeq is more than just another software project. My brother and I want to keep improving it for the Ummah of Prophet Muhammad (PBUH). I am deeply thankful to Allah Almighty for giving us the ability to work on something that may benefit other Muslims.';
-
-  @override
-  String get aboutFreeTitle => 'Free for life, In Sha Allah';
-
-  @override
-  String get aboutFreeBody =>
-      'I want Rafeeq to remain free for everyone for its entire lifetime, In Sha Allah. In the future, we may add an optional way for Muslims to support the app\'s development and running costs. Any support will be used to maintain and improve Rafeeq; we do not intend to take anything from it for ourselves, In Sha Allah.';
-
-  @override
-  String get aboutCommunityTitle => 'We are here for you';
-
-  @override
-  String get aboutCommunityBody =>
-      'My brother and I are here for you. You can request a feature, report a bug or share an idea with us. We will listen, and we will keep doing our best to make Rafeeq better for Muslims everywhere.';
+  String get aboutBeginningTitle => 'How Rafeeq began';
 
   @override
   String get aboutClosingStatement =>
       'Built by Muslims, for Muslims — for the Ummah of Prophet Muhammad (PBUH) and for the sake of Allah Almighty. ❤️ ';
 
   @override
+  String get aboutCommunityBody =>
+      'My brother and I are here for you. You can request a feature, report a bug or share an idea with us. We will listen, and we will keep doing our best to make Rafeeq better for Muslims everywhere.';
+
+  @override
+  String get aboutCommunityTitle => 'We are here for you';
+
+  @override
+  String get aboutDesignBody =>
+      'When we first started, we did not have a complete design plan. Even after adding features, we often felt that something was still missing, so we rebuilt the app\'s entire design system twice. With this latest version, we have tried to create something minimal, clear and pleasantly refined. The Islamic app Sadiq was also a meaningful source of inspiration for us, and I am grateful for it.';
+
+  @override
+  String get aboutDesignTitle => 'Our design journey';
+
+  @override
+  String get aboutFreeBody =>
+      'I want Rafeeq to remain free for everyone for its entire lifetime, In Sha Allah. In the future, we may add an optional way for Muslims to support the app\'s development and running costs. Any support will be used to maintain and improve Rafeeq; we do not intend to take anything from it for ourselves, In Sha Allah.';
+
+  @override
+  String get aboutFreeTitle => 'Free for life, In Sha Allah';
+
+  @override
   String get aboutPortfolioOpenError => 'The portfolio could not be opened.';
+
+  @override
+  String get aboutSubtitle => 'The story and purpose behind Rafeeq';
+
+  @override
+  String get aboutTagline => 'Your Muslim Companion';
+
+  @override
+  String get aboutTogetherBody =>
+      'Since then, my brother and I have worked on Rafeeq as a team. We started again together, gradually implemented the core features and kept adding more over time. Whenever our other responsibilities leave us some time, we come back to Rafeeq to improve it and thoughtfully prepare the next update.';
+
+  @override
+  String get aboutTogetherTitle => 'Growing together';
+
+  @override
+  String get aboutUmmahBody =>
+      'For me, Rafeeq is more than just another software project. My brother and I want to keep improving it for the Ummah of Prophet Muhammad (PBUH). I am deeply thankful to Allah Almighty for giving us the ability to work on something that may benefit other Muslims.';
+
+  @override
+  String get aboutUmmahTitle => 'For the Ummah';
+
+  @override
+  String get allow => 'Allow';
 
   @override
   String get allowLocation => 'Allow Location';
 
   @override
   String get allowLocationDescription => 'Automatically updates prayer times.';
+
+  @override
+  String get allowNotifications => 'Allow Notifications';
 
   @override
   String get appIconChanged => 'App Icon Changed';
@@ -98,16 +104,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get arabicText => 'Arabic Text';
 
   @override
-  String get asmaulhusna => 'Asma\'ul Husna';
+  String get asmaPicture => 'Asma\'ul Husna Picture';
 
   @override
-  String get asmaulhusnaSubtitle => '99 Names of Allah';
+  String get asmaulhusna => 'Asma\'ul Husna';
 
   @override
   String get asmaulhusnaExplanation => 'Explanation';
 
   @override
   String get asmaulhusnaMeaning => 'Meaning';
+
+  @override
+  String get asmaulhusnaSubtitle => '99 Names of Allah';
 
   @override
   String get asrCalculationMethod => 'Asr Calculation Method';
@@ -149,6 +158,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ayahThemeSubtitle => 'Choose the look of the Ayah card.';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get bookmarkAyah => 'Bookmark ayah';
 
   @override
   String get bookmarkAyahsPrompt => 'Bookmark ayahs to see them here';
@@ -229,6 +244,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chooseReciter => 'Choose Reciter';
 
   @override
+  String get chooseSurah => 'Choose Surah';
+
+  @override
   String get chooseTheme => 'Choose Theme';
 
   @override
@@ -299,6 +317,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get daysMissed => 'Days Missed';
+
+  @override
+  String get dhuhrPrayerBeginsSoon => 'Dhuhr prayer begins soon';
 
   @override
   String get dummyHeading => 'Heading Text';
@@ -410,6 +431,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feedbackSubtitle => 'Send us your suggestions or report issues';
 
   @override
+  String get finish => 'Finish';
+
+  @override
+  String get firstNameRequired => 'Please enter your first name.';
+
+  @override
   String get fridayCard => 'Friday Card';
 
   @override
@@ -426,6 +453,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get googleFontDownloadInfo => 'Google Font (downloads on first use)';
+
+  @override
+  String get gotIt => 'Got it';
 
   @override
   String get grade => 'Grade';
@@ -486,6 +516,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeAllahsNames => 'Allah\'s Names';
 
   @override
+  String get homeAyahPicture => 'Ayah Picture';
+
+  @override
   String get homeCalendar => 'Calendar';
 
   @override
@@ -502,133 +535,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeExplore => 'Explore';
 
   @override
-  String get homeAyahPicture => 'Ayah Picture';
-
-  @override
-  String get asmaPicture => 'Asma\'ul Husna Picture';
-
-  @override
-  String get licenses => 'Licenses';
-
-  @override
-  String licensesCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count licenses',
-      one: '1 license',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get licensesIntro =>
-      'Rafeeq is built on these open-source packages. Thank you to everyone who made them.';
-
-  @override
-  String get licensesSubtitle => 'Open-source packages used in Rafeeq';
-
-  @override
-  String get reportIssue => 'Report an issue';
-
-  @override
-  String get reportIssueSubtitle => 'Found a bug? Let us know on GitHub';
-
-  @override
-  String get settingsSectionAppInfo => 'App info';
-
-  @override
-  String get settingsSectionPrayer => 'Prayer & Calendar';
-
-  @override
-  String get settingsSectionSupport => 'Support Rafeeq';
-
-  @override
-  String get showArabic => 'Show Arabic';
-
-  @override
-  String get showMeaning => 'Show Meaning';
-
-  @override
-  String get includeArabicAyah => 'Include the Arabic Ayah in the picture';
-
-  @override
-  String get includeArabicName => 'Include Allah\'s Arabic name in the picture';
-
-  @override
-  String get includeTranslation =>
-      'Include the selected translation in the picture';
-
-  @override
-  String get includeNameMeaning => 'Include the name meaning in the picture';
-
-  @override
-  String get urduMode => 'Urdu Mode';
-
-  @override
-  String get showMeaningInUrdu => 'Show the meaning in Urdu';
-
-  @override
-  String get showingMeaningInUrdu => 'Showing the meaning in Urdu';
-
-  @override
-  String get useUrduPictureLayout => 'Use Urdu card layout and translation';
-
-  @override
-  String get usingUrduPictureLayout =>
-      'Urdu card layout and translation defaults';
-
-  @override
-  String get chooseSurah => 'Choose Surah';
-
-  @override
-  String get jumpToAyah => 'Jump To Ayah';
-
-  @override
-  String get unableToLoadQuran => 'Unable to load Quran';
-
-  @override
-  String get unableToLoadAsma => 'Unable to load Asma\'ul Husna';
-
-  @override
-  String get playAudio => 'Play Audio';
-
-  @override
-  String get playFromAyah => 'Play from this ayah';
-
-  @override
-  String get bookmarkAyah => 'Bookmark ayah';
-
-  @override
-  String get shareAyah => 'Share ayah';
-
-  @override
-  String get playing => 'Playing';
-
-  @override
-  String get paused => 'Paused';
-
-  @override
-  String get noAyahPlaying => 'No ayah playing';
-
-  @override
-  String get noQuranAudioPlaying => 'No Quran audio is playing';
-
-  @override
-  String get quranRecitation => 'Quran recitation';
-
-  @override
-  String get tapToExpand => 'Tap to expand';
-
-  @override
-  String get tapToView => 'Tap to view';
-
-  @override
-  String playbackComplete(Object name) {
-    return '$name complete';
-  }
-
-  @override
   String get homeForbiddenSalatTimes => 'Forbidden Salat Times';
 
   @override
@@ -640,6 +546,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeMosques => 'Mosques';
+
+  @override
+  String get homeNewLook => 'New Look';
 
   @override
   String get homeNoon => 'Noon';
@@ -669,7 +578,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get iftar => 'Iftar';
 
   @override
+  String get imageLoadError => 'Unable to load image';
+
+  @override
+  String get includeArabicAyah => 'Include the Arabic Ayah in the picture';
+
+  @override
+  String get includeArabicName => 'Include Allah\'s Arabic name in the picture';
+
+  @override
+  String get includeNameMeaning => 'Include the name meaning in the picture';
+
+  @override
+  String get includeTranslation =>
+      'Include the selected translation in the picture';
+
+  @override
   String get installNow => 'Install Now';
+
+  @override
+  String get jumpToAyah => 'Jump To Ayah';
 
   @override
   String get juristicMethod => 'Juristic Method';
@@ -691,6 +619,30 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get later => 'Later';
+
+  @override
+  String get legalRetry => 'Unable to load this page. Tap to retry.';
+
+  @override
+  String get licenses => 'Licenses';
+
+  @override
+  String licensesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count licenses',
+      one: '1 license',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get licensesIntro =>
+      'Rafeeq is built on these open-source packages. Thank you to everyone who made them.';
+
+  @override
+  String get licensesSubtitle => 'Open-source packages used in Rafeeq';
 
   @override
   String get listen => 'Listen';
@@ -759,7 +711,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no => 'No';
 
   @override
+  String get noAyahPlaying => 'No ayah playing';
+
+  @override
   String get noBookmarksYet => 'No bookmarks yet';
+
+  @override
+  String get noQuranAudioPlaying => 'No Quran audio is playing';
 
   @override
   String get noResultsFound => 'No results found';
@@ -796,6 +754,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nowPlaying => 'Now Playing';
 
   @override
+  String get onboardingAppName => 'Rafeeq';
+
+  @override
   String get onboardingAsmaulHusnaDescription =>
       'Learn the 99 beautiful names of Allah with meanings';
 
@@ -804,8 +765,26 @@ class AppLocalizationsEn extends AppLocalizations {
       'View and convert dates between Hijri and Gregorian calendars';
 
   @override
+  String get onboardingJuristicDescription =>
+      'Choose your school of thought (Madhab) for Asr prayer time.';
+
+  @override
   String get onboardingLanguageDescription =>
       'Choose your preferred language to personalize your experience';
+
+  @override
+  String get onboardingLocationDescription =>
+      'Set your location so prayer times and Qibla guidance are accurate for you.';
+
+  @override
+  String get onboardingNotificationBody => 'It is prayer time.';
+
+  @override
+  String get onboardingNotificationsDescription =>
+      'Never miss a prayer. Rafeeq can gently remind you when it is time to pray.';
+
+  @override
+  String get onboardingNotificationTitle => 'It\'s time for the Dhuhr prayer';
 
   @override
   String get onboardingPrayerTimesDescription =>
@@ -831,10 +810,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'Your complete Islamic companion for daily spiritual needs';
 
   @override
+  String get onboardingWelcomeTitle => 'Your Daily Muslim Companion';
+
+  @override
   String get oneShawwal => '1 Shawwal';
 
   @override
   String get openSettings => 'Open Settings';
+
+  @override
+  String get paused => 'Paused';
 
   @override
   String get permissionsDescription =>
@@ -850,7 +835,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get permissionsTitle => 'Enable Permissions';
 
   @override
+  String get playAudio => 'Play Audio';
+
+  @override
+  String playbackComplete(Object name) {
+    return '$name complete';
+  }
+
+  @override
   String get playbackSettings => 'Playback Settings';
+
+  @override
+  String get playFromAyah => 'Play from this ayah';
+
+  @override
+  String get playing => 'Playing';
 
   @override
   String get prayEidToday => 'Pray Eid Today';
@@ -860,6 +859,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get prayEidUlFitrToday => 'Pray Eid-ul-Fitr Today';
+
+  @override
+  String get prayerAndFastingReminders => 'Prayer, Fasting & Eid Reminders';
 
   @override
   String get prayerAsr => 'Asr';
@@ -889,16 +891,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get prayerTimes => 'Prayer Times';
 
   @override
-  String get prayerAndFastingReminders => 'Prayer, Fasting & Eid Reminders';
-
-  @override
   String get prayerTimesSettings => 'Prayer Times Settings';
 
   @override
   String get prayerTimesSubtitle => 'Daily salah schedule';
 
   @override
+  String get prepareForPrayer => 'Take a moment to prepare for prayer.';
+
+  @override
   String get preview => 'Preview';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get privacyPolicySubtitle => 'Your data, permissions and choices';
 
   @override
   String get qibla => 'Qibla';
@@ -930,6 +938,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranPageTab => 'Page';
+
+  @override
+  String get quranRecitation => 'Quran recitation';
 
   @override
   String get quranSubtitle => 'Read & explore the Holy Qur\'an';
@@ -972,7 +983,56 @@ class AppLocalizationsEn extends AppLocalizations {
   String get readSurahKahf => 'Tap To Read Surah Al-Kahf';
 
   @override
+  String get redesignAdaptiveTheme => 'Adaptive Theme Support';
+
+  @override
+  String get redesignAdaptiveThemeDescription =>
+      'Switch between Light and Dark themes, or follow the system setting to automatically adapt Rafeeq\'s complete appearance.';
+
+  @override
+  String get redesignAyahMaker => 'Ayah Picture Maker';
+
+  @override
+  String get redesignAyahMakerDescription =>
+      'Create beautiful Ayah pictures with customization options for Arabic text, translations and editions, then share them on social media.';
+
+  @override
+  String get redesignDialogBody =>
+      'We have fully revamped Rafeeq to make your daily Islamic experience cleaner, clearer and more beautiful.';
+
+  @override
+  String get redesignDialogTitle => 'A fresh new look for Rafeeq';
+
+  @override
+  String get redesignExtendedHome => 'Extended Home Experience';
+
+  @override
+  String get redesignExtendedHomeDescription =>
+      'See forbidden Salah times, the Daily Ayah and Share App cards, plus Iftar, Suhoor and Tahajjud times from the expanded Home screen.';
+
+  @override
+  String get redesignHomeScreen => 'Home Screen';
+
+  @override
+  String get redesignNewFeatures => 'More New Experiences';
+
+  @override
+  String get redesignQiblaScreen => 'Qiblah Screen';
+
+  @override
+  String get redesignQuranView => 'Qur\'an View';
+
+  @override
+  String get redesignSurahJuzList => 'Surah / Juz List';
+
+  @override
   String get removeBookmark => 'Remove bookmark';
+
+  @override
+  String get reportIssue => 'Report an issue';
+
+  @override
+  String get reportIssueSubtitle => 'Found a bug? Let us know on GitHub';
 
   @override
   String get reset => 'Reset';
@@ -1011,6 +1071,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get save => 'Save';
 
   @override
+  String get saveName => 'Save Name';
+
+  @override
   String get scriptStylingAndSize => 'Script styling and size.';
 
   @override
@@ -1046,6 +1109,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectFont => 'Select Font';
 
   @override
+  String get selectLanguage => 'Select a Language';
+
+  @override
   String get selectLanguageSubtitle =>
       'Select your preferred language to continue';
 
@@ -1068,13 +1134,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsResetSuccess => 'Settings reset to default';
 
   @override
+  String get settingsSectionAppInfo => 'App info';
+
+  @override
+  String get settingsSectionPrayer => 'Prayer & Calendar';
+
+  @override
+  String get settingsSectionSupport => 'Support Rafeeq';
+
+  @override
   String get share => 'Share';
+
+  @override
+  String get shareAyah => 'Share ayah';
 
   @override
   String get shareThisApp => 'Share this app';
 
   @override
   String get shareThisAppSubtitle => 'Share Rafeeq with friends and family';
+
+  @override
+  String get showArabic => 'Show Arabic';
+
+  @override
+  String get showingMeaningInUrdu => 'Showing the meaning in Urdu';
+
+  @override
+  String get showMeaning => 'Show Meaning';
+
+  @override
+  String get showMeaningInUrdu => 'Show the meaning in Urdu';
 
   @override
   String get showTranslation => 'Show Translation';
@@ -1212,7 +1302,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get takbeerText => 'Allahu Akbar';
 
   @override
+  String get tapToExpand => 'Tap to expand';
+
+  @override
+  String get tapToView => 'Tap to view';
+
+  @override
   String get tenDhulHijjah => '10 Dhul Hijjah';
+
+  @override
+  String get termsAndConditions => 'Terms & Conditions';
+
+  @override
+  String get termsAndConditionsSubtitle => 'Using Rafeeq and its content';
 
   @override
   String get testNotification => 'Test Notification';
@@ -1346,11 +1448,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get typeLabel => 'Type';
 
   @override
+  String get unableToLoadAsma => 'Unable to load Asma\'ul Husna';
+
+  @override
+  String get unableToLoadQuran => 'Unable to load Quran';
+
+  @override
   String get updateDownloadedMessage =>
       'A new version of Rafeeq has been downloaded and is ready to be installed.';
 
   @override
   String get updateReady => 'Update Ready';
+
+  @override
+  String get urduMode => 'Urdu Mode';
+
+  @override
+  String get useUrduPictureLayout => 'Use Urdu card layout and translation';
+
+  @override
+  String get usingUrduPictureLayout =>
+      'Urdu card layout and translation defaults';
 
   @override
   String get version => 'Version';
@@ -1416,122 +1534,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get waitingForLocation => 'Waiting for location...';
-
-  @override
-  String get onboardingAppName => 'Rafeeq';
-
-  @override
-  String get onboardingWelcomeTitle => 'Your Daily Muslim Companion';
-
-  @override
-  String get selectLanguage => 'Select a Language';
-
-  @override
-  String get allowNotifications => 'Allow Notifications';
-
-  @override
-  String get onboardingNotificationsDescription =>
-      'Never miss a prayer. Rafeeq can gently remind you when it is time to pray.';
-
-  @override
-  String get dhuhrPrayerBeginsSoon => 'Dhuhr prayer begins soon';
-
-  @override
-  String get prepareForPrayer => 'Take a moment to prepare for prayer.';
-
-  @override
-  String get onboardingNotificationTitle => 'It\'s time for the Dhuhr prayer';
-
-  @override
-  String get onboardingNotificationBody => 'It is prayer time.';
-
-  @override
-  String get onboardingLocationDescription =>
-      'Set your location so prayer times and Qibla guidance are accurate for you.';
-
-  @override
-  String get onboardingJuristicDescription =>
-      'Choose your school of thought (Madhab) for Asr prayer time.';
-
-  @override
-  String get allow => 'Allow';
-
-  @override
-  String get finish => 'Finish';
-
-  @override
-  String get back => 'Back';
-
-  @override
-  String get redesignDialogTitle => 'A fresh new look for Rafeeq';
-
-  @override
-  String get redesignDialogBody =>
-      'We have fully revamped Rafeeq to make your daily Islamic experience cleaner, clearer and more beautiful.';
-
-  @override
-  String get gotIt => 'Got it';
-
-  @override
-  String get imageLoadError => 'Unable to load image';
-
-  @override
-  String get homeNewLook => 'New Look';
-
-  @override
-  String get redesignHomeScreen => 'Home Screen';
-
-  @override
-  String get redesignQiblaScreen => 'Qiblah Screen';
-
-  @override
-  String get redesignQuranView => 'Qur\'an View';
-
-  @override
-  String get redesignSurahJuzList => 'Surah / Juz List';
-
-  @override
-  String get redesignNewFeatures => 'More New Experiences';
-
-  @override
-  String get redesignAyahMaker => 'Ayah Picture Maker';
-
-  @override
-  String get redesignAyahMakerDescription =>
-      'Create beautiful Ayah pictures with customization options for Arabic text, translations and editions, then share them on social media.';
-
-  @override
-  String get redesignExtendedHome => 'Extended Home Experience';
-
-  @override
-  String get redesignExtendedHomeDescription =>
-      'See forbidden Salah times, the Daily Ayah and Share App cards, plus Iftar, Suhoor and Tahajjud times from the expanded Home screen.';
-
-  @override
-  String get redesignAdaptiveTheme => 'Adaptive Theme Support';
-
-  @override
-  String get redesignAdaptiveThemeDescription =>
-      'Switch between Light and Dark themes, or follow the system setting to automatically adapt Rafeeq\'s complete appearance.';
-
-  @override
-  String get firstNameRequired => 'Please enter your first name.';
-
-  @override
-  String get saveName => 'Save Name';
-
-  @override
-  String get privacyPolicy => 'Privacy Policy';
-
-  @override
-  String get privacyPolicySubtitle => 'Your data, permissions and choices';
-
-  @override
-  String get termsAndConditions => 'Terms & Conditions';
-
-  @override
-  String get termsAndConditionsSubtitle => 'Using Rafeeq and its content';
-
-  @override
-  String get legalRetry => 'Unable to load this page. Tap to retry.';
 }

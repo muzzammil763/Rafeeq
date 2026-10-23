@@ -12,59 +12,62 @@ class AppLocalizationsUr extends AppLocalizations {
   String get about => 'کے بارے میں';
 
   @override
-  String get aboutSubtitle => 'رفیق کے پیچھے موجود کہانی اور مقصد';
-
-  @override
-  String get aboutTagline => 'آپ کا مسلم ساتھی';
-
-  @override
-  String get aboutBeginningTitle => 'رفیق کا آغاز';
-
-  @override
   String get aboutBeginningBody =>
       'رفیق کی ابتدا میرے بڑے بھائی کے ایک سادہ سے خیال سے ہوئی۔ ہم دونوں سافٹ ویئر ڈویلپر ہیں۔ ایک دن انہوں نے ارادہ کیا کہ ایک ایسی اسلامی ایپ بنائی جائے جس میں قرآن، قبلہ، نماز کے اوقات اور مسلمانوں کی دوسری بنیادی ضروریات ایک ہی جگہ موجود ہوں۔ کچھ عرصے بعد میں، مزمل غفور، بھی ان کے ساتھ شامل ہو گیا اور یوں رفیق دو بھائیوں کا مشترکہ سفر بن گیا۔';
 
   @override
-  String get aboutTogetherTitle => 'مل کر آگے بڑھنے کا سفر';
-
-  @override
-  String get aboutTogetherBody =>
-      'اس کے بعد سے میرے بھائی اور میں ایک ٹیم کی صورت میں رفیق پر کام کر رہے ہیں۔ ہم نے مل کر نئے سرے سے آغاز کیا، بنیادی فیچرز بنائے اور وقت کے ساتھ مزید چیزیں شامل کرتے گئے۔ اپنی دوسری ذمہ داریوں کے درمیان جب بھی کچھ وقت ملتا ہے، ہم دوبارہ رفیق کی طرف آتے ہیں، اسے بہتر بناتے ہیں اور اگلی اپ ڈیٹ پر کام کرتے ہیں۔';
-
-  @override
-  String get aboutDesignTitle => 'ہمارا ڈیزائن کا سفر';
-
-  @override
-  String get aboutDesignBody =>
-      'جب ہم نے کام شروع کیا تو ہمارے پاس مکمل ڈیزائن پلان نہیں تھا۔ فیچرز شامل کرنے کے باوجود ہمیں اکثر محسوس ہوتا تھا کہ ابھی کچھ کمی ہے، اسی لیے ہم نے دو مرتبہ ایپ کا پورا ڈیزائن سسٹم نئے سرے سے بنایا۔ اس تازہ ڈیزائن میں ہم نے سادگی، وضاحت اور ایک خوبصورت معیاری احساس پیدا کرنے کی کوشش کی ہے۔ اسلامی ایپ صادق بھی ہمارے لیے ایک اہم ذریعۂ تحریک رہی، اور میں اس کے لیے شکر گزار ہوں۔';
-
-  @override
-  String get aboutUmmahTitle => 'امت کے لیے';
-
-  @override
-  String get aboutUmmahBody =>
-      'میرے لیے رفیق صرف ایک اور سافٹ ویئر پروجیکٹ نہیں ہے۔ میرے بھائی اور میں اسے امتِ حضرت محمد صلی اللہ علیہ وسلم کے لیے مسلسل بہتر بنانا چاہتے ہیں۔ میں اللہ تعالیٰ کا دل سے شکر گزار ہوں کہ اس نے ہمیں ایک ایسے کام کی توفیق دی جو دوسرے مسلمانوں کے لیے فائدہ مند ہو سکتا ہے۔';
-
-  @override
-  String get aboutFreeTitle => 'ہمیشہ مفت، ان شاء اللہ';
-
-  @override
-  String get aboutFreeBody =>
-      'میری خواہش ہے کہ رفیق ہمیشہ سب کے لیے مفت رہے، ان شاء اللہ۔ مستقبل میں ہم مسلمانوں کے لیے ایک اختیاری ذریعہ شامل کر سکتے ہیں جس سے وہ ایپ کی ڈیولپمنٹ اور جاری اخراجات میں تعاون کر سکیں۔ تمام تعاون رفیق کو برقرار رکھنے اور بہتر بنانے پر خرچ ہوگا؛ ہم اس میں سے اپنے لیے کچھ لینے کا ارادہ نہیں رکھتے، ان شاء اللہ۔';
-
-  @override
-  String get aboutCommunityTitle => 'ہم آپ کے لیے حاضر ہیں';
-
-  @override
-  String get aboutCommunityBody =>
-      'میرے بھائی اور میں آپ کے لیے حاضر ہیں۔ آپ کسی نئے فیچر کی درخواست، خرابی کی اطلاع یا اپنا خیال ہمارے ساتھ شیئر کر سکتے ہیں۔ ہم آپ کی بات سنیں گے اور دنیا بھر کے مسلمانوں کے لیے رفیق کو بہتر بنانے کی پوری کوشش جاری رکھیں گے۔';
+  String get aboutBeginningTitle => 'رفیق کا آغاز';
 
   @override
   String get aboutClosingStatement =>
       'مسلمانوں کے ہاتھوں، مسلمانوں کے لیے — امتِ حضرت محمد صلی اللہ علیہ وسلم کی خدمت اور صرف اللہ تعالیٰ کی رضا کے لیے۔';
 
   @override
+  String get aboutCommunityBody =>
+      'میرے بھائی اور میں آپ کے لیے حاضر ہیں۔ آپ کسی نئے فیچر کی درخواست، خرابی کی اطلاع یا اپنا خیال ہمارے ساتھ شیئر کر سکتے ہیں۔ ہم آپ کی بات سنیں گے اور دنیا بھر کے مسلمانوں کے لیے رفیق کو بہتر بنانے کی پوری کوشش جاری رکھیں گے۔';
+
+  @override
+  String get aboutCommunityTitle => 'ہم آپ کے لیے حاضر ہیں';
+
+  @override
+  String get aboutDesignBody =>
+      'جب ہم نے کام شروع کیا تو ہمارے پاس مکمل ڈیزائن پلان نہیں تھا۔ فیچرز شامل کرنے کے باوجود ہمیں اکثر محسوس ہوتا تھا کہ ابھی کچھ کمی ہے، اسی لیے ہم نے دو مرتبہ ایپ کا پورا ڈیزائن سسٹم نئے سرے سے بنایا۔ اس تازہ ڈیزائن میں ہم نے سادگی، وضاحت اور ایک خوبصورت معیاری احساس پیدا کرنے کی کوشش کی ہے۔ اسلامی ایپ صادق بھی ہمارے لیے ایک اہم ذریعۂ تحریک رہی، اور میں اس کے لیے شکر گزار ہوں۔';
+
+  @override
+  String get aboutDesignTitle => 'ہمارا ڈیزائن کا سفر';
+
+  @override
+  String get aboutFreeBody =>
+      'میری خواہش ہے کہ رفیق ہمیشہ سب کے لیے مفت رہے، ان شاء اللہ۔ مستقبل میں ہم مسلمانوں کے لیے ایک اختیاری ذریعہ شامل کر سکتے ہیں جس سے وہ ایپ کی ڈیولپمنٹ اور جاری اخراجات میں تعاون کر سکیں۔ تمام تعاون رفیق کو برقرار رکھنے اور بہتر بنانے پر خرچ ہوگا؛ ہم اس میں سے اپنے لیے کچھ لینے کا ارادہ نہیں رکھتے، ان شاء اللہ۔';
+
+  @override
+  String get aboutFreeTitle => 'ہمیشہ مفت، ان شاء اللہ';
+
+  @override
   String get aboutPortfolioOpenError => 'پورٹ فولیو نہیں کھولا جا سکا۔';
+
+  @override
+  String get aboutSubtitle => 'رفیق کے پیچھے موجود کہانی اور مقصد';
+
+  @override
+  String get aboutTagline => 'آپ کا مسلم ساتھی';
+
+  @override
+  String get aboutTogetherBody =>
+      'اس کے بعد سے میرے بھائی اور میں ایک ٹیم کی صورت میں رفیق پر کام کر رہے ہیں۔ ہم نے مل کر نئے سرے سے آغاز کیا، بنیادی فیچرز بنائے اور وقت کے ساتھ مزید چیزیں شامل کرتے گئے۔ اپنی دوسری ذمہ داریوں کے درمیان جب بھی کچھ وقت ملتا ہے، ہم دوبارہ رفیق کی طرف آتے ہیں، اسے بہتر بناتے ہیں اور اگلی اپ ڈیٹ پر کام کرتے ہیں۔';
+
+  @override
+  String get aboutTogetherTitle => 'مل کر آگے بڑھنے کا سفر';
+
+  @override
+  String get aboutUmmahBody =>
+      'میرے لیے رفیق صرف ایک اور سافٹ ویئر پروجیکٹ نہیں ہے۔ میرے بھائی اور میں اسے امتِ حضرت محمد صلی اللہ علیہ وسلم کے لیے مسلسل بہتر بنانا چاہتے ہیں۔ میں اللہ تعالیٰ کا دل سے شکر گزار ہوں کہ اس نے ہمیں ایک ایسے کام کی توفیق دی جو دوسرے مسلمانوں کے لیے فائدہ مند ہو سکتا ہے۔';
+
+  @override
+  String get aboutUmmahTitle => 'امت کے لیے';
+
+  @override
+  String get allow => 'اجازت دیں';
 
   @override
   String get allowLocation => 'مقام کی اجازت دیں';
@@ -72,6 +75,9 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get allowLocationDescription =>
       'نماز کے اوقات خودکار طور پر اپ ڈیٹ کرتا ہے۔';
+
+  @override
+  String get allowNotifications => 'اطلاعات کی اجازت دیں';
 
   @override
   String get appIconChanged => 'ایپ آئیکن تبدیل ہو گیا';
@@ -99,16 +105,19 @@ class AppLocalizationsUr extends AppLocalizations {
   String get arabicText => 'عربی متن';
 
   @override
-  String get asmaulhusna => 'اسماء الحسنی';
+  String get asmaPicture => 'اسماء الحسنیٰ کی تصویر';
 
   @override
-  String get asmaulhusnaSubtitle => 'اللہ کے 99 نام';
+  String get asmaulhusna => 'اسماء الحسنی';
 
   @override
   String get asmaulhusnaExplanation => 'وضاحت';
 
   @override
   String get asmaulhusnaMeaning => 'معنی';
+
+  @override
+  String get asmaulhusnaSubtitle => 'اللہ کے 99 نام';
 
   @override
   String get asrCalculationMethod => 'عصر کے حساب کا طریقہ';
@@ -150,6 +159,12 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get ayahThemeSubtitle => 'آیت کارڈ کی ظاہری شکل منتخب کریں۔';
+
+  @override
+  String get back => 'واپس';
+
+  @override
+  String get bookmarkAyah => 'آیت محفوظ کریں';
 
   @override
   String get bookmarkAyahsPrompt =>
@@ -231,6 +246,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get chooseReciter => 'قاری منتخب کریں';
 
   @override
+  String get chooseSurah => 'سورت منتخب کریں';
+
+  @override
   String get chooseTheme => 'تھیم منتخب کریں';
 
   @override
@@ -300,6 +318,9 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get daysMissed => 'چھوٹے ہوئے روزے';
+
+  @override
+  String get dhuhrPrayerBeginsSoon => 'ظہر کی نماز کا وقت قریب ہے';
 
   @override
   String get dummyHeading => 'عنوان کا متن';
@@ -414,6 +435,12 @@ class AppLocalizationsUr extends AppLocalizations {
       'ہمیں اپنی تجاویز بھیجیں یا مسائل کی نشاندہی کریں';
 
   @override
+  String get finish => 'مکمل کریں';
+
+  @override
+  String get firstNameRequired => 'براہ کرم اپنا پہلا نام درج کریں۔';
+
+  @override
   String get fridayCard => 'جمعہ کارڈ';
 
   @override
@@ -430,6 +457,9 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get googleFontDownloadInfo => 'گوگل فونٹ (پہلی بار ڈاؤن لوڈ ہوگا)';
+
+  @override
+  String get gotIt => 'سمجھ گیا';
 
   @override
   String get grade => 'درجہ';
@@ -490,6 +520,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get homeAllahsNames => 'اللہ کے نام';
 
   @override
+  String get homeAyahPicture => 'آیت کی تصویر';
+
+  @override
   String get homeCalendar => 'کیلنڈر';
 
   @override
@@ -506,132 +539,6 @@ class AppLocalizationsUr extends AppLocalizations {
   String get homeExplore => 'دریافت کریں';
 
   @override
-  String get homeAyahPicture => 'آیت کی تصویر';
-
-  @override
-  String get asmaPicture => 'اسماء الحسنیٰ کی تصویر';
-
-  @override
-  String get licenses => 'لائسنسز';
-
-  @override
-  String licensesCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count لائسنس',
-      one: '1 لائسنس',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get licensesIntro =>
-      'رفیق ان اوپن سورس پیکجز پر بنی ہے۔ انہیں بنانے والے سب لوگوں کا شکریہ۔';
-
-  @override
-  String get licensesSubtitle => 'رفیق میں استعمال ہونے والے اوپن سورس پیکجز';
-
-  @override
-  String get reportIssue => 'مسئلہ رپورٹ کریں';
-
-  @override
-  String get reportIssueSubtitle => 'کوئی خرابی ملی؟ GitHub پر ہمیں بتائیں';
-
-  @override
-  String get settingsSectionAppInfo => 'ایپ کی معلومات';
-
-  @override
-  String get settingsSectionPrayer => 'نماز اور کیلنڈر';
-
-  @override
-  String get settingsSectionSupport => 'رفیق کا ساتھ دیں';
-
-  @override
-  String get showArabic => 'عربی دکھائیں';
-
-  @override
-  String get showMeaning => 'معنی دکھائیں';
-
-  @override
-  String get includeArabicAyah => 'تصویر میں عربی آیت شامل کریں';
-
-  @override
-  String get includeArabicName => 'تصویر میں اللہ کا عربی نام شامل کریں';
-
-  @override
-  String get includeTranslation => 'تصویر میں منتخب ترجمہ شامل کریں';
-
-  @override
-  String get includeNameMeaning => 'تصویر میں نام کا معنی شامل کریں';
-
-  @override
-  String get urduMode => 'اردو انداز';
-
-  @override
-  String get showMeaningInUrdu => 'معنی اردو میں دکھائیں';
-
-  @override
-  String get showingMeaningInUrdu => 'معنی اردو میں دکھایا جا رہا ہے';
-
-  @override
-  String get useUrduPictureLayout =>
-      'اردو کارڈ کی ترتیب اور ترجمہ استعمال کریں';
-
-  @override
-  String get usingUrduPictureLayout => 'اردو کارڈ کی ترتیب اور ترجمہ منتخب ہے';
-
-  @override
-  String get chooseSurah => 'سورت منتخب کریں';
-
-  @override
-  String get jumpToAyah => 'آیت پر جائیں';
-
-  @override
-  String get unableToLoadQuran => 'قرآن لوڈ نہیں ہو سکا';
-
-  @override
-  String get unableToLoadAsma => 'اسماء الحسنیٰ لوڈ نہیں ہو سکے';
-
-  @override
-  String get playAudio => 'تلاوت چلائیں';
-
-  @override
-  String get playFromAyah => 'اس آیت سے تلاوت چلائیں';
-
-  @override
-  String get bookmarkAyah => 'آیت محفوظ کریں';
-
-  @override
-  String get shareAyah => 'آیت شیئر کریں';
-
-  @override
-  String get playing => 'تلاوت جاری ہے';
-
-  @override
-  String get paused => 'تلاوت رکی ہوئی ہے';
-
-  @override
-  String get noAyahPlaying => 'کوئی آیت نہیں چل رہی';
-
-  @override
-  String get noQuranAudioPlaying => 'قرآن کی تلاوت نہیں چل رہی';
-
-  @override
-  String get quranRecitation => 'قرآن کی تلاوت';
-
-  @override
-  String get tapToExpand => 'تفصیل کے لیے ٹیپ کریں';
-
-  @override
-  String get tapToView => 'دیکھنے کے لیے ٹیپ کریں';
-
-  @override
-  String playbackComplete(Object name) {
-    return '$name مکمل ہو گیا';
-  }
-
-  @override
   String get homeForbiddenSalatTimes => 'نماز کے ممنوع اوقات';
 
   @override
@@ -643,6 +550,9 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get homeMosques => 'مساجد';
+
+  @override
+  String get homeNewLook => 'نیا انداز';
 
   @override
   String get homeNoon => 'نصف النہار';
@@ -672,7 +582,25 @@ class AppLocalizationsUr extends AppLocalizations {
   String get iftar => 'افطار';
 
   @override
+  String get imageLoadError => 'تصویر لوڈ نہیں ہو سکی';
+
+  @override
+  String get includeArabicAyah => 'تصویر میں عربی آیت شامل کریں';
+
+  @override
+  String get includeArabicName => 'تصویر میں اللہ کا عربی نام شامل کریں';
+
+  @override
+  String get includeNameMeaning => 'تصویر میں نام کا معنی شامل کریں';
+
+  @override
+  String get includeTranslation => 'تصویر میں منتخب ترجمہ شامل کریں';
+
+  @override
   String get installNow => 'ابھی انسٹال کریں';
+
+  @override
+  String get jumpToAyah => 'آیت پر جائیں';
 
   @override
   String get juristicMethod => 'فقہی طریقہ';
@@ -694,6 +622,30 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get later => 'بعد میں';
+
+  @override
+  String get legalRetry => 'صفحہ لوڈ نہیں ہو سکا۔ دوبارہ کوشش کریں۔';
+
+  @override
+  String get licenses => 'لائسنسز';
+
+  @override
+  String licensesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count لائسنس',
+      one: '1 لائسنس',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get licensesIntro =>
+      'رفیق ان اوپن سورس پیکجز پر بنی ہے۔ انہیں بنانے والے سب لوگوں کا شکریہ۔';
+
+  @override
+  String get licensesSubtitle => 'رفیق میں استعمال ہونے والے اوپن سورس پیکجز';
 
   @override
   String get listen => 'سنیں';
@@ -762,7 +714,13 @@ class AppLocalizationsUr extends AppLocalizations {
   String get no => 'نہیں';
 
   @override
+  String get noAyahPlaying => 'کوئی آیت نہیں چل رہی';
+
+  @override
   String get noBookmarksYet => 'ابھی کوئی بک مارک نہیں';
+
+  @override
+  String get noQuranAudioPlaying => 'قرآن کی تلاوت نہیں چل رہی';
 
   @override
   String get noResultsFound => 'کوئی نتیجہ نہیں ملا';
@@ -797,6 +755,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get nowPlaying => 'اب چل رہا ہے';
 
   @override
+  String get onboardingAppName => 'رفیق';
+
+  @override
   String get onboardingAsmaulHusnaDescription =>
       'اللہ کے 99 خوبصورت ناموں کو معانی کے ساتھ سیکھیں';
 
@@ -805,8 +766,26 @@ class AppLocalizationsUr extends AppLocalizations {
       'ہجری اور عیسوی تاریخوں کو دیکھیں اور تبدیل کریں';
 
   @override
+  String get onboardingJuristicDescription =>
+      'عصر کی نماز کے وقت کے لیے اپنا فقہی طریقہ منتخب کریں۔';
+
+  @override
   String get onboardingLanguageDescription =>
       'اپنے تجربے کو ذاتی بنانے کے لیے اپنی ترجیحی زبان منتخب کریں';
+
+  @override
+  String get onboardingLocationDescription =>
+      'اپنا مقام مقرر کریں تاکہ نماز کے اوقات اور قبلہ کی رہنمائی درست ہو۔';
+
+  @override
+  String get onboardingNotificationBody => 'نماز کا وقت ہے۔';
+
+  @override
+  String get onboardingNotificationsDescription =>
+      'نماز نہ بھولیں۔ رفیق نماز کے وقت نرمی سے آپ کو یاد دہانی کرا سکتا ہے۔';
+
+  @override
+  String get onboardingNotificationTitle => 'ظہر کی نماز کا وقت ہو گیا ہے';
 
   @override
   String get onboardingPrayerTimesDescription =>
@@ -833,10 +812,16 @@ class AppLocalizationsUr extends AppLocalizations {
       'آپ کی روزمرہ روحانی ضروریات کے لیے مکمل اسلامی ساتھی';
 
   @override
+  String get onboardingWelcomeTitle => 'آپ کے روزمرہ کے اسلامی ساتھی';
+
+  @override
   String get oneShawwal => '۱ شوال';
 
   @override
   String get openSettings => 'ترتیبات کھولیں';
+
+  @override
+  String get paused => 'تلاوت رکی ہوئی ہے';
 
   @override
   String get permissionsDescription =>
@@ -852,7 +837,21 @@ class AppLocalizationsUr extends AppLocalizations {
   String get permissionsTitle => 'اجازتیں فعال کریں';
 
   @override
+  String get playAudio => 'تلاوت چلائیں';
+
+  @override
+  String playbackComplete(Object name) {
+    return '$name مکمل ہو گیا';
+  }
+
+  @override
   String get playbackSettings => 'پلے بیک کی ترتیبات';
+
+  @override
+  String get playFromAyah => 'اس آیت سے تلاوت چلائیں';
+
+  @override
+  String get playing => 'تلاوت جاری ہے';
 
   @override
   String get prayEidToday => 'آج عید کی نماز ادا کریں';
@@ -862,6 +861,9 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get prayEidUlFitrToday => 'آج عید الفطر کی نماز ادا کریں';
+
+  @override
+  String get prayerAndFastingReminders => 'نماز، روزے اور عید کی یاد دہانیاں';
 
   @override
   String get prayerAsr => 'عصر';
@@ -891,16 +893,22 @@ class AppLocalizationsUr extends AppLocalizations {
   String get prayerTimes => 'نماز کے اوقات';
 
   @override
-  String get prayerAndFastingReminders => 'نماز، روزے اور عید کی یاد دہانیاں';
-
-  @override
   String get prayerTimesSettings => 'نماز کے اوقات کے ترتیبات';
 
   @override
   String get prayerTimesSubtitle => 'روزانہ نماز کا شیڈول';
 
   @override
+  String get prepareForPrayer => 'نماز کی تیاری کے لیے ایک لمحہ نکالیں۔';
+
+  @override
   String get preview => 'پیش نظارہ';
+
+  @override
+  String get privacyPolicy => 'رازداری کی پالیسی';
+
+  @override
+  String get privacyPolicySubtitle => 'آپ کا ڈیٹا، اجازتیں اور اختیارات';
 
   @override
   String get qibla => 'قبلہ';
@@ -932,6 +940,9 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get quranPageTab => 'صفحہ';
+
+  @override
+  String get quranRecitation => 'قرآن کی تلاوت';
 
   @override
   String get quranSubtitle => 'قرآن پاک پڑھیں اور سمجھیں';
@@ -973,7 +984,56 @@ class AppLocalizationsUr extends AppLocalizations {
   String get readSurahKahf => 'سورۃ الکہف پڑھیں';
 
   @override
+  String get redesignAdaptiveTheme => 'خودکار تھیم سپورٹ';
+
+  @override
+  String get redesignAdaptiveThemeDescription =>
+      'لائٹ اور ڈارک تھیم کے درمیان تبدیل کریں، یا رفیق کی مکمل شکل خودکار طور پر بدلنے کے لیے سسٹم تھیم استعمال کریں۔';
+
+  @override
+  String get redesignAyahMaker => 'آیت پکچر میکر';
+
+  @override
+  String get redesignAyahMakerDescription =>
+      'عربی متن، ترجمے اور ایڈیشن کی تخصیص کے ساتھ خوبصورت آیت کی تصاویر بنائیں اور انہیں سوشل میڈیا پر شیئر کریں۔';
+
+  @override
+  String get redesignDialogBody =>
+      'ہم نے رفیق کو مکمل طور پر نئے انداز میں پیش کیا ہے تاکہ آپ کا روزمرہ اسلامی تجربہ مزید صاف، آسان اور خوبصورت ہو۔';
+
+  @override
+  String get redesignDialogTitle => 'رفیق کا نیا خوبصورت انداز';
+
+  @override
+  String get redesignExtendedHome => 'توسیع شدہ ہوم تجربہ';
+
+  @override
+  String get redesignExtendedHomeDescription =>
+      'توسیع شدہ ہوم اسکرین پر نماز کے ممنوعہ اوقات، روزانہ کی آیت، ایپ شیئر کارڈ، افطار، سحری اور تہجد کے اوقات دیکھیں۔';
+
+  @override
+  String get redesignHomeScreen => 'ہوم اسکرین';
+
+  @override
+  String get redesignNewFeatures => 'مزید نئے تجربات';
+
+  @override
+  String get redesignQiblaScreen => 'قبلہ اسکرین';
+
+  @override
+  String get redesignQuranView => 'قرآن ویو';
+
+  @override
+  String get redesignSurahJuzList => 'سورت / پارہ فہرست';
+
+  @override
   String get removeBookmark => 'بک مارک ہٹائیں';
+
+  @override
+  String get reportIssue => 'مسئلہ رپورٹ کریں';
+
+  @override
+  String get reportIssueSubtitle => 'کوئی خرابی ملی؟ GitHub پر ہمیں بتائیں';
 
   @override
   String get reset => 'ری سیٹ';
@@ -1012,6 +1072,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get save => 'محفوظ کریں';
 
   @override
+  String get saveName => 'نام محفوظ کریں';
+
+  @override
   String get scriptStylingAndSize => 'اسکرپٹ اسٹائل اور سائز۔';
 
   @override
@@ -1047,6 +1110,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get selectFont => 'فونٹ منتخب کریں';
 
   @override
+  String get selectLanguage => 'زبان منتخب کریں';
+
+  @override
   String get selectLanguageSubtitle =>
       'جاری رکھنے کے لیے اپنی ترجیحی زبان منتخب کریں';
 
@@ -1070,7 +1136,19 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settingsResetSuccess => 'سیٹنگز طے شدہ پر ری سیٹ ہو گئیں';
 
   @override
+  String get settingsSectionAppInfo => 'ایپ کی معلومات';
+
+  @override
+  String get settingsSectionPrayer => 'نماز اور کیلنڈر';
+
+  @override
+  String get settingsSectionSupport => 'رفیق کا ساتھ دیں';
+
+  @override
   String get share => 'شیئر کریں';
+
+  @override
+  String get shareAyah => 'آیت شیئر کریں';
 
   @override
   String get shareThisApp => 'اس ایپ کو شیئر کریں';
@@ -1078,6 +1156,18 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get shareThisAppSubtitle =>
       'رفیق ایپ کو دوستوں اور گھر والوں کے ساتھ شیئر کریں';
+
+  @override
+  String get showArabic => 'عربی دکھائیں';
+
+  @override
+  String get showingMeaningInUrdu => 'معنی اردو میں دکھایا جا رہا ہے';
+
+  @override
+  String get showMeaning => 'معنی دکھائیں';
+
+  @override
+  String get showMeaningInUrdu => 'معنی اردو میں دکھائیں';
 
   @override
   String get showTranslation => 'ترجمہ دکھائیں';
@@ -1207,7 +1297,19 @@ class AppLocalizationsUr extends AppLocalizations {
   String get takbeerText => 'اللہ اکبر';
 
   @override
+  String get tapToExpand => 'تفصیل کے لیے ٹیپ کریں';
+
+  @override
+  String get tapToView => 'دیکھنے کے لیے ٹیپ کریں';
+
+  @override
   String get tenDhulHijjah => '۱۰ ذوالحجہ';
+
+  @override
+  String get termsAndConditions => 'شرائط و ضوابط';
+
+  @override
+  String get termsAndConditionsSubtitle => 'رفیق اور اس کے مواد کا استعمال';
 
   @override
   String get testNotification => 'اطلاع ٹیسٹ کریں';
@@ -1341,11 +1443,27 @@ class AppLocalizationsUr extends AppLocalizations {
   String get typeLabel => 'قسم';
 
   @override
+  String get unableToLoadAsma => 'اسماء الحسنیٰ لوڈ نہیں ہو سکے';
+
+  @override
+  String get unableToLoadQuran => 'قرآن لوڈ نہیں ہو سکا';
+
+  @override
   String get updateDownloadedMessage =>
       'رفیق کا نیا ورژن ڈاؤن لوڈ ہو چکا ہے اور انسٹال ہونے کے لیے تیار ہے۔';
 
   @override
   String get updateReady => 'اپ ڈیٹ تیار ہے';
+
+  @override
+  String get urduMode => 'اردو انداز';
+
+  @override
+  String get useUrduPictureLayout =>
+      'اردو کارڈ کی ترتیب اور ترجمہ استعمال کریں';
+
+  @override
+  String get usingUrduPictureLayout => 'اردو کارڈ کی ترتیب اور ترجمہ منتخب ہے';
 
   @override
   String get version => 'ورژن';
@@ -1411,122 +1529,4 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get waitingForLocation => 'مقام کا انتظار ہے...';
-
-  @override
-  String get onboardingAppName => 'رفیق';
-
-  @override
-  String get onboardingWelcomeTitle => 'آپ کے روزمرہ کے اسلامی ساتھی';
-
-  @override
-  String get selectLanguage => 'زبان منتخب کریں';
-
-  @override
-  String get allowNotifications => 'اطلاعات کی اجازت دیں';
-
-  @override
-  String get onboardingNotificationsDescription =>
-      'نماز نہ بھولیں۔ رفیق نماز کے وقت نرمی سے آپ کو یاد دہانی کرا سکتا ہے۔';
-
-  @override
-  String get dhuhrPrayerBeginsSoon => 'ظہر کی نماز کا وقت قریب ہے';
-
-  @override
-  String get prepareForPrayer => 'نماز کی تیاری کے لیے ایک لمحہ نکالیں۔';
-
-  @override
-  String get onboardingNotificationTitle => 'ظہر کی نماز کا وقت ہو گیا ہے';
-
-  @override
-  String get onboardingNotificationBody => 'نماز کا وقت ہے۔';
-
-  @override
-  String get onboardingLocationDescription =>
-      'اپنا مقام مقرر کریں تاکہ نماز کے اوقات اور قبلہ کی رہنمائی درست ہو۔';
-
-  @override
-  String get onboardingJuristicDescription =>
-      'عصر کی نماز کے وقت کے لیے اپنا فقہی طریقہ منتخب کریں۔';
-
-  @override
-  String get allow => 'اجازت دیں';
-
-  @override
-  String get finish => 'مکمل کریں';
-
-  @override
-  String get back => 'واپس';
-
-  @override
-  String get redesignDialogTitle => 'رفیق کا نیا خوبصورت انداز';
-
-  @override
-  String get redesignDialogBody =>
-      'ہم نے رفیق کو مکمل طور پر نئے انداز میں پیش کیا ہے تاکہ آپ کا روزمرہ اسلامی تجربہ مزید صاف، آسان اور خوبصورت ہو۔';
-
-  @override
-  String get gotIt => 'سمجھ گیا';
-
-  @override
-  String get imageLoadError => 'تصویر لوڈ نہیں ہو سکی';
-
-  @override
-  String get homeNewLook => 'نیا انداز';
-
-  @override
-  String get redesignHomeScreen => 'ہوم اسکرین';
-
-  @override
-  String get redesignQiblaScreen => 'قبلہ اسکرین';
-
-  @override
-  String get redesignQuranView => 'قرآن ویو';
-
-  @override
-  String get redesignSurahJuzList => 'سورت / پارہ فہرست';
-
-  @override
-  String get redesignNewFeatures => 'مزید نئے تجربات';
-
-  @override
-  String get redesignAyahMaker => 'آیت پکچر میکر';
-
-  @override
-  String get redesignAyahMakerDescription =>
-      'عربی متن، ترجمے اور ایڈیشن کی تخصیص کے ساتھ خوبصورت آیت کی تصاویر بنائیں اور انہیں سوشل میڈیا پر شیئر کریں۔';
-
-  @override
-  String get redesignExtendedHome => 'توسیع شدہ ہوم تجربہ';
-
-  @override
-  String get redesignExtendedHomeDescription =>
-      'توسیع شدہ ہوم اسکرین پر نماز کے ممنوعہ اوقات، روزانہ کی آیت، ایپ شیئر کارڈ، افطار، سحری اور تہجد کے اوقات دیکھیں۔';
-
-  @override
-  String get redesignAdaptiveTheme => 'خودکار تھیم سپورٹ';
-
-  @override
-  String get redesignAdaptiveThemeDescription =>
-      'لائٹ اور ڈارک تھیم کے درمیان تبدیل کریں، یا رفیق کی مکمل شکل خودکار طور پر بدلنے کے لیے سسٹم تھیم استعمال کریں۔';
-
-  @override
-  String get firstNameRequired => 'براہ کرم اپنا پہلا نام درج کریں۔';
-
-  @override
-  String get saveName => 'نام محفوظ کریں';
-
-  @override
-  String get privacyPolicy => 'رازداری کی پالیسی';
-
-  @override
-  String get privacyPolicySubtitle => 'آپ کا ڈیٹا، اجازتیں اور اختیارات';
-
-  @override
-  String get termsAndConditions => 'شرائط و ضوابط';
-
-  @override
-  String get termsAndConditionsSubtitle => 'رفیق اور اس کے مواد کا استعمال';
-
-  @override
-  String get legalRetry => 'صفحہ لوڈ نہیں ہو سکا۔ دوبارہ کوشش کریں۔';
 }

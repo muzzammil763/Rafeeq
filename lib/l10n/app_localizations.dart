@@ -104,6 +104,66 @@ abstract class AppLocalizations {
   /// **'About'**
   String get about;
 
+  /// No description provided for @aboutBeginningBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Rafeeq began with a simple idea from my elder brother. We are both software developers, and one day he decided to build an Islamic app that would bring essential Muslim needs such as the Qur\'an, Qiblah, prayer times and more together in one place. Later, I — Muzamil Ghafoor — joined him, and Rafeeq became a journey shared by two brothers.'**
+  String get aboutBeginningBody;
+
+  /// No description provided for @aboutBeginningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How Rafeeq began'**
+  String get aboutBeginningTitle;
+
+  /// No description provided for @aboutClosingStatement.
+  ///
+  /// In en, this message translates to:
+  /// **'Built by Muslims, for Muslims — for the Ummah of Prophet Muhammad (PBUH) and for the sake of Allah Almighty. ❤️ '**
+  String get aboutClosingStatement;
+
+  /// No description provided for @aboutCommunityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'My brother and I are here for you. You can request a feature, report a bug or share an idea with us. We will listen, and we will keep doing our best to make Rafeeq better for Muslims everywhere.'**
+  String get aboutCommunityBody;
+
+  /// No description provided for @aboutCommunityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We are here for you'**
+  String get aboutCommunityTitle;
+
+  /// No description provided for @aboutDesignBody.
+  ///
+  /// In en, this message translates to:
+  /// **'When we first started, we did not have a complete design plan. Even after adding features, we often felt that something was still missing, so we rebuilt the app\'s entire design system twice. With this latest version, we have tried to create something minimal, clear and pleasantly refined. The Islamic app Sadiq was also a meaningful source of inspiration for us, and I am grateful for it.'**
+  String get aboutDesignBody;
+
+  /// No description provided for @aboutDesignTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Our design journey'**
+  String get aboutDesignTitle;
+
+  /// No description provided for @aboutFreeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'I want Rafeeq to remain free for everyone for its entire lifetime, In Sha Allah. In the future, we may add an optional way for Muslims to support the app\'s development and running costs. Any support will be used to maintain and improve Rafeeq; we do not intend to take anything from it for ourselves, In Sha Allah.'**
+  String get aboutFreeBody;
+
+  /// No description provided for @aboutFreeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Free for life, In Sha Allah'**
+  String get aboutFreeTitle;
+
+  /// No description provided for @aboutPortfolioOpenError.
+  ///
+  /// In en, this message translates to:
+  /// **'The portfolio could not be opened.'**
+  String get aboutPortfolioOpenError;
+
   /// No description provided for @aboutSubtitle.
   ///
   /// In en, this message translates to:
@@ -116,17 +176,11 @@ abstract class AppLocalizations {
   /// **'Your Muslim Companion'**
   String get aboutTagline;
 
-  /// No description provided for @aboutBeginningTitle.
+  /// No description provided for @aboutTogetherBody.
   ///
   /// In en, this message translates to:
-  /// **'How Rafeeq began'**
-  String get aboutBeginningTitle;
-
-  /// No description provided for @aboutBeginningBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Rafeeq began with a simple idea from my elder brother. We are both software developers, and one day he decided to build an Islamic app that would bring essential Muslim needs such as the Qur\'an, Qiblah, prayer times and more together in one place. Later, I — Muzamil Ghafoor — joined him, and Rafeeq became a journey shared by two brothers.'**
-  String get aboutBeginningBody;
+  /// **'Since then, my brother and I have worked on Rafeeq as a team. We started again together, gradually implemented the core features and kept adding more over time. Whenever our other responsibilities leave us some time, we come back to Rafeeq to improve it and thoughtfully prepare the next update.'**
+  String get aboutTogetherBody;
 
   /// No description provided for @aboutTogetherTitle.
   ///
@@ -134,23 +188,11 @@ abstract class AppLocalizations {
   /// **'Growing together'**
   String get aboutTogetherTitle;
 
-  /// No description provided for @aboutTogetherBody.
+  /// No description provided for @aboutUmmahBody.
   ///
   /// In en, this message translates to:
-  /// **'Since then, my brother and I have worked on Rafeeq as a team. We started again together, gradually implemented the core features and kept adding more over time. Whenever our other responsibilities leave us some time, we come back to Rafeeq to improve it and thoughtfully prepare the next update.'**
-  String get aboutTogetherBody;
-
-  /// No description provided for @aboutDesignTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Our design journey'**
-  String get aboutDesignTitle;
-
-  /// No description provided for @aboutDesignBody.
-  ///
-  /// In en, this message translates to:
-  /// **'When we first started, we did not have a complete design plan. Even after adding features, we often felt that something was still missing, so we rebuilt the app\'s entire design system twice. With this latest version, we have tried to create something minimal, clear and pleasantly refined. The Islamic app Sadiq was also a meaningful source of inspiration for us, and I am grateful for it.'**
-  String get aboutDesignBody;
+  /// **'For me, Rafeeq is more than just another software project. My brother and I want to keep improving it for the Ummah of Prophet Muhammad (PBUH). I am deeply thankful to Allah Almighty for giving us the ability to work on something that may benefit other Muslims.'**
+  String get aboutUmmahBody;
 
   /// No description provided for @aboutUmmahTitle.
   ///
@@ -158,47 +200,11 @@ abstract class AppLocalizations {
   /// **'For the Ummah'**
   String get aboutUmmahTitle;
 
-  /// No description provided for @aboutUmmahBody.
+  /// No description provided for @allow.
   ///
   /// In en, this message translates to:
-  /// **'For me, Rafeeq is more than just another software project. My brother and I want to keep improving it for the Ummah of Prophet Muhammad (PBUH). I am deeply thankful to Allah Almighty for giving us the ability to work on something that may benefit other Muslims.'**
-  String get aboutUmmahBody;
-
-  /// No description provided for @aboutFreeTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Free for life, In Sha Allah'**
-  String get aboutFreeTitle;
-
-  /// No description provided for @aboutFreeBody.
-  ///
-  /// In en, this message translates to:
-  /// **'I want Rafeeq to remain free for everyone for its entire lifetime, In Sha Allah. In the future, we may add an optional way for Muslims to support the app\'s development and running costs. Any support will be used to maintain and improve Rafeeq; we do not intend to take anything from it for ourselves, In Sha Allah.'**
-  String get aboutFreeBody;
-
-  /// No description provided for @aboutCommunityTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'We are here for you'**
-  String get aboutCommunityTitle;
-
-  /// No description provided for @aboutCommunityBody.
-  ///
-  /// In en, this message translates to:
-  /// **'My brother and I are here for you. You can request a feature, report a bug or share an idea with us. We will listen, and we will keep doing our best to make Rafeeq better for Muslims everywhere.'**
-  String get aboutCommunityBody;
-
-  /// No description provided for @aboutClosingStatement.
-  ///
-  /// In en, this message translates to:
-  /// **'Built by Muslims, for Muslims — for the Ummah of Prophet Muhammad (PBUH) and for the sake of Allah Almighty. ❤️ '**
-  String get aboutClosingStatement;
-
-  /// No description provided for @aboutPortfolioOpenError.
-  ///
-  /// In en, this message translates to:
-  /// **'The portfolio could not be opened.'**
-  String get aboutPortfolioOpenError;
+  /// **'Allow'**
+  String get allow;
 
   /// No description provided for @allowLocation.
   ///
@@ -211,6 +217,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Automatically updates prayer times.'**
   String get allowLocationDescription;
+
+  /// No description provided for @allowNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow Notifications'**
+  String get allowNotifications;
 
   /// No description provided for @appIconChanged.
   ///
@@ -260,17 +272,17 @@ abstract class AppLocalizations {
   /// **'Arabic Text'**
   String get arabicText;
 
+  /// No description provided for @asmaPicture.
+  ///
+  /// In en, this message translates to:
+  /// **'Asma\'ul Husna Picture'**
+  String get asmaPicture;
+
   /// No description provided for @asmaulhusna.
   ///
   /// In en, this message translates to:
   /// **'Asma\'ul Husna'**
   String get asmaulhusna;
-
-  /// No description provided for @asmaulhusnaSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'99 Names of Allah'**
-  String get asmaulhusnaSubtitle;
 
   /// No description provided for @asmaulhusnaExplanation.
   ///
@@ -283,6 +295,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Meaning'**
   String get asmaulhusnaMeaning;
+
+  /// No description provided for @asmaulhusnaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'99 Names of Allah'**
+  String get asmaulhusnaSubtitle;
 
   /// No description provided for @asrCalculationMethod.
   ///
@@ -355,6 +373,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose the look of the Ayah card.'**
   String get ayahThemeSubtitle;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @bookmarkAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmark ayah'**
+  String get bookmarkAyah;
 
   /// No description provided for @bookmarkAyahsPrompt.
   ///
@@ -512,6 +542,12 @@ abstract class AppLocalizations {
   /// **'Choose Reciter'**
   String get chooseReciter;
 
+  /// No description provided for @chooseSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Surah'**
+  String get chooseSurah;
+
   /// No description provided for @chooseTheme.
   ///
   /// In en, this message translates to:
@@ -649,6 +685,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Days Missed'**
   String get daysMissed;
+
+  /// No description provided for @dhuhrPrayerBeginsSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhuhr prayer begins soon'**
+  String get dhuhrPrayerBeginsSoon;
 
   /// No description provided for @dummyHeading.
   ///
@@ -854,6 +896,18 @@ abstract class AppLocalizations {
   /// **'Send us your suggestions or report issues'**
   String get feedbackSubtitle;
 
+  /// No description provided for @finish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get finish;
+
+  /// No description provided for @firstNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your first name.'**
+  String get firstNameRequired;
+
   /// No description provided for @fridayCard.
   ///
   /// In en, this message translates to:
@@ -889,6 +943,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Google Font (downloads on first use)'**
   String get googleFontDownloadInfo;
+
+  /// No description provided for @gotIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get gotIt;
 
   /// No description provided for @grade.
   ///
@@ -1004,6 +1064,12 @@ abstract class AppLocalizations {
   /// **'Allah\'s Names'**
   String get homeAllahsNames;
 
+  /// No description provided for @homeAyahPicture.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Picture'**
+  String get homeAyahPicture;
+
   /// No description provided for @homeCalendar.
   ///
   /// In en, this message translates to:
@@ -1034,234 +1100,6 @@ abstract class AppLocalizations {
   /// **'Explore'**
   String get homeExplore;
 
-  /// No description provided for @homeAyahPicture.
-  ///
-  /// In en, this message translates to:
-  /// **'Ayah Picture'**
-  String get homeAyahPicture;
-
-  /// No description provided for @asmaPicture.
-  ///
-  /// In en, this message translates to:
-  /// **'Asma\'ul Husna Picture'**
-  String get asmaPicture;
-
-  /// No description provided for @licenses.
-  ///
-  /// In en, this message translates to:
-  /// **'Licenses'**
-  String get licenses;
-
-  /// No description provided for @licensesCount.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{1 license} other{{count} licenses}}'**
-  String licensesCount(int count);
-
-  /// No description provided for @licensesIntro.
-  ///
-  /// In en, this message translates to:
-  /// **'Rafeeq is built on these open-source packages. Thank you to everyone who made them.'**
-  String get licensesIntro;
-
-  /// No description provided for @licensesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Open-source packages used in Rafeeq'**
-  String get licensesSubtitle;
-
-  /// No description provided for @reportIssue.
-  ///
-  /// In en, this message translates to:
-  /// **'Report an issue'**
-  String get reportIssue;
-
-  /// No description provided for @reportIssueSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Found a bug? Let us know on GitHub'**
-  String get reportIssueSubtitle;
-
-  /// No description provided for @settingsSectionAppInfo.
-  ///
-  /// In en, this message translates to:
-  /// **'App info'**
-  String get settingsSectionAppInfo;
-
-  /// No description provided for @settingsSectionPrayer.
-  ///
-  /// In en, this message translates to:
-  /// **'Prayer & Calendar'**
-  String get settingsSectionPrayer;
-
-  /// No description provided for @settingsSectionSupport.
-  ///
-  /// In en, this message translates to:
-  /// **'Support Rafeeq'**
-  String get settingsSectionSupport;
-
-  /// No description provided for @showArabic.
-  ///
-  /// In en, this message translates to:
-  /// **'Show Arabic'**
-  String get showArabic;
-
-  /// No description provided for @showMeaning.
-  ///
-  /// In en, this message translates to:
-  /// **'Show Meaning'**
-  String get showMeaning;
-
-  /// No description provided for @includeArabicAyah.
-  ///
-  /// In en, this message translates to:
-  /// **'Include the Arabic Ayah in the picture'**
-  String get includeArabicAyah;
-
-  /// No description provided for @includeArabicName.
-  ///
-  /// In en, this message translates to:
-  /// **'Include Allah\'s Arabic name in the picture'**
-  String get includeArabicName;
-
-  /// No description provided for @includeTranslation.
-  ///
-  /// In en, this message translates to:
-  /// **'Include the selected translation in the picture'**
-  String get includeTranslation;
-
-  /// No description provided for @includeNameMeaning.
-  ///
-  /// In en, this message translates to:
-  /// **'Include the name meaning in the picture'**
-  String get includeNameMeaning;
-
-  /// No description provided for @urduMode.
-  ///
-  /// In en, this message translates to:
-  /// **'Urdu Mode'**
-  String get urduMode;
-
-  /// No description provided for @showMeaningInUrdu.
-  ///
-  /// In en, this message translates to:
-  /// **'Show the meaning in Urdu'**
-  String get showMeaningInUrdu;
-
-  /// No description provided for @showingMeaningInUrdu.
-  ///
-  /// In en, this message translates to:
-  /// **'Showing the meaning in Urdu'**
-  String get showingMeaningInUrdu;
-
-  /// No description provided for @useUrduPictureLayout.
-  ///
-  /// In en, this message translates to:
-  /// **'Use Urdu card layout and translation'**
-  String get useUrduPictureLayout;
-
-  /// No description provided for @usingUrduPictureLayout.
-  ///
-  /// In en, this message translates to:
-  /// **'Urdu card layout and translation defaults'**
-  String get usingUrduPictureLayout;
-
-  /// No description provided for @chooseSurah.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose Surah'**
-  String get chooseSurah;
-
-  /// No description provided for @jumpToAyah.
-  ///
-  /// In en, this message translates to:
-  /// **'Jump To Ayah'**
-  String get jumpToAyah;
-
-  /// No description provided for @unableToLoadQuran.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to load Quran'**
-  String get unableToLoadQuran;
-
-  /// No description provided for @unableToLoadAsma.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to load Asma\'ul Husna'**
-  String get unableToLoadAsma;
-
-  /// No description provided for @playAudio.
-  ///
-  /// In en, this message translates to:
-  /// **'Play Audio'**
-  String get playAudio;
-
-  /// No description provided for @playFromAyah.
-  ///
-  /// In en, this message translates to:
-  /// **'Play from this ayah'**
-  String get playFromAyah;
-
-  /// No description provided for @bookmarkAyah.
-  ///
-  /// In en, this message translates to:
-  /// **'Bookmark ayah'**
-  String get bookmarkAyah;
-
-  /// No description provided for @shareAyah.
-  ///
-  /// In en, this message translates to:
-  /// **'Share ayah'**
-  String get shareAyah;
-
-  /// No description provided for @playing.
-  ///
-  /// In en, this message translates to:
-  /// **'Playing'**
-  String get playing;
-
-  /// No description provided for @paused.
-  ///
-  /// In en, this message translates to:
-  /// **'Paused'**
-  String get paused;
-
-  /// No description provided for @noAyahPlaying.
-  ///
-  /// In en, this message translates to:
-  /// **'No ayah playing'**
-  String get noAyahPlaying;
-
-  /// No description provided for @noQuranAudioPlaying.
-  ///
-  /// In en, this message translates to:
-  /// **'No Quran audio is playing'**
-  String get noQuranAudioPlaying;
-
-  /// No description provided for @quranRecitation.
-  ///
-  /// In en, this message translates to:
-  /// **'Quran recitation'**
-  String get quranRecitation;
-
-  /// No description provided for @tapToExpand.
-  ///
-  /// In en, this message translates to:
-  /// **'Tap to expand'**
-  String get tapToExpand;
-
-  /// No description provided for @tapToView.
-  ///
-  /// In en, this message translates to:
-  /// **'Tap to view'**
-  String get tapToView;
-
-  /// No description provided for @playbackComplete.
-  ///
-  /// In en, this message translates to:
-  /// **'{name} complete'**
-  String playbackComplete(Object name);
-
   /// No description provided for @homeForbiddenSalatTimes.
   ///
   /// In en, this message translates to:
@@ -1285,6 +1123,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Mosques'**
   String get homeMosques;
+
+  /// No description provided for @homeNewLook.
+  ///
+  /// In en, this message translates to:
+  /// **'New Look'**
+  String get homeNewLook;
 
   /// No description provided for @homeNoon.
   ///
@@ -1340,11 +1184,47 @@ abstract class AppLocalizations {
   /// **'Iftar'**
   String get iftar;
 
+  /// No description provided for @imageLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load image'**
+  String get imageLoadError;
+
+  /// No description provided for @includeArabicAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Include the Arabic Ayah in the picture'**
+  String get includeArabicAyah;
+
+  /// No description provided for @includeArabicName.
+  ///
+  /// In en, this message translates to:
+  /// **'Include Allah\'s Arabic name in the picture'**
+  String get includeArabicName;
+
+  /// No description provided for @includeNameMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Include the name meaning in the picture'**
+  String get includeNameMeaning;
+
+  /// No description provided for @includeTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Include the selected translation in the picture'**
+  String get includeTranslation;
+
   /// No description provided for @installNow.
   ///
   /// In en, this message translates to:
   /// **'Install Now'**
   String get installNow;
+
+  /// No description provided for @jumpToAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Jump To Ayah'**
+  String get jumpToAyah;
 
   /// No description provided for @juristicMethod.
   ///
@@ -1387,6 +1267,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Later'**
   String get later;
+
+  /// No description provided for @legalRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load this page. Tap to retry.'**
+  String get legalRetry;
+
+  /// No description provided for @licenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Licenses'**
+  String get licenses;
+
+  /// No description provided for @licensesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 license} other{{count} licenses}}'**
+  String licensesCount(int count);
+
+  /// No description provided for @licensesIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Rafeeq is built on these open-source packages. Thank you to everyone who made them.'**
+  String get licensesIntro;
+
+  /// No description provided for @licensesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open-source packages used in Rafeeq'**
+  String get licensesSubtitle;
 
   /// No description provided for @listen.
   ///
@@ -1508,11 +1418,23 @@ abstract class AppLocalizations {
   /// **'No'**
   String get no;
 
+  /// No description provided for @noAyahPlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'No ayah playing'**
+  String get noAyahPlaying;
+
   /// No description provided for @noBookmarksYet.
   ///
   /// In en, this message translates to:
   /// **'No bookmarks yet'**
   String get noBookmarksYet;
+
+  /// No description provided for @noQuranAudioPlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'No Quran audio is playing'**
+  String get noQuranAudioPlaying;
 
   /// No description provided for @noResultsFound.
   ///
@@ -1574,6 +1496,12 @@ abstract class AppLocalizations {
   /// **'Now Playing'**
   String get nowPlaying;
 
+  /// No description provided for @onboardingAppName.
+  ///
+  /// In en, this message translates to:
+  /// **'Rafeeq'**
+  String get onboardingAppName;
+
   /// No description provided for @onboardingAsmaulHusnaDescription.
   ///
   /// In en, this message translates to:
@@ -1586,11 +1514,41 @@ abstract class AppLocalizations {
   /// **'View and convert dates between Hijri and Gregorian calendars'**
   String get onboardingHijriCalendarDescription;
 
+  /// No description provided for @onboardingJuristicDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your school of thought (Madhab) for Asr prayer time.'**
+  String get onboardingJuristicDescription;
+
   /// No description provided for @onboardingLanguageDescription.
   ///
   /// In en, this message translates to:
   /// **'Choose your preferred language to personalize your experience'**
   String get onboardingLanguageDescription;
+
+  /// No description provided for @onboardingLocationDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your location so prayer times and Qibla guidance are accurate for you.'**
+  String get onboardingLocationDescription;
+
+  /// No description provided for @onboardingNotificationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It is prayer time.'**
+  String get onboardingNotificationBody;
+
+  /// No description provided for @onboardingNotificationsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Never miss a prayer. Rafeeq can gently remind you when it is time to pray.'**
+  String get onboardingNotificationsDescription;
+
+  /// No description provided for @onboardingNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s time for the Dhuhr prayer'**
+  String get onboardingNotificationTitle;
 
   /// No description provided for @onboardingPrayerTimesDescription.
   ///
@@ -1628,6 +1586,12 @@ abstract class AppLocalizations {
   /// **'Your complete Islamic companion for daily spiritual needs'**
   String get onboardingWelcomeDescription;
 
+  /// No description provided for @onboardingWelcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Daily Muslim Companion'**
+  String get onboardingWelcomeTitle;
+
   /// No description provided for @oneShawwal.
   ///
   /// In en, this message translates to:
@@ -1639,6 +1603,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open Settings'**
   String get openSettings;
+
+  /// No description provided for @paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get paused;
 
   /// No description provided for @permissionsDescription.
   ///
@@ -1664,11 +1634,35 @@ abstract class AppLocalizations {
   /// **'Enable Permissions'**
   String get permissionsTitle;
 
+  /// No description provided for @playAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Play Audio'**
+  String get playAudio;
+
+  /// No description provided for @playbackComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} complete'**
+  String playbackComplete(Object name);
+
   /// No description provided for @playbackSettings.
   ///
   /// In en, this message translates to:
   /// **'Playback Settings'**
   String get playbackSettings;
+
+  /// No description provided for @playFromAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Play from this ayah'**
+  String get playFromAyah;
+
+  /// No description provided for @playing.
+  ///
+  /// In en, this message translates to:
+  /// **'Playing'**
+  String get playing;
 
   /// No description provided for @prayEidToday.
   ///
@@ -1687,6 +1681,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pray Eid-ul-Fitr Today'**
   String get prayEidUlFitrToday;
+
+  /// No description provided for @prayerAndFastingReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer, Fasting & Eid Reminders'**
+  String get prayerAndFastingReminders;
 
   /// No description provided for @prayerAsr.
   ///
@@ -1742,12 +1742,6 @@ abstract class AppLocalizations {
   /// **'Prayer Times'**
   String get prayerTimes;
 
-  /// No description provided for @prayerAndFastingReminders.
-  ///
-  /// In en, this message translates to:
-  /// **'Prayer, Fasting & Eid Reminders'**
-  String get prayerAndFastingReminders;
-
   /// No description provided for @prayerTimesSettings.
   ///
   /// In en, this message translates to:
@@ -1760,11 +1754,29 @@ abstract class AppLocalizations {
   /// **'Daily salah schedule'**
   String get prayerTimesSubtitle;
 
+  /// No description provided for @prepareForPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a moment to prepare for prayer.'**
+  String get prepareForPrayer;
+
   /// No description provided for @preview.
   ///
   /// In en, this message translates to:
   /// **'Preview'**
   String get preview;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @privacyPolicySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data, permissions and choices'**
+  String get privacyPolicySubtitle;
 
   /// No description provided for @qibla.
   ///
@@ -1819,6 +1831,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Page'**
   String get quranPageTab;
+
+  /// No description provided for @quranRecitation.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran recitation'**
+  String get quranRecitation;
 
   /// No description provided for @quranSubtitle.
   ///
@@ -1898,11 +1916,101 @@ abstract class AppLocalizations {
   /// **'Tap To Read Surah Al-Kahf'**
   String get readSurahKahf;
 
+  /// No description provided for @redesignAdaptiveTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Adaptive Theme Support'**
+  String get redesignAdaptiveTheme;
+
+  /// No description provided for @redesignAdaptiveThemeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch between Light and Dark themes, or follow the system setting to automatically adapt Rafeeq\'s complete appearance.'**
+  String get redesignAdaptiveThemeDescription;
+
+  /// No description provided for @redesignAyahMaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Picture Maker'**
+  String get redesignAyahMaker;
+
+  /// No description provided for @redesignAyahMakerDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Create beautiful Ayah pictures with customization options for Arabic text, translations and editions, then share them on social media.'**
+  String get redesignAyahMakerDescription;
+
+  /// No description provided for @redesignDialogBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We have fully revamped Rafeeq to make your daily Islamic experience cleaner, clearer and more beautiful.'**
+  String get redesignDialogBody;
+
+  /// No description provided for @redesignDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A fresh new look for Rafeeq'**
+  String get redesignDialogTitle;
+
+  /// No description provided for @redesignExtendedHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Extended Home Experience'**
+  String get redesignExtendedHome;
+
+  /// No description provided for @redesignExtendedHomeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'See forbidden Salah times, the Daily Ayah and Share App cards, plus Iftar, Suhoor and Tahajjud times from the expanded Home screen.'**
+  String get redesignExtendedHomeDescription;
+
+  /// No description provided for @redesignHomeScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Home Screen'**
+  String get redesignHomeScreen;
+
+  /// No description provided for @redesignNewFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'More New Experiences'**
+  String get redesignNewFeatures;
+
+  /// No description provided for @redesignQiblaScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Qiblah Screen'**
+  String get redesignQiblaScreen;
+
+  /// No description provided for @redesignQuranView.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'an View'**
+  String get redesignQuranView;
+
+  /// No description provided for @redesignSurahJuzList.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah / Juz List'**
+  String get redesignSurahJuzList;
+
   /// No description provided for @removeBookmark.
   ///
   /// In en, this message translates to:
   /// **'Remove bookmark'**
   String get removeBookmark;
+
+  /// No description provided for @reportIssue.
+  ///
+  /// In en, this message translates to:
+  /// **'Report an issue'**
+  String get reportIssue;
+
+  /// No description provided for @reportIssueSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Found a bug? Let us know on GitHub'**
+  String get reportIssueSubtitle;
 
   /// No description provided for @reset.
   ///
@@ -1970,6 +2078,12 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get save;
 
+  /// No description provided for @saveName.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Name'**
+  String get saveName;
+
   /// No description provided for @scriptStylingAndSize.
   ///
   /// In en, this message translates to:
@@ -2036,6 +2150,12 @@ abstract class AppLocalizations {
   /// **'Select Font'**
   String get selectFont;
 
+  /// No description provided for @selectLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a Language'**
+  String get selectLanguage;
+
   /// No description provided for @selectLanguageSubtitle.
   ///
   /// In en, this message translates to:
@@ -2078,11 +2198,35 @@ abstract class AppLocalizations {
   /// **'Settings reset to default'**
   String get settingsResetSuccess;
 
+  /// No description provided for @settingsSectionAppInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'App info'**
+  String get settingsSectionAppInfo;
+
+  /// No description provided for @settingsSectionPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer & Calendar'**
+  String get settingsSectionPrayer;
+
+  /// No description provided for @settingsSectionSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Rafeeq'**
+  String get settingsSectionSupport;
+
   /// No description provided for @share.
   ///
   /// In en, this message translates to:
   /// **'Share'**
   String get share;
+
+  /// No description provided for @shareAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Share ayah'**
+  String get shareAyah;
 
   /// No description provided for @shareThisApp.
   ///
@@ -2095,6 +2239,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Share Rafeeq with friends and family'**
   String get shareThisAppSubtitle;
+
+  /// No description provided for @showArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Arabic'**
+  String get showArabic;
+
+  /// No description provided for @showingMeaningInUrdu.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing the meaning in Urdu'**
+  String get showingMeaningInUrdu;
+
+  /// No description provided for @showMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Meaning'**
+  String get showMeaning;
+
+  /// No description provided for @showMeaningInUrdu.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the meaning in Urdu'**
+  String get showMeaningInUrdu;
 
   /// No description provided for @showTranslation.
   ///
@@ -2342,11 +2510,35 @@ abstract class AppLocalizations {
   /// **'Allahu Akbar'**
   String get takbeerText;
 
+  /// No description provided for @tapToExpand.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to expand'**
+  String get tapToExpand;
+
+  /// No description provided for @tapToView.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to view'**
+  String get tapToView;
+
   /// No description provided for @tenDhulHijjah.
   ///
   /// In en, this message translates to:
   /// **'10 Dhul Hijjah'**
   String get tenDhulHijjah;
+
+  /// No description provided for @termsAndConditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms & Conditions'**
+  String get termsAndConditions;
+
+  /// No description provided for @termsAndConditionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Using Rafeeq and its content'**
+  String get termsAndConditionsSubtitle;
 
   /// No description provided for @testNotification.
   ///
@@ -2606,6 +2798,18 @@ abstract class AppLocalizations {
   /// **'Type'**
   String get typeLabel;
 
+  /// No description provided for @unableToLoadAsma.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load Asma\'ul Husna'**
+  String get unableToLoadAsma;
+
+  /// No description provided for @unableToLoadQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load Quran'**
+  String get unableToLoadQuran;
+
   /// No description provided for @updateDownloadedMessage.
   ///
   /// In en, this message translates to:
@@ -2617,6 +2821,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Update Ready'**
   String get updateReady;
+
+  /// No description provided for @urduMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Urdu Mode'**
+  String get urduMode;
+
+  /// No description provided for @useUrduPictureLayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Urdu card layout and translation'**
+  String get useUrduPictureLayout;
+
+  /// No description provided for @usingUrduPictureLayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Urdu card layout and translation defaults'**
+  String get usingUrduPictureLayout;
 
   /// No description provided for @version.
   ///
@@ -2737,228 +2959,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Waiting for location...'**
   String get waitingForLocation;
-
-  /// No description provided for @onboardingAppName.
-  ///
-  /// In en, this message translates to:
-  /// **'Rafeeq'**
-  String get onboardingAppName;
-
-  /// No description provided for @onboardingWelcomeTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Your Daily Muslim Companion'**
-  String get onboardingWelcomeTitle;
-
-  /// No description provided for @selectLanguage.
-  ///
-  /// In en, this message translates to:
-  /// **'Select a Language'**
-  String get selectLanguage;
-
-  /// No description provided for @allowNotifications.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow Notifications'**
-  String get allowNotifications;
-
-  /// No description provided for @onboardingNotificationsDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Never miss a prayer. Rafeeq can gently remind you when it is time to pray.'**
-  String get onboardingNotificationsDescription;
-
-  /// No description provided for @dhuhrPrayerBeginsSoon.
-  ///
-  /// In en, this message translates to:
-  /// **'Dhuhr prayer begins soon'**
-  String get dhuhrPrayerBeginsSoon;
-
-  /// No description provided for @prepareForPrayer.
-  ///
-  /// In en, this message translates to:
-  /// **'Take a moment to prepare for prayer.'**
-  String get prepareForPrayer;
-
-  /// No description provided for @onboardingNotificationTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'It\'s time for the Dhuhr prayer'**
-  String get onboardingNotificationTitle;
-
-  /// No description provided for @onboardingNotificationBody.
-  ///
-  /// In en, this message translates to:
-  /// **'It is prayer time.'**
-  String get onboardingNotificationBody;
-
-  /// No description provided for @onboardingLocationDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Set your location so prayer times and Qibla guidance are accurate for you.'**
-  String get onboardingLocationDescription;
-
-  /// No description provided for @onboardingJuristicDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose your school of thought (Madhab) for Asr prayer time.'**
-  String get onboardingJuristicDescription;
-
-  /// No description provided for @allow.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow'**
-  String get allow;
-
-  /// No description provided for @finish.
-  ///
-  /// In en, this message translates to:
-  /// **'Finish'**
-  String get finish;
-
-  /// No description provided for @back.
-  ///
-  /// In en, this message translates to:
-  /// **'Back'**
-  String get back;
-
-  /// No description provided for @redesignDialogTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'A fresh new look for Rafeeq'**
-  String get redesignDialogTitle;
-
-  /// No description provided for @redesignDialogBody.
-  ///
-  /// In en, this message translates to:
-  /// **'We have fully revamped Rafeeq to make your daily Islamic experience cleaner, clearer and more beautiful.'**
-  String get redesignDialogBody;
-
-  /// No description provided for @gotIt.
-  ///
-  /// In en, this message translates to:
-  /// **'Got it'**
-  String get gotIt;
-
-  /// No description provided for @imageLoadError.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to load image'**
-  String get imageLoadError;
-
-  /// No description provided for @homeNewLook.
-  ///
-  /// In en, this message translates to:
-  /// **'New Look'**
-  String get homeNewLook;
-
-  /// No description provided for @redesignHomeScreen.
-  ///
-  /// In en, this message translates to:
-  /// **'Home Screen'**
-  String get redesignHomeScreen;
-
-  /// No description provided for @redesignQiblaScreen.
-  ///
-  /// In en, this message translates to:
-  /// **'Qiblah Screen'**
-  String get redesignQiblaScreen;
-
-  /// No description provided for @redesignQuranView.
-  ///
-  /// In en, this message translates to:
-  /// **'Qur\'an View'**
-  String get redesignQuranView;
-
-  /// No description provided for @redesignSurahJuzList.
-  ///
-  /// In en, this message translates to:
-  /// **'Surah / Juz List'**
-  String get redesignSurahJuzList;
-
-  /// No description provided for @redesignNewFeatures.
-  ///
-  /// In en, this message translates to:
-  /// **'More New Experiences'**
-  String get redesignNewFeatures;
-
-  /// No description provided for @redesignAyahMaker.
-  ///
-  /// In en, this message translates to:
-  /// **'Ayah Picture Maker'**
-  String get redesignAyahMaker;
-
-  /// No description provided for @redesignAyahMakerDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Create beautiful Ayah pictures with customization options for Arabic text, translations and editions, then share them on social media.'**
-  String get redesignAyahMakerDescription;
-
-  /// No description provided for @redesignExtendedHome.
-  ///
-  /// In en, this message translates to:
-  /// **'Extended Home Experience'**
-  String get redesignExtendedHome;
-
-  /// No description provided for @redesignExtendedHomeDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'See forbidden Salah times, the Daily Ayah and Share App cards, plus Iftar, Suhoor and Tahajjud times from the expanded Home screen.'**
-  String get redesignExtendedHomeDescription;
-
-  /// No description provided for @redesignAdaptiveTheme.
-  ///
-  /// In en, this message translates to:
-  /// **'Adaptive Theme Support'**
-  String get redesignAdaptiveTheme;
-
-  /// No description provided for @redesignAdaptiveThemeDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Switch between Light and Dark themes, or follow the system setting to automatically adapt Rafeeq\'s complete appearance.'**
-  String get redesignAdaptiveThemeDescription;
-
-  /// No description provided for @firstNameRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Please enter your first name.'**
-  String get firstNameRequired;
-
-  /// No description provided for @saveName.
-  ///
-  /// In en, this message translates to:
-  /// **'Save Name'**
-  String get saveName;
-
-  /// No description provided for @privacyPolicy.
-  ///
-  /// In en, this message translates to:
-  /// **'Privacy Policy'**
-  String get privacyPolicy;
-
-  /// No description provided for @privacyPolicySubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Your data, permissions and choices'**
-  String get privacyPolicySubtitle;
-
-  /// No description provided for @termsAndConditions.
-  ///
-  /// In en, this message translates to:
-  /// **'Terms & Conditions'**
-  String get termsAndConditions;
-
-  /// No description provided for @termsAndConditionsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Using Rafeeq and its content'**
-  String get termsAndConditionsSubtitle;
-
-  /// No description provided for @legalRetry.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to load this page. Tap to retry.'**
-  String get legalRetry;
 }
 
 class _AppLocalizationsDelegate
