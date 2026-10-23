@@ -285,6 +285,29 @@ class SettingsScreen extends ConsumerWidget {
         ],
       ),
       (
+        context.loc.settingsSectionOtherApps,
+        [
+          for (final app in _otherApps)
+            _SettingsCardData(
+              icon: Icons.apps_rounded,
+              leading: _OtherAppIcon(asset: app.icon, palette: palette),
+              title: app.name,
+              subtitle: context.loc.otherAppsSubtitle,
+              trailing: Icon(
+                Icons.open_in_new_rounded,
+                size: 18,
+                color: palette.accent,
+              ),
+              onTap: () => launchUrl(
+                Uri.https('play.google.com', '/store/apps/details', {
+                  'id': app.packageName,
+                }),
+                mode: LaunchMode.externalApplication,
+              ),
+            ),
+        ],
+      ),
+      (
         context.loc.settingsSectionAppInfo,
         [
           _SettingsCardData(
@@ -361,6 +384,8 @@ class SettingsScreen extends ConsumerWidget {
                       if (cardIndex > 0) const SizedBox(height: 8),
                       SettingsCard(
                         icon: data.icon,
+                        leading: data.leading,
+                        trailing: data.trailing,
                         title: data.title,
                         subtitle: data.subtitle,
                         disableSubtitleTextScaling:
@@ -429,10 +454,63 @@ String _locationLabel(BuildContext context, UserLocation? location) {
   return parts.isEmpty ? context.loc.locationNotSet : parts.join(', ');
 }
 
+const _otherApps = [
+  (
+    name: '99 Names',
+    icon: 'assets/other_apps/asmaul_husna.png',
+    packageName: 'com.muzamil.asmaulhusna',
+  ),
+  (
+    name: 'Quran Khatam Tracker',
+    icon: 'assets/other_apps/quran_khatam_tracker.png',
+    packageName: 'com.quran.khatam.tracker',
+  ),
+  (
+    name: 'Budget AI',
+    icon: 'assets/other_apps/budget_ai.png',
+    packageName: 'com.budgetai.android',
+  ),
+  (
+    name: 'FM Crafts',
+    icon: 'assets/other_apps/fm_crafts.png',
+    packageName: 'com.fmcrafts.fmcrafts',
+  ),
+];
+
+class _OtherAppIcon extends StatelessWidget {
+  const _OtherAppIcon({required this.asset, required this.palette});
+
+  final String asset;
+  final SettingsPalette palette;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      foregroundDecoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: palette.subtitle.withValues(alpha: .25)),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.asset(
+          asset,
+          width: 40,
+          height: 40,
+          fit: BoxFit.cover,
+          cacheWidth: 160,
+          excludeFromSemantics: true,
+        ),
+      ),
+    );
+  }
+}
+
 class _SettingsCardData {
   const _SettingsCardData({
     required this.icon,
     required this.title,
+    this.leading,
+    this.trailing,
     this.subtitle,
     this.onTap,
     this.switchValue,
@@ -445,6 +523,8 @@ class _SettingsCardData {
        );
 
   final IconData icon;
+  final Widget? leading;
+  final Widget? trailing;
   final String title;
   final String? subtitle;
   final bool disableSubtitleTextScaling;

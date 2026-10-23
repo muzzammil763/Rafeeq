@@ -819,6 +819,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get openSettings => 'Open Settings';
 
   @override
+  String get otherAppsSubtitle => 'View on Google Play';
+
+  @override
   String get paused => 'Paused';
 
   @override
@@ -1135,6 +1138,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsSectionAppInfo => 'App info';
+
+  @override
+  String get settingsSectionOtherApps => 'Our other apps';
 
   @override
   String get settingsSectionPrayer => 'Prayer & Calendar';

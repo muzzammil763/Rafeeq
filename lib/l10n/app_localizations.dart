@@ -1604,6 +1604,12 @@ abstract class AppLocalizations {
   /// **'Open Settings'**
   String get openSettings;
 
+  /// No description provided for @otherAppsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View on Google Play'**
+  String get otherAppsSubtitle;
+
   /// No description provided for @paused.
   ///
   /// In en, this message translates to:
@@ -2203,6 +2209,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'App info'**
   String get settingsSectionAppInfo;
+
+  /// No description provided for @settingsSectionOtherApps.
+  ///
+  /// In en, this message translates to:
+  /// **'Our other apps'**
+  String get settingsSectionOtherApps;
 
   /// No description provided for @settingsSectionPrayer.
   ///

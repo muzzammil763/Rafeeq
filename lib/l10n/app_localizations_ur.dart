@@ -821,6 +821,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get openSettings => 'ترتیبات کھولیں';
 
   @override
+  String get otherAppsSubtitle => 'گوگل پلے پر دیکھیں';
+
+  @override
   String get paused => 'تلاوت رکی ہوئی ہے';
 
   @override
@@ -1137,6 +1140,9 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settingsSectionAppInfo => 'ایپ کی معلومات';
+
+  @override
+  String get settingsSectionOtherApps => 'ہماری دیگر ایپس';
 
   @override
   String get settingsSectionPrayer => 'نماز اور کیلنڈر';
